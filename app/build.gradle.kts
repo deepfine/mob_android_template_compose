@@ -1,55 +1,74 @@
 @file:Suppress("UnstableApiUsage")
 
 plugins {
-    androidApp()
-    kotlinAndroid()
+  androidApp()
+  kotlinAndroid()
+  hilt()
+  kotlinKapt()
 }
 
 android {
-    namespace = "com.deepfine.androidTemplate"
-    compileSdk = 33
+  namespace = AppConfiguration.APPLICATION_ID
 
-    defaultConfig {
-        applicationId = "com.deepfine.androidTemplate"
-        minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+  defaultConfig {
+    applicationId = AppConfiguration.APPLICATION_ID
+    compileSdk = AppConfiguration.COMPILE_SDK
+    minSdk = AppConfiguration.MIN_SDK
+    targetSdk = AppConfiguration.TARGET_SDK
+    versionCode = AppConfiguration.VERSION_CODE
+    versionName = AppConfiguration.VERSION_NAME
+  }
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+  setProductFlavors(project::property, true)
+
+  buildTypes {
+    debug {
+      isDebuggable = true
+      isMinifyEnabled = false
+      isShrinkResources = false
     }
 
-    buildTypes {
-        debug {
-            isDebuggable = true
-            isMinifyEnabled = false
-            isShrinkResources = false
-        }
-
-        release {
-            isDebuggable = false
-            isMinifyEnabled = true
-            isShrinkResources = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+    release {
+      isDebuggable = false
+      isMinifyEnabled = true
+      isShrinkResources = true
+      proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
 //            signingConfig = signingConfigs.getByName("release")
-        }
     }
+  }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
 
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+  kotlinOptions {
+    jvmTarget = "17"
+  }
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.10.1")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.9.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+  projectImplementation(
+    Modules.DATA,
+    Modules.DOMAIN,
+    Modules.PRESENTATION_SPLASH
+  )
+
+  implementation(
+    Libraries.AndroidX.Core,
+    Libraries.AndroidX.AppCompat,
+    Libraries.Google.Material,
+  )
+
+  implementation(
+    Libraries.AndroidX.Multidex
+  )
+
+  implementation(
+    Libraries.Hilt
+  )
+
+  kapt(
+    Libraries.Hilt.AndroidCompiler
+  )
 }

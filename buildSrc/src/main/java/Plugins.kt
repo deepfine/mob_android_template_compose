@@ -40,3 +40,6 @@ fun PluginDependenciesSpec.kotlinAndroid(): PluginDependencySpec =
 
 fun PluginDependenciesSpec.navigation(): PluginDependencySpec =
   id("androidx.navigation.safeargs.kotlin")
+
+fun PluginDependenciesSpec.kotlinSerialization(): PluginDependencySpec =
+  kotlin("plugin.serialization")
