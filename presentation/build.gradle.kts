@@ -1,42 +1,29 @@
+@file:Suppress("UnstableApiUsage")
+
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-  androidLibrary()
-  kotlinAndroid()
-  hilt()
-  kotlinKapt()
+  id(libs.plugins.android.library.get().pluginId)
+  id(libs.plugins.kotlin.android.get().pluginId)
+  id(libs.plugins.hilt.get().pluginId)
+  id(libs.plugins.kotlin.kapt.get().pluginId)
 }
 
 android {
   namespace = "com.deepfine.presentation"
   setLibraryConfig()
   setViewBindingEnabled()
-  setProductFlavors(project::property)
+
+  flavorDimensions.add("api")
+  productFlavors {
+    create("dev")
+    create("production")
+  }
 }
 
 dependencies {
-  projectImplementation(
-    Modules.DOMAIN
-  )
-
-  implementation(
-    Libraries.Kotlin.Coroutine.Core,
-    Libraries.AndroidX.Core,
-    Libraries.AndroidX.AppCompat,
-    Libraries.AndroidX.Activity,
-    Libraries.AndroidX.Fragment,
-    Libraries.Google.Material,
-  )
-
-  implementation(
-    Libraries.Lifecycle.Runtime,
-    Libraries.Lifecycle.ViewModel,
-    Libraries.TedPermission,
-  )
-
-  implementation(
-    Libraries.Hilt
-  )
-
-  kapt(
-    Libraries.Hilt.AndroidCompiler
-  )
+  implementation(project(":domain"))
+  implementation(libs.bundles.presentation)
+  implementation(libs.kotlin.coroutine.core)
+  implementation(libs.androidx.ktx)
+  kapt(libs.hilt.compiler.get())
 }

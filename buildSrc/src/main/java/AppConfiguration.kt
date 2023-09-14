@@ -8,8 +8,8 @@ object AppConfiguration {
   const val APPLICATION_NAME = "Android Template"
   const val APPLICATION_ID = "com.deepfine.androidTemplate"
 
-  const val COMPILE_SDK = 33
-  const val TARGET_SDK = 33
+  const val COMPILE_SDK = 34
+  const val TARGET_SDK = 34
   const val MIN_SDK = 24
   const val BUILD_TOOLS = "30.0.3"
 

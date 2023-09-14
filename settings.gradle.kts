@@ -6,7 +6,6 @@ pluginManagement {
     mavenCentral()
     gradlePluginPortal()
     maven(url = "https://www.jitpack.io")
-    jcenter() // Warning: this repository is going to shut down soon
   }
 }
 

@@ -1,10 +1,11 @@
 @file:Suppress("UnstableApiUsage")
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-  androidApp()
-  kotlinAndroid()
-  hilt()
-  kotlinKapt()
+  id(libs.plugins.android.application.get().pluginId)
+  id(libs.plugins.kotlin.android.get().pluginId)
+  id(libs.plugins.hilt.get().pluginId)
+  id(libs.plugins.kotlin.kapt.get().pluginId)
 }
 
 android {
@@ -19,7 +20,28 @@ android {
     versionName = AppConfiguration.VERSION_NAME
   }
 
-  setProductFlavors(project::property, true)
+  flavorDimensions.add("api")
+
+  productFlavors {
+    // 개발계
+    create("dev") {
+      buildConfigField("String", "VERSION_NAME", "\"${AppConfiguration.VERSION_NAME}\"")
+      buildConfigField("Integer", "VERSION_CODE", AppConfiguration.VERSION_CODE.toString())
+      buildConfigField("String", "API_URL", project.property("api.url").toString())
+      resValue("string", "app_name", AppConfiguration.APPLICATION_NAME)
+      resValue("string", "applicationId", applicationId + applicationIdSuffix)
+    }
+
+    create("production") {
+      versionCode = AppConfiguration.PRODUCTION_VERSION_CODE
+      versionName = AppConfiguration.PRODUCTION_VERSION_NAME
+      buildConfigField("String", "VERSION_NAME", "\"${AppConfiguration.VERSION_NAME}\"")
+      buildConfigField("Integer", "VERSION_CODE", AppConfiguration.VERSION_CODE.toString())
+      buildConfigField("String", "API_URL", project.property("production.api.url").toString())
+      resValue("string", "app_name", AppConfiguration.APPLICATION_NAME)
+      resValue("string", "applicationId", AppConfiguration.APPLICATION_ID)
+    }
+  }
 
   buildTypes {
     debug {
@@ -48,27 +70,15 @@ android {
 }
 
 dependencies {
-  projectImplementation(
-    Modules.DATA,
-    Modules.DOMAIN,
-    Modules.PRESENTATION_SPLASH
-  )
+  implementation(project(":data"))
+  implementation(project(":domain"))
+  implementation(project(":presentation:splash"))
 
-  implementation(
-    Libraries.AndroidX.Core,
-    Libraries.AndroidX.AppCompat,
-    Libraries.Google.Material,
-  )
+  implementation(libs.androidx.multidex)
+  implementation(libs.androidx.ktx)
+  implementation(libs.androidx.appcompat)
+  implementation(libs.google.material)
+  implementation(libs.hilt)
 
-  implementation(
-    Libraries.AndroidX.Multidex
-  )
-
-  implementation(
-    Libraries.Hilt
-  )
-
-  kapt(
-    Libraries.Hilt.AndroidCompiler
-  )
+  kapt(libs.hilt.compiler.get())
 }

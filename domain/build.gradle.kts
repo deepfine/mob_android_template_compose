@@ -1,26 +1,27 @@
+@file:Suppress("UnstableApiUsage")
+
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-  androidLibrary()
-  kotlinAndroid()
-  hilt()
-  kotlinKapt()
+  id(libs.plugins.android.library.get().pluginId)
+  id(libs.plugins.kotlin.android.get().pluginId)
+  id(libs.plugins.hilt.get().pluginId)
+  id(libs.plugins.kotlin.kapt.get().pluginId)
 }
 
 android {
   namespace = "com.deepfine.domain"
   setLibraryConfig()
-  setProductFlavors(project::property)
+
+  flavorDimensions.add("api")
+  productFlavors {
+    create("dev")
+    create("production")
+  }
 }
 
 dependencies {
-  implementation(
-    Libraries.Kotlin.Coroutine.Core
-  )
+  implementation(libs.kotlin.coroutine.core)
+  implementation(libs.hilt)
 
-  implementation(
-    Libraries.Hilt
-  )
-
-  kapt(
-    Libraries.Hilt.AndroidCompiler
-  )
+  kapt(libs.hilt.compiler.get())
 }

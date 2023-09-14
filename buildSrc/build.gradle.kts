@@ -1,3 +1,4 @@
+@file:Suppress("UnstableApiUsage")
 repositories {
   google()
   mavenCentral()
@@ -6,12 +7,13 @@ repositories {
 }
 
 plugins {
-  `kotlin-dsl` // java dsl 설정
+  `kotlin-dsl`
 }
 
 dependencies {
-  implementation("com.android.tools.build:gradle:8.0.2")
-  implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.22")
-  implementation("com.google.dagger:hilt-android-gradle-plugin:2.47")
-  implementation("org.jetbrains.kotlin:kotlin-serialization:1.8.22")
+  implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
+  implementation(libs.android.gradlePlugin)
+  implementation(libs.kotlin.gradlePlugin)
+  implementation(libs.kotlin.serialization)
+  implementation(libs.hilt.gradlePlugin)
 }

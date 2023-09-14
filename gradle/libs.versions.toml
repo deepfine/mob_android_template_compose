@@ -1,0 +1,61 @@
+[versions]
+kotlin = "1.8.22"
+multidex = "2.0.1"
+ktx = "1.12.0"
+appcompat = "1.6.1"
+activity = "1.6.1"
+fragment = "1.5.5"
+lifecycle = "2.5.1"
+material = "1.9.0"
+coroutine = "1.6.4"
+ktor = "1.5.0"
+hilt = "2.47"
+tedpermission = "3.3.0"
+androidGradlePlugin = "8.0.2"
+
+[libraries]
+androidx-multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
+androidx-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-activity = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
+androidx-fragment = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment" }
+androidx-lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+
+google-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
+kotlin-coroutine-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutine" }
+kotlin-coroutine-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutine" }
+
+ktor-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
+ktor-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
+ktor-serialization = { group = "io.ktor", name = "ktor-client-serialization", version.ref = "ktor" }
+ktor-logging = { group = "io.ktor", name = "ktor-client-logging", version.ref = "ktor" }
+ktor-gson = { group = "io.ktor", name = "ktor-client-gson", version.ref = "ktor" }
+
+hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+
+tedpermission = { group = "io.github.ParkSangGwon", name = "tedpermission-normal", version.ref = "tedpermission" }
+
+
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-serialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
+hilt-gradlePlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
+
+[bundles]
+ktor = ["ktor-core", "ktor-android", "ktor-serialization", "ktor-logging", "ktor-gson"]
+presentation = ["androidx-appcompat", "androidx-activity", "androidx-fragment", "google-material", "androidx-lifecycle-runtime", "androidx-lifecycle-viewmodel", "hilt", "tedpermission"]
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+hilt = { id = "dagger.hilt.android.plugin", version.ref = "hilt" }
+ksp = { id = "com.google.devtools.ksp", version = "1.8.22-1.0.11" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version = "10.3.0" }
+kotlin-kapt = { id = "kotlin-kapt", version.ref = "kotlin" }
+kotlin-percelize = { id = "kotlin-percelize", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+

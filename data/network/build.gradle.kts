@@ -1,39 +1,38 @@
+@file:Suppress("UnstableApiUsage")
+
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-  androidLibrary()
-  kotlinAndroid()
-  hilt()
-  kotlinKapt()
-  kotlinSerialization()
+  id(libs.plugins.android.library.get().pluginId)
+  id(libs.plugins.kotlin.android.get().pluginId)
+  id(libs.plugins.hilt.get().pluginId)
+  id(libs.plugins.kotlin.kapt.get().pluginId)
+  id(libs.plugins.kotlin.serialization.get().pluginId)
 }
 
 android {
   namespace = "com.deepfine.network"
   setLibraryConfig()
-  setProductFlavors(project::property)
+
+  flavorDimensions.add("api")
+
+  productFlavors {
+    // 개발계
+    create("dev") {
+      buildConfigField("String", "API_URL", project.property("api.url").toString())
+    }
+
+    create("production") {
+      buildConfigField("String", "API_URL", project.property("production.api.url").toString())
+    }
+  }
 }
 
 dependencies {
-  projectImplementation(
-    Modules.DOMAIN,
-  )
+  implementation(project(":domain"))
 
-  implementation(
-    Libraries.Ktor.Core,
-    Libraries.Ktor.Android,
-    Libraries.Ktor.Logging,
-    Libraries.Ktor.Serialization,
-    Libraries.Ktor.Gson,
-  )
+  implementation(libs.bundles.ktor)
+  implementation(libs.kotlin.coroutine.core)
+  implementation(libs.hilt)
 
-  implementation(
-    Libraries.Kotlin.Coroutine.Core
-  )
-
-  implementation(
-    Libraries.Hilt
-  )
-
-  kapt(
-    Libraries.Hilt.AndroidCompiler
-  )
+  kapt(libs.hilt.compiler.get())
 }
