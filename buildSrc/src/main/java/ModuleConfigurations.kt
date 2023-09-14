@@ -27,6 +27,8 @@ fun BaseExtension.setLibraryConfig() {
 }
 
 fun BaseExtension.setViewBindingEnabled() {
+  buildFeatures.compose = true
+  composeOptions.kotlinCompilerExtensionVersion = "1.5.3"
   viewBinding {
     isEnabled = true
   }

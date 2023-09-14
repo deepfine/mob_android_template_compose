@@ -24,7 +24,8 @@ dependencies {
   implementation(project(":domain"))
   implementation(project(":presentation"))
   implementation(libs.bundles.presentation)
-  implementation(libs.kotlin.coroutine.core)
-  implementation(libs.androidx.ktx)
+  implementation(platform(libs.androidx.compose.bom))
+  implementation(libs.bundles.compose)
+
   kapt(libs.hilt.compiler.get())
 }

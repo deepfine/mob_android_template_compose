@@ -27,8 +27,6 @@ abstract class BaseViewModelImpl : ViewModel(), BaseViewModel {
     }
   }
 
-  protected fun <T> Flow<T>.asStateFlow(initialValue: T) = stateIn(viewModelScope, SharingStarted.WhileSubscribed(), initialValue)
-
   protected suspend inline fun <R, T> Flow<Result<T>>.collectResult(crossinline onSuccess: suspend (T) -> R, crossinline onFailure: suspend (Throwable) -> R) = collectLatest { result ->
     result.fold(
       onSuccess = {

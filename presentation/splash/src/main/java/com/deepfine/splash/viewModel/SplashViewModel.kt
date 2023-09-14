@@ -7,7 +7,11 @@ import com.deepfine.presentation.base.BaseViewModelImpl
 import com.deepfine.presentation.utils.EventFlow
 import com.deepfine.presentation.utils.MutableEventFlow
 import com.deepfine.presentation.utils.asEventFlow
+import com.deepfine.splash.state.SplashState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,14 +27,13 @@ class SplashViewModel @Inject constructor(
   private val getSampleUseCase: GetSampleUseCase
 ) : BaseViewModelImpl() {
 
-  private val _sample = MutableEventFlow<Sample>()
-  val sample: EventFlow<Sample>
-    get() = _sample.asEventFlow()
+  private val _uiState = MutableStateFlow<SplashState>(SplashState.Loading)
+  val uiState: StateFlow<SplashState>
+    get() = _uiState.asStateFlow()
 
   init {
     requestSample()
   }
-
 
   private fun requestSample() {
     viewModelScope.launch {
@@ -41,11 +44,11 @@ class SplashViewModel @Inject constructor(
     }
   }
 
-  private suspend fun onFetchSampleSuccess(sample: Sample) {
-    _sample.emit(sample)
+  private fun onFetchSampleSuccess(sample: Sample) {
+    _uiState.value = SplashState.SampleLoaded(sample)
   }
 
   private fun onFetchSampleFailure(throwable: Throwable) {
-    // TODO : Do something with throwable
+    _uiState.value = SplashState.LoadFailure
   }
 }

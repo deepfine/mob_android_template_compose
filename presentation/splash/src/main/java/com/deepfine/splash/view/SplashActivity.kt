@@ -1,11 +1,21 @@
 package com.deepfine.splash.view
 
-import android.view.LayoutInflater
+import android.os.Bundle
+import android.util.Log
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import com.deepfine.domain.model.Sample
-import com.deepfine.presentation.base.BaseActivity
-import com.deepfine.presentation.extensions.repeatOnStarted
-import com.deepfine.splash.databinding.ActivitySplashBinding
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import com.deepfine.splash.state.SplashState
+import com.deepfine.splash.view.theme.MyApplicationTheme
 import com.deepfine.splash.viewModel.SplashViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,26 +26,39 @@ import dagger.hilt.android.AndroidEntryPoint
  * @version 1.0.0
  */
 @AndroidEntryPoint
-class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>() {
-  override val bindFactory: (LayoutInflater) -> ActivitySplashBinding = ActivitySplashBinding::inflate
-  override val viewModel: SplashViewModel by viewModels()
+class SplashActivity : ComponentActivity() {
+  private val viewModel: SplashViewModel by viewModels()
 
-  //================================================================================================
-  // Initialize
-  //================================================================================================
-  override fun onBind() {
-    repeatOnStarted(
-      { viewModel.sample.collect(::observeSample) }
-    )
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+
+    setContent {
+      MyApplicationTheme {
+        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+          val state by viewModel.uiState.collectAsState()
+          when (state) {
+            is SplashState.Loading -> Message("Loading")
+            is SplashState.LoadFailure -> Message("Failure")
+            is SplashState.SampleLoaded -> Message((state as SplashState.SampleLoaded).sample.toString())
+          }
+        }
+      }
+    }
   }
+}
 
-  override fun initView() {
-  }
+@Composable
+fun Message(message: String, modifier: Modifier = Modifier) {
+  Text(
+    text = message,
+    modifier = modifier
+  )
+}
 
-  //================================================================================================
-  // Observe
-  //================================================================================================
-  private fun observeSample(sample: Sample) {
-    binding.sampleTextView.text = sample.toString()
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+  MyApplicationTheme {
+    Message("Loading")
   }
 }

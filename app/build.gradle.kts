@@ -76,8 +76,6 @@ dependencies {
 
   implementation(libs.androidx.multidex)
   implementation(libs.androidx.ktx)
-  implementation(libs.androidx.appcompat)
-  implementation(libs.google.material)
   implementation(libs.hilt)
 
   kapt(libs.hilt.compiler.get())
