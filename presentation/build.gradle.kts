@@ -11,7 +11,7 @@ plugins {
 android {
   namespace = "com.deepfine.presentation"
   setLibraryConfig()
-  setViewBindingEnabled()
+  setComposeEnabled()
 
   flavorDimensions.add("api")
   productFlavors {

@@ -1,7 +1,6 @@
 package com.deepfine.splash.view
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -13,9 +12,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.tooling.preview.Preview
+import com.deepfine.presentation.ui.theme.ApplicationTheme
+import com.deepfine.presentation.ui.theme.ColorScheme
+import com.deepfine.presentation.ui.theme.Purple40
+import com.deepfine.presentation.ui.theme.PurpleGrey40
+import com.deepfine.presentation.ui.theme.WindowAnimation
+import com.deepfine.presentation.ui.theme.WindowTheme
 import com.deepfine.splash.state.SplashState
-import com.deepfine.splash.view.theme.MyApplicationTheme
 import com.deepfine.splash.viewModel.SplashViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -33,7 +38,16 @@ class SplashActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
 
     setContent {
-      MyApplicationTheme {
+      WindowTheme(
+        decorFitsSystemWindows = false,
+        statusBarColor = Purple40.toArgb(),
+        isAppearanceLightStatusBars = false,
+        navigationBarColor = PurpleGrey40.toArgb(),
+        isAppearanceLightNavigationBars = false,
+        windowAnimation = WindowAnimation.POP_UP
+      )
+
+      ApplicationTheme {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
           val state by viewModel.uiState.collectAsState()
           when (state) {
@@ -58,7 +72,7 @@ fun Message(message: String, modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-  MyApplicationTheme {
+  ApplicationTheme {
     Message("Loading")
   }
 }

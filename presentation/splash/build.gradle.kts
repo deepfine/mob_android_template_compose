@@ -11,7 +11,7 @@ plugins {
 android {
   namespace = "com.deepfine.splash"
   setLibraryConfig()
-  setViewBindingEnabled()
+  setComposeEnabled()
 
   flavorDimensions.add("api")
   productFlavors {
