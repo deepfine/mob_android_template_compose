@@ -4,17 +4,16 @@ import androidx.lifecycle.viewModelScope
 import com.deepfine.domain.model.Sample
 import com.deepfine.domain.usecase.GetSampleUseCase
 import com.deepfine.presentation.base.BaseViewModelImpl
-import com.deepfine.splash.event.SplashEvent
-import com.deepfine.splash.sideEffect.SplashSideEffect
-import com.deepfine.splash.state.SplashState
+import com.deepfine.splash.model.SplashSideEffect
+import com.deepfine.splash.model.SplashState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
-import kotlinx.coroutines.flow.runningFold
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import org.orbitmvi.orbit.Container
+import org.orbitmvi.orbit.ContainerHost
+import org.orbitmvi.orbit.syntax.simple.intent
+import org.orbitmvi.orbit.syntax.simple.postSideEffect
+import org.orbitmvi.orbit.syntax.simple.reduce
+import org.orbitmvi.orbit.viewmodel.container
 import javax.inject.Inject
 
 /**
@@ -25,46 +24,31 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class SplashViewModel @Inject constructor(
-  private val getSampleUseCase: GetSampleUseCase
-) : BaseViewModelImpl() {
+  private val getSample: GetSampleUseCase
+) : BaseViewModelImpl(), ContainerHost<SplashState, SplashSideEffect> {
 
-  private val event = Channel<SplashEvent>()
-
-  val state: StateFlow<SplashState> = event.receiveAsFlow()
-    .runningFold(SplashState(), ::reduceState)
-    .stateIn(viewModelScope, SharingStarted.Eagerly, SplashState())
-
-  private val _sideEffects = Channel<SplashSideEffect>()
-  val sideEffects = _sideEffects.receiveAsFlow()
-
-  private fun reduceState(current: SplashState, event: SplashEvent): SplashState {
-    return when (event) {
-      SplashEvent.Loading -> current.copy(loading = true)
-      is SplashEvent.Loaded -> current.copy(loading = false, sample = event.sample)
-      is SplashEvent.Error -> current.copy(loading = false, error = event.throwable)
-    }
-  }
+  override val container: Container<SplashState, SplashSideEffect> = container(SplashState())
 
   init {
     requestSample()
   }
 
-  private fun requestSample() {
+  private fun requestSample() = intent {
     viewModelScope.launch {
-      event.send(SplashEvent.Loading)
-      getSampleUseCase().collectResult(
+      reduce { state.copy(loading = true, error = null) }
+      getSample().collectResult(
         ::onFetchSampleSuccess,
         ::onFetchSampleFailure
       )
     }
   }
 
-  private suspend fun onFetchSampleSuccess(sample: Sample) {
-    event.send(SplashEvent.Loaded(sample))
+  private suspend fun onFetchSampleSuccess(sample: Sample) = intent {
+    reduce { state.copy(loading = false, sample = sample) }
   }
 
-  private suspend fun onFetchSampleFailure(throwable: Throwable) {
-    event.send(SplashEvent.Error(throwable))
-    _sideEffects.send(SplashSideEffect.Error(throwable))
+  private suspend fun onFetchSampleFailure(throwable: Throwable) = intent {
+    reduce { state.copy(loading = false, error = throwable) }
+    postSideEffect(SplashSideEffect.Error(throwable))
   }
 }

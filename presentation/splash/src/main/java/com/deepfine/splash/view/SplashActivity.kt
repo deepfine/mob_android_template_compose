@@ -1,7 +1,6 @@
 package com.deepfine.splash.view
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,21 +14,19 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.deepfine.presentation.ui.theme.ApplicationTheme
 import com.deepfine.presentation.ui.theme.WindowAnimation
 import com.deepfine.presentation.ui.theme.WindowTheme
-import com.deepfine.splash.sideEffect.SplashSideEffect
+import com.deepfine.splash.model.SplashSideEffect
 import com.deepfine.splash.viewModel.SplashViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import org.orbitmvi.orbit.compose.collectAsState
+import org.orbitmvi.orbit.compose.collectSideEffect
 
 /**
  * @Description
@@ -45,30 +42,26 @@ class SplashActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
 
     setContent {
-      LaunchedEffect(true) {
-        viewModel.sideEffects.collect(::observeSideEffects)
-      }
+      viewModel.collectSideEffect(sideEffect = ::observeSideEffects)
 
       WindowTheme(
         decorFitsSystemWindows = true,
-        statusBarColor = Color(0xFF62FF00).toArgb(),
+        statusBarColor = Color.White,
         isAppearanceLightStatusBars = false,
-        navigationBarColor = Color(0xFFFF0000).toArgb(),
+        navigationBarColor = Color.White,
         isAppearanceLightNavigationBars = false,
         windowAnimation = WindowAnimation.POP_UP
       )
 
       ApplicationTheme {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-          val state by viewModel.state.collectAsStateWithLifecycle()
+          val state by viewModel.collectAsState()
 
           Column {
             Button({}, enabled = !state.loading) {
               Text("버튼")
             }
             Message(state.sample?.toString() ?: "")
-
-
           }
 
           Loading(state.loading)

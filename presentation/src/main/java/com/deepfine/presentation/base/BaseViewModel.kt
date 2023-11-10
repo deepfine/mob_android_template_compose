@@ -21,12 +21,6 @@ import kotlinx.coroutines.launch
 interface BaseViewModel
 
 abstract class BaseViewModelImpl : ViewModel(), BaseViewModel {
-  protected fun <T> FlowCollector<T>.emitOn(value: T) {
-    viewModelScope.launch {
-      this@emitOn.emit(value)
-    }
-  }
-
   protected suspend inline fun <R, T> Flow<Result<T>>.collectResult(crossinline onSuccess: suspend (T) -> R, crossinline onFailure: suspend (Throwable) -> R) = collectLatest { result ->
     result.fold(
       onSuccess = {
@@ -38,5 +32,3 @@ abstract class BaseViewModelImpl : ViewModel(), BaseViewModel {
     )
   }
 }
-
-class EmptyViewModel : BaseViewModel

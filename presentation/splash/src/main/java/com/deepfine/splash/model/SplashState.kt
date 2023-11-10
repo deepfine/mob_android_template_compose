@@ -1,4 +1,4 @@
-package com.deepfine.splash.state
+package com.deepfine.splash.model
 
 import com.deepfine.domain.model.Sample
 

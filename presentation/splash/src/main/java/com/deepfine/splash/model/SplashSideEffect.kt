@@ -1,4 +1,4 @@
-package com.deepfine.splash.sideEffect
+package com.deepfine.splash.model
 
 /**
  * @Description

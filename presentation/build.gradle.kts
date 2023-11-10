@@ -23,6 +23,7 @@ android {
 dependencies {
   implementation(project(":domain"))
   implementation(libs.bundles.presentation)
+  implementation(libs.bundles.orbit)
   implementation(platform(libs.androidx.compose.bom))
   implementation(libs.bundles.compose)
   kapt(libs.hilt.compiler.get())

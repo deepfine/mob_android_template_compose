@@ -5,6 +5,7 @@ import android.view.Window
 import androidx.annotation.ColorInt
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
@@ -17,9 +18,9 @@ import androidx.core.view.WindowInsetsControllerCompat
 @Composable
 fun WindowTheme(
   decorFitsSystemWindows: Boolean = true,
-  @ColorInt statusBarColor: Int = ColorScheme.primary.toArgb(),
+  statusBarColor: Color = ColorScheme.primary,
   isAppearanceLightStatusBars: Boolean = true,
-  @ColorInt navigationBarColor: Int = ColorScheme.primary.toArgb(),
+  navigationBarColor: Color = ColorScheme.primary,
   isAppearanceLightNavigationBars: Boolean = true,
   windowAnimation: WindowAnimation? = null
 ) {
@@ -30,9 +31,9 @@ fun WindowTheme(
       val windowInsetsController = WindowCompat.getInsetsController(window, window.decorView)
 
       decorFitsSystemWindows(window, decorFitsSystemWindows)
-      setStatusBarColor(window, statusBarColor)
+      setStatusBarColor(window, statusBarColor.toArgb())
       setAppearanceLightStatusBars(windowInsetsController, isAppearanceLightStatusBars)
-      setNavigationBarColor(window, navigationBarColor)
+      setNavigationBarColor(window, navigationBarColor.toArgb())
       setAppearanceLightNavigationBars(windowInsetsController, isAppearanceLightNavigationBars)
       setWindowAnimation(window, windowAnimation)
     }
