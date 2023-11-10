@@ -18,7 +18,10 @@ data class SampleEntity(
   @SerializedName("length")
   val length: Int
 ) {
-  fun toDomain() = Sample(
-    fact, length
-  )
+  fun toDomain() =
+    if (length != -999)
+      Sample(fact, length)
+    else {
+      throw RuntimeException()
+    }
 }
