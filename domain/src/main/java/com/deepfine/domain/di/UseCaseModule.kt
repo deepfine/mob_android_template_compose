@@ -1,6 +1,6 @@
 package com.deepfine.domain.di
 
-import com.deepfine.domain.repository.SplashRepository
+import com.deepfine.domain.repository.MainRepository
 import com.deepfine.domain.usecase.GetFactsUseCase
 import dagger.Module
 import dagger.Provides
@@ -19,5 +19,5 @@ import javax.inject.Singleton
 class UseCaseModule {
   @Singleton
   @Provides
-  fun provideGetSampleUseCase(repository: SplashRepository) = GetFactsUseCase(repository)
+  fun provideGetSampleUseCase(repository: MainRepository) = GetFactsUseCase(repository)
 }

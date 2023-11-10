@@ -23,5 +23,6 @@ listOf(
   ":data:network",
   ":domain",
   ":presentation",
-  ":presentation:splash"
+  ":presentation:splash",
+  ":presentation:home"
 ).forEach(::include)

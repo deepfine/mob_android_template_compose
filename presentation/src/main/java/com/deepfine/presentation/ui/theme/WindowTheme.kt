@@ -22,7 +22,6 @@ fun WindowTheme(
   isAppearanceLightStatusBars: Boolean = true,
   navigationBarColor: Color = ColorScheme.primary,
   isAppearanceLightNavigationBars: Boolean = true,
-  windowAnimation: WindowAnimation? = null
 ) {
   val view = LocalView.current
   if (!view.isInEditMode) {
@@ -35,7 +34,6 @@ fun WindowTheme(
       setAppearanceLightStatusBars(windowInsetsController, isAppearanceLightStatusBars)
       setNavigationBarColor(window, navigationBarColor.toArgb())
       setAppearanceLightNavigationBars(windowInsetsController, isAppearanceLightNavigationBars)
-      setWindowAnimation(window, windowAnimation)
     }
   }
 }
@@ -59,10 +57,3 @@ private fun setNavigationBarColor(window: Window, @ColorInt color: Int) {
 private fun setAppearanceLightNavigationBars(windowInsetsController: WindowInsetsControllerCompat, isAppearanceLightNavigationBars: Boolean) {
   windowInsetsController.isAppearanceLightNavigationBars = isAppearanceLightNavigationBars
 }
-
-private fun setWindowAnimation(window: Window, animation: WindowAnimation?) {
-  if (animation == null) return
-
-  window.attributes.windowAnimations = animation.style
-}
-

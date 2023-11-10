@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-  namespace = "com.deepfine.splash"
+  namespace = "com.deepfine.main"
   setLibraryConfig()
   setComposeEnabled()
 
@@ -23,7 +23,6 @@ android {
 dependencies {
   implementation(project(":domain"))
   implementation(project(":presentation"))
-  implementation(project(":presentation:home"))
   implementation(libs.bundles.presentation)
   implementation(libs.bundles.orbit)
   implementation(platform(libs.androidx.compose.bom))

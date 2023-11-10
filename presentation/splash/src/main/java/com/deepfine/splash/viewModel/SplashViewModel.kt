@@ -7,6 +7,7 @@ import com.deepfine.presentation.base.BaseViewModelImpl
 import com.deepfine.splash.model.SplashSideEffect
 import com.deepfine.splash.model.SplashState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
@@ -23,32 +24,21 @@ import javax.inject.Inject
  * @version 1.0.0
  */
 @HiltViewModel
-class SplashViewModel @Inject constructor(
-  private val getFacts: GetFactsUseCase
-) : BaseViewModelImpl(), ContainerHost<SplashState, SplashSideEffect> {
-
+class SplashViewModel @Inject constructor() : BaseViewModelImpl(), ContainerHost<SplashState, SplashSideEffect> {
   override val container: Container<SplashState, SplashSideEffect> = container(SplashState())
 
   init {
-    requestFacts()
+    countSplashTime()
   }
 
-  fun requestFacts() = intent {
+  private fun countSplashTime() = intent {
     viewModelScope.launch {
-      reduce { state.copy(loading = true, error = null) }
-      getFacts().collectResult(
-        ::onFetchFactsSuccess,
-        ::onFetchFactsFailure
-      )
+      delay(SPLASH_MILLIS)
+      postSideEffect(SplashSideEffect.NavigateToMain)
     }
   }
 
-  private fun onFetchFactsSuccess(facts: List<Fact>) = intent {
-    reduce { state.copy(loading = false, facts = facts) }
-  }
-
-  private fun onFetchFactsFailure(throwable: Throwable) = intent {
-    reduce { state.copy(loading = false, error = throwable) }
-    postSideEffect(SplashSideEffect.Error(throwable))
+  companion object {
+    private const val SPLASH_MILLIS = 2000L
   }
 }

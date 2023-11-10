@@ -1,5 +1,7 @@
 package com.deepfine.domain.model
 
+import java.io.Serializable
+
 /**
  * @Description
  * @author yc.park (DEEP.FINE)
@@ -8,4 +10,4 @@ package com.deepfine.domain.model
 data class Fact(
   val fact: String,
   val length: Int
-)
+) : Serializable

@@ -3,7 +3,7 @@ package com.deepfine.data.repository
 import com.deepfine.data.utils.asResult
 import com.deepfine.data.utils.withIOContext
 import com.deepfine.domain.model.Fact
-import com.deepfine.domain.repository.SplashRepository
+import com.deepfine.domain.repository.MainRepository
 import com.deepfine.network.datasource.NetworkDataSource
 import com.deepfine.network.entity.FactsEntity
 import kotlinx.coroutines.flow.Flow
@@ -16,9 +16,9 @@ import javax.inject.Inject
  * @since 2023-08-08
  * @version 1.0.0
  */
-class SplashRepositoryImpl @Inject constructor(
+class MainRepositoryImpl @Inject constructor(
   private val dataSource: NetworkDataSource
-) : SplashRepository {
+) : MainRepository {
   override suspend fun getFacts(): Flow<Result<List<Fact>>> =
     dataSource.getFacts()
       .map(FactsEntity::toDomain)
