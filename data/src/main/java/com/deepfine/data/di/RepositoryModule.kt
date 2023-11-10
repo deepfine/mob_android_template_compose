@@ -1,7 +1,7 @@
 package com.deepfine.data.di
 
-import com.deepfine.data.repository.SampleRepositoryImpl
-import com.deepfine.domain.repository.SampleRepository
+import com.deepfine.data.repository.SplashRepositoryImpl
+import com.deepfine.domain.repository.SplashRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -20,6 +20,6 @@ abstract class RepositoryModule {
 
   @Binds
   abstract fun bindSampleRepository(
-    sampleRepositoryImpl: SampleRepositoryImpl
-  ): SampleRepository
+    splashRepositoryImpl: SplashRepositoryImpl
+  ): SplashRepository
 }

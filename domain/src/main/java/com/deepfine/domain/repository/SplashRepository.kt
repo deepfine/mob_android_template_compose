@@ -1,6 +1,6 @@
 package com.deepfine.domain.repository
 
-import com.deepfine.domain.model.Sample
+import com.deepfine.domain.model.Fact
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -9,6 +9,6 @@ import kotlinx.coroutines.flow.Flow
  * @since 2023-08-08
  * @version 1.0.0
  */
-interface SampleRepository {
-  suspend fun getFacts(): Flow<Result<Sample>>
+interface SplashRepository {
+  suspend fun getFacts(): Flow<Result<List<Fact>>>
 }

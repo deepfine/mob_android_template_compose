@@ -1,7 +1,7 @@
 package com.deepfine.data.di
 
-import com.deepfine.network.datasource.SampleDataSource
-import com.deepfine.network.datasource.SampleDataSourceImpl
+import com.deepfine.network.datasource.NetworkDataSource
+import com.deepfine.network.datasource.NetworkDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -18,6 +18,6 @@ import dagger.hilt.components.SingletonComponent
 abstract class DataSourceModule {
   @Binds
   abstract fun bindSampleDataSource(
-    sampleDataSourceImpl: SampleDataSourceImpl
-  ): SampleDataSource
+    sampleDataSourceImpl: NetworkDataSourceImpl
+  ): NetworkDataSource
 }

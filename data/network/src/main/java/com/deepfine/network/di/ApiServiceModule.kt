@@ -1,7 +1,7 @@
 package com.deepfine.network.di
 
-import com.deepfine.network.service.SampleApiService
-import com.deepfine.network.service.SampleApiServiceImpl
+import com.deepfine.network.service.FactApiService
+import com.deepfine.network.service.FactApiServiceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -19,6 +19,6 @@ abstract class ApiServiceModule {
 
   @Binds
   abstract fun bindSampleApiService(
-    sampleApiServiceImpl: SampleApiServiceImpl
-  ): SampleApiService
+    sampleApiServiceImpl: FactApiServiceImpl
+  ): FactApiService
 }

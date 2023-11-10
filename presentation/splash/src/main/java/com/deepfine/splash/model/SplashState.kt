@@ -1,6 +1,6 @@
 package com.deepfine.splash.model
 
-import com.deepfine.domain.model.Sample
+import com.deepfine.domain.model.Fact
 
 /**
  * @Description
@@ -8,6 +8,6 @@ import com.deepfine.domain.model.Sample
  */
 data class SplashState(
   val loading: Boolean = false,
-  val sample: Sample? = null,
+  val facts: List<Fact> = listOf(),
   val error: Throwable? = null
 )

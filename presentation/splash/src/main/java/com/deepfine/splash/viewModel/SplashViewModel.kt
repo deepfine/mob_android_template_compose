@@ -1,8 +1,8 @@
 package com.deepfine.splash.viewModel
 
 import androidx.lifecycle.viewModelScope
-import com.deepfine.domain.model.Sample
-import com.deepfine.domain.usecase.GetSampleUseCase
+import com.deepfine.domain.model.Fact
+import com.deepfine.domain.usecase.GetFactsUseCase
 import com.deepfine.presentation.base.BaseViewModelImpl
 import com.deepfine.splash.model.SplashSideEffect
 import com.deepfine.splash.model.SplashState
@@ -24,30 +24,30 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class SplashViewModel @Inject constructor(
-  private val getSample: GetSampleUseCase
+  private val getFacts: GetFactsUseCase
 ) : BaseViewModelImpl(), ContainerHost<SplashState, SplashSideEffect> {
 
   override val container: Container<SplashState, SplashSideEffect> = container(SplashState())
 
   init {
-    requestSample()
+    requestFacts()
   }
 
-  private fun requestSample() = intent {
+  fun requestFacts() = intent {
     viewModelScope.launch {
       reduce { state.copy(loading = true, error = null) }
-      getSample().collectResult(
-        ::onFetchSampleSuccess,
-        ::onFetchSampleFailure
+      getFacts().collectResult(
+        ::onFetchFactsSuccess,
+        ::onFetchFactsFailure
       )
     }
   }
 
-  private suspend fun onFetchSampleSuccess(sample: Sample) = intent {
-    reduce { state.copy(loading = false, sample = sample) }
+  private fun onFetchFactsSuccess(facts: List<Fact>) = intent {
+    reduce { state.copy(loading = false, facts = facts) }
   }
 
-  private suspend fun onFetchSampleFailure(throwable: Throwable) = intent {
+  private fun onFetchFactsFailure(throwable: Throwable) = intent {
     reduce { state.copy(loading = false, error = throwable) }
     postSideEffect(SplashSideEffect.Error(throwable))
   }

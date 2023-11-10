@@ -8,6 +8,7 @@ import dagger.hilt.components.SingletonComponent
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.features.defaultRequest
+import io.ktor.client.features.json.GsonSerializer
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.features.logging.DEFAULT
@@ -15,6 +16,7 @@ import io.ktor.client.features.logging.LogLevel
 import io.ktor.client.features.logging.Logger
 import io.ktor.client.features.logging.Logging
 import io.ktor.http.URLProtocol
+import kotlinx.serialization.json.Json
 import javax.inject.Singleton
 
 /**
@@ -43,7 +45,16 @@ class NetworkModule {
     }
 
     install(JsonFeature) {
-      serializer = KotlinxSerializer()
+//      serializer = KotlinxSerializer(
+//        json = Json {
+//          isLenient = true
+//          ignoreUnknownKeys = true
+//        }
+//      )
+      serializer = GsonSerializer {
+        setPrettyPrinting()
+        disableHtmlEscaping()
+      }
     }
   }
 }
