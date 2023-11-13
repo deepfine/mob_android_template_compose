@@ -1,7 +1,7 @@
 package com.deepfine.network.entity
 
 import com.deepfine.domain.model.Fact
-import com.google.gson.annotations.SerializedName
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 /**
@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class FactsEntity(
-  @SerializedName("data")
+  @SerialName("data")
   val facts: List<FactEntity>
 ) {
   fun toDomain() =
@@ -19,10 +19,10 @@ data class FactsEntity(
 
 @Serializable
 data class FactEntity(
-  @SerializedName("fact")
+  @SerialName("fact")
   val fact: String,
 
-  @SerializedName("length")
+  @SerialName("length")
   val length: Int
 ) {
   fun toDomain() = Fact(fact, length)

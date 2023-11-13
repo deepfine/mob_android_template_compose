@@ -1,8 +1,9 @@
 package com.deepfine.network.service
 
 import com.deepfine.network.entity.FactsEntity
+import com.skydoves.sandwich.ApiResponse
+import com.skydoves.sandwich.ktor.getApiResponse
 import io.ktor.client.HttpClient
-import io.ktor.client.request.get
 import javax.inject.Inject
 
 /**
@@ -12,12 +13,12 @@ import javax.inject.Inject
  * @version 1.0.0
  */
 interface FactApiService {
-  suspend fun execute(): FactsEntity
+  suspend fun getFacts(): ApiResponse<FactsEntity>
 }
 
 class FactApiServiceImpl @Inject constructor(
   private val client: HttpClient
 ) : FactApiService {
-  override suspend fun execute(): FactsEntity =
-    client.get(path = "/facts")
+  override suspend fun getFacts(): ApiResponse<FactsEntity> =
+    client.getApiResponse(urlString = "/facts")
 }

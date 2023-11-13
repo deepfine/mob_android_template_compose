@@ -1,11 +1,11 @@
 package com.deepfine.home.viewModel
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.deepfine.domain.model.Fact
 import com.deepfine.domain.usecase.GetFactsUseCase
 import com.deepfine.home.model.MainSideEffect
 import com.deepfine.home.model.MainState
-import com.deepfine.presentation.base.BaseViewModelImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
@@ -18,13 +18,12 @@ import javax.inject.Inject
 /**
  * @Description
  * @author yc.park (DEEP.FINE)
- * @since 2023-08-09
- * @version 1.0.0
  */
+
 @HiltViewModel
 class MainViewModel @Inject constructor(
   private val getFacts: GetFactsUseCase
-) : BaseViewModelImpl(), ContainerHost<MainState, MainSideEffect> {
+) : ViewModel(), ContainerHost<MainState, MainSideEffect> {
 
   override val container = container<MainState, MainSideEffect>(MainState())
 
@@ -35,15 +34,14 @@ class MainViewModel @Inject constructor(
   fun requestFacts() = intent {
     viewModelScope.launch {
       reduce { state.copy(loading = true, error = null) }
-      getFacts().collectResult(
-        ::onFetchFactsSuccess,
-        ::onFetchFactsFailure
-      )
+      getFacts().collect { result ->
+        result.fold(::onFetchFactsSuccess, ::onFetchFactsFailure)
+      }
     }
   }
 
   private fun onFetchFactsSuccess(facts: List<Fact>) = intent {
-    reduce { state.copy(loading = false, facts = facts) }
+    reduce { state.copy(loading = false, facts = facts, error = null) }
   }
 
   private fun onFetchFactsFailure(throwable: Throwable) = intent {

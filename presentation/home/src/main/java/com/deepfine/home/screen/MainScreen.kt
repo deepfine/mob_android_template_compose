@@ -12,11 +12,14 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -30,9 +33,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.deepfine.domain.model.Fact
+import com.deepfine.home.model.MainScreenPreviewParameterProvider
 import com.deepfine.home.model.MainSideEffect
 import com.deepfine.home.model.MainState
 import com.deepfine.home.viewModel.MainViewModel
@@ -45,13 +51,12 @@ import org.orbitmvi.orbit.compose.collectSideEffect
  * @author yc.park (DEEP.FINE)
  */
 
-
 @Composable
 internal fun MainScreen(navigateToFact: () -> Unit, viewModel: MainViewModel = hiltViewModel()) {
   val context = LocalContext.current
   viewModel.collectSideEffect(sideEffect = { handleSideEffects(context, it) })
   val state by viewModel.collectAsState()
-  MainScreen(state = state, onRefreshClicked = viewModel::requestFacts, navigateToFact)
+  MainScreen(state = state, onRefreshClicked = viewModel::requestFacts, navigateToFact = navigateToFact)
 }
 
 
@@ -64,20 +69,33 @@ private fun handleSideEffects(context: Context, sideEffect: MainSideEffect) {
 @Composable
 internal fun MainScreen(state: MainState, onRefreshClicked: () -> Unit = {}, navigateToFact: () -> Unit = {}) {
   ApplicationTheme {
-    Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+    Surface(
+      modifier = Modifier.fillMaxSize(),
+      color = MaterialTheme.colorScheme.background,
+    ) {
 
       Column {
         Row {
           Spacer(modifier = Modifier.width(5.dp))
-          Button(onRefreshClicked, enabled = !state.loading) {
-            Text("새로고침")
+          Button(
+            onRefreshClicked,
+            colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+            border = BorderStroke(1.dp, Color.Black),
+            enabled = !state.loading,
+            shape = RoundedCornerShape(24.dp),
+            modifier = Modifier
+              .height(48.dp),
+          ) {
+            Text("새로고침", color = Color.Black)
           }
         }
 
+        Spacer(modifier = Modifier.height(10.dp))
         FactList(state.facts, navigateToFact)
       }
 
       Loading(state.loading)
+      Error(state.error)
     }
   }
 }
@@ -122,36 +140,21 @@ internal fun FactItem(fact: Fact, navigateToFact: () -> Unit = {}) {
 internal fun Loading(loading: Boolean) {
   if (loading)
     Box {
-      CircularProgressIndicator(Modifier.align(Alignment.Center))
+      CircularProgressIndicator(color = MaterialTheme.colorScheme.primary, modifier = Modifier.align(Alignment.Center))
     }
 }
 
 
-@Preview
 @Composable
-fun MainScreenPreview() {
-  MainScreen(
-    state = MainState(
-      loading = false, facts = listOf(
-        Fact("Fact1", 1),
-        Fact("Fact2", 2),
-        Fact("Fact3", 3),
-        Fact("Fact4", 4),
-        Fact("Fact5", 5),
-        Fact("Fact6", 6),
-        Fact("Fact7", 7),
-      ), error = null
-    ),
-
-    )
+internal fun Error(error: Throwable?) {
+  if (error != null)
+    Box {
+      Text(text = error.message ?: "", color = Color.Red, modifier = Modifier.align(Alignment.Center))
+    }
 }
 
 @Preview
 @Composable
-fun FactItemPreview() {
-  ApplicationTheme {
-    FactItem(
-      Fact(fact = "fact", length = 1)
-    )
-  }
+internal fun MainScreenPreview(@PreviewParameter(MainScreenPreviewParameterProvider::class) state: MainState) {
+  MainScreen(state = state)
 }

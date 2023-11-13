@@ -1,7 +1,6 @@
 package com.deepfine.home.screen
 
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,8 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 fun FactDialog() {
   Surface(
     color = Color.White, modifier = Modifier
-      .fillMaxWidth()
-      .fillMaxHeight(0.5f)
+      .fillMaxSize()
   ) {
   }
 }
