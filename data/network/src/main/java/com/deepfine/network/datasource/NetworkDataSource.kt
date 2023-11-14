@@ -17,7 +17,7 @@ interface NetworkDataSource {
 }
 
 class NetworkDataSourceImpl @Inject constructor(
-  private val service: FactApiService
+  private val service: FactApiService,
 ) : NetworkDataSource {
   override suspend fun getFacts(): Flow<FactsEntity> =
     service.getFacts().responseToFlow()

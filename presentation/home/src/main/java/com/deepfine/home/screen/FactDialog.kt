@@ -14,8 +14,9 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun FactDialog() {
   Surface(
-    color = Color.White, modifier = Modifier
-      .fillMaxSize()
+    color = Color.White,
+    modifier = Modifier
+      .fillMaxSize(),
   ) {
   }
 }

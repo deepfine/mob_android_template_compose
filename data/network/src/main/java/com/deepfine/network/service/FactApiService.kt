@@ -17,7 +17,7 @@ interface FactApiService {
 }
 
 class FactApiServiceImpl @Inject constructor(
-  private val client: HttpClient
+  private val client: HttpClient,
 ) : FactApiService {
   override suspend fun getFacts(): ApiResponse<FactsEntity> =
     client.getApiResponse(urlString = "/facts")

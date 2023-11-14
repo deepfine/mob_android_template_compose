@@ -18,7 +18,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -34,7 +33,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.deepfine.domain.model.Fact
@@ -59,7 +57,6 @@ internal fun MainScreen(navigateToFact: () -> Unit, viewModel: MainViewModel = h
   MainScreen(state = state, onRefreshClicked = viewModel::requestFacts, navigateToFact = navigateToFact)
 }
 
-
 private fun handleSideEffects(context: Context, sideEffect: MainSideEffect) {
   when (sideEffect) {
     is MainSideEffect.Error -> Toast.makeText(context, sideEffect.throwable.toString(), Toast.LENGTH_SHORT).show()
@@ -73,7 +70,6 @@ internal fun MainScreen(state: MainState, onRefreshClicked: () -> Unit = {}, nav
       modifier = Modifier.fillMaxSize(),
       color = MaterialTheme.colorScheme.background,
     ) {
-
       Column {
         Row {
           Spacer(modifier = Modifier.width(5.dp))
@@ -127,7 +123,7 @@ internal fun FactItem(fact: Fact, navigateToFact: () -> Unit = {}) {
         Toast
           .makeText(context, fact.fact, Toast.LENGTH_SHORT)
           .show()
-      }
+      },
   ) {
     Box(contentAlignment = Alignment.CenterStart, modifier = Modifier.padding(10.dp)) {
       Text("${fact.length} // ${fact.fact}")
@@ -135,22 +131,22 @@ internal fun FactItem(fact: Fact, navigateToFact: () -> Unit = {}) {
   }
 }
 
-
 @Composable
 internal fun Loading(loading: Boolean) {
-  if (loading)
+  if (loading) {
     Box {
       CircularProgressIndicator(color = MaterialTheme.colorScheme.primary, modifier = Modifier.align(Alignment.Center))
     }
+  }
 }
-
 
 @Composable
 internal fun Error(error: Throwable?) {
-  if (error != null)
+  if (error != null) {
     Box {
       Text(text = error.message ?: "", color = Color.Red, modifier = Modifier.align(Alignment.Center))
     }
+  }
 }
 
 @Preview

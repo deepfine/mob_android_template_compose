@@ -5,5 +5,5 @@ package com.deepfine.splash.model
  * @author yc.park (DEEP.FINE)
  */
 data class SplashState(
-  val unit: Unit = Unit
+  val unit: Unit = Unit,
 )

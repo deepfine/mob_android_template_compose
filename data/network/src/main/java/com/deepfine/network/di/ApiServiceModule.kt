@@ -19,6 +19,6 @@ abstract class ApiServiceModule {
 
   @Binds
   abstract fun bindSampleApiService(
-    sampleApiServiceImpl: FactApiServiceImpl
+    sampleApiServiceImpl: FactApiServiceImpl,
   ): FactApiService
 }

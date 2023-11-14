@@ -10,13 +10,14 @@ import com.deepfine.domain.model.Fact
 data class MainState(
   val loading: Boolean = false,
   val facts: List<Fact> = listOf(),
-  val error: Throwable? = null
+  val error: Throwable? = null,
 ) {
   companion object {
     internal fun sequences() = sequenceOf(
       MainState(loading = true, facts = listOf(), error = null),
       MainState(
-        loading = false, facts = listOf(
+        loading = false,
+        facts = listOf(
           Fact("Fact1", 1),
           Fact("Fact2", 2),
           Fact("Fact3", 3),
@@ -24,12 +25,14 @@ data class MainState(
           Fact("Fact5", 5),
           Fact("Fact6", 6),
           Fact("Fact7", 7),
-        ), error = null
+        ),
+        error = null,
       ),
       MainState(
-        loading = false, facts = listOf(),
-        error = RuntimeException("Error Message")
-      )
+        loading = false,
+        facts = listOf(),
+        error = RuntimeException("Error Message"),
+      ),
     )
   }
 }

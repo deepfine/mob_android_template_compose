@@ -9,5 +9,5 @@ import java.io.Serializable
 
 data class Fact(
   val fact: String,
-  val length: Int
+  val length: Int,
 ) : Serializable

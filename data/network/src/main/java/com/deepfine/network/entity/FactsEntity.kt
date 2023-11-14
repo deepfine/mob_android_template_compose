@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class FactsEntity(
   @SerialName("data")
-  val facts: List<FactEntity>
+  val facts: List<FactEntity>,
 ) {
   fun toDomain() =
     facts.map(FactEntity::toDomain)
@@ -23,7 +23,7 @@ data class FactEntity(
   val fact: String,
 
   @SerialName("length")
-  val length: Int
+  val length: Int,
 ) {
   fun toDomain() = Fact(fact, length)
 }

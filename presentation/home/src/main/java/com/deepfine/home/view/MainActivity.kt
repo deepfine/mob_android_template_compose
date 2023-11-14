@@ -51,5 +51,3 @@ class MainActivity : ComponentActivity() {
     fun newInstance(context: Context) = Intent(context, MainActivity::class.java)
   }
 }
-
-
