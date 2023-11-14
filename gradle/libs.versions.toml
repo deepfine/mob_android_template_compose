@@ -17,7 +17,7 @@ lifecycleRuntimeCompose = "2.6.2"
 orbit = "6.1.0"
 org-jetbrains-kotlin-jvm = "1.9.0"
 spotless = "6.21.0"
-jvmTarget = "11"
+jvmTarget = "17"
 
 [libraries]
 androidx-multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
