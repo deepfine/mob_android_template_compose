@@ -17,7 +17,6 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import javax.inject.Singleton
 
-
 /**
  * @Description
  * @author yc.park (DEEP.FINE)
@@ -43,14 +42,15 @@ class NetworkModule {
       level = LogLevel.ALL
     }
 
-
     install(ContentNegotiation) {
-      json(Json {
-        prettyPrint = true
-        ignoreUnknownKeys = true
-        isLenient = true
-        encodeDefaults = true
-      })
+      json(
+        Json {
+          prettyPrint = true
+          ignoreUnknownKeys = true
+          isLenient = true
+          encodeDefaults = true
+        },
+      )
     }
   }
 }
