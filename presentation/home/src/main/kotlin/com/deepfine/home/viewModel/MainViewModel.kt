@@ -22,7 +22,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-  private val getFacts: GetFactsUseCase,
+  private val getFacts: GetFactsUseCase
 ) : ViewModel(), ContainerHost<MainState, MainSideEffect> {
 
   override val container = container<MainState, MainSideEffect>(MainState())

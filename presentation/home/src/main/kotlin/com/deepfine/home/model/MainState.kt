@@ -10,7 +10,7 @@ import com.deepfine.domain.model.Fact
 data class MainState(
   val loading: Boolean = false,
   val facts: List<Fact> = listOf(),
-  val error: Throwable? = null,
+  val error: Throwable? = null
 ) {
   companion object {
     internal fun sequences() = sequenceOf(

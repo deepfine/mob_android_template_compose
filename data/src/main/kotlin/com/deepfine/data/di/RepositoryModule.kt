@@ -20,6 +20,6 @@ abstract class RepositoryModule {
 
   @Binds
   abstract fun bindSampleRepository(
-    splashRepositoryImpl: MainRepositoryImpl,
+    splashRepositoryImpl: MainRepositoryImpl
   ): MainRepository
 }

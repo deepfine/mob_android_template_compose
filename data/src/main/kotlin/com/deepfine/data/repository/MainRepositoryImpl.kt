@@ -17,7 +17,7 @@ import javax.inject.Inject
  * @version 1.0.0
  */
 class MainRepositoryImpl @Inject constructor(
-  private val dataSource: NetworkDataSource,
+  private val dataSource: NetworkDataSource
 ) : MainRepository {
   override suspend fun getFacts(): Flow<Result<List<Fact>>> =
     dataSource.getFacts()

@@ -5,5 +5,9 @@ package com.deepfine.home.route
  * @author yc.park (DEEP.FINE)
  */
 internal enum class Route(val id: String) {
-  Main("main"), Fact("fact")
+  Main("main"),
+  Fact("fact");
+
+  companion object {
+  }
 }

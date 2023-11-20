@@ -3,5 +3,5 @@ Android [MVI](https://github.com/orbit-mvi/orbit-mvi) 패턴과 [Jetpack compose
 
 <br>
 
-### Envorinment Setup
+### Environment Setup
 - Java version : 17

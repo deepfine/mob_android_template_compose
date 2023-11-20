@@ -21,7 +21,7 @@ fun WindowTheme(
   statusBarColor: Color = ColorScheme.primary,
   isAppearanceLightStatusBars: Boolean = true,
   navigationBarColor: Color = ColorScheme.primary,
-  isAppearanceLightNavigationBars: Boolean = true,
+  isAppearanceLightNavigationBars: Boolean = true
 ) {
   val view = LocalView.current
   if (!view.isInEditMode) {

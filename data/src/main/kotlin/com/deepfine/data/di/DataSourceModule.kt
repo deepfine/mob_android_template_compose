@@ -18,6 +18,6 @@ import dagger.hilt.components.SingletonComponent
 abstract class DataSourceModule {
   @Binds
   abstract fun bindSampleDataSource(
-    sampleDataSourceImpl: NetworkDataSourceImpl,
+    sampleDataSourceImpl: NetworkDataSourceImpl
   ): NetworkDataSource
 }
