@@ -3,6 +3,7 @@
   "extends": [
     "config:base"
   ],
+  "labels": ["dependencies"],
   "packageRules": [
     {
       "description": "Automatically merge minor and patch-level updates",
@@ -12,4 +13,4 @@
       "automergeType": "pr"
     }
   ]
-}
+}4
