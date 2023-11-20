@@ -9,7 +9,6 @@ import org.gradle.api.JavaVersion
  */
 fun BaseExtension.setLibraryConfig() {
   compileSdkVersion(AppConfiguration.COMPILE_SDK)
-  buildToolsVersion(AppConfiguration.BUILD_TOOLS)
 
   defaultConfig {
     minSdk = AppConfiguration.MIN_SDK
