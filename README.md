@@ -1,7 +1,6 @@
-## Android Template
-Android [MVI](https://github.com/orbit-mvi/orbit-mvi) 패턴과 [Jetpack compose](https://developer.android.com/jetpack/compose)를 적용한 템플릿입니다 😊
+# Android Template <a href="https://github.com/deepfine/mob_android_template/actions"><img alt="Build Status" src="https://github.com/deepfine/mob_android_template/actions/workflows/build.yml/badge.svg"/></a><br>
+Android Template based on [MVI](https://github.com/orbit-mvi/orbit-mvi) & [Jetpack compose](https://developer.android.com/jetpack/compose)
 
-<br>
 
 ### Environment Setup
 - Java version : 17
