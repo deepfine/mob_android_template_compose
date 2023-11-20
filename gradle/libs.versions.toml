@@ -17,7 +17,7 @@ androidGradlePlugin = "8.0.2"
 lifecycleRuntimeCompose = "2.6.2"
 orbit = "6.1.0"
 org-jetbrains-kotlin-jvm = "1.9.20"
-spotless = "6.21.0"
+spotless = "6.22.0"
 jvmTarget = "17"
 
 [libraries]
