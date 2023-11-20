@@ -60,7 +60,7 @@ class NetworkDataSourceTest {
 
     @Test
     fun getFacts() = runTest {
-      assertFailsWith(RuntimeException::class){
+      assertFailsWith(RuntimeException::class) {
         dataSource.getFacts()
       }
     }

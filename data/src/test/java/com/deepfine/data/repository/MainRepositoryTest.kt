@@ -47,8 +47,8 @@ class MainRepositoryTest {
             listOf(
               FactEntity("Fact1", 5),
               FactEntity("Fact2", 6),
-            )
-          )
+            ),
+          ),
         )
       }
     }
@@ -59,12 +59,13 @@ class MainRepositoryTest {
 
       Assertions.assertTrue(result.isSuccess)
       Assertions.assertEquals(
-        result, Result.success(
+        result,
+        Result.success(
           listOf(
             Fact("Fact1", 5),
             Fact("Fact2", 6),
-          )
-        )
+          ),
+        ),
       )
     }
   }
