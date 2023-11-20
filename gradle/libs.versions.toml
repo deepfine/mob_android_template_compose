@@ -19,6 +19,10 @@ orbit = "6.1.0"
 org-jetbrains-kotlin-jvm = "1.9.20"
 spotless = "6.22.0"
 jvmTarget = "17"
+junit5 = "5.8.2"
+junit5-plugin = "1.8.2.1"
+mockito = "3.12.4"
+mockk = "1.12.3"
 
 [libraries]
 androidx-multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
@@ -26,6 +30,8 @@ androidx-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx"
 
 kotlin-coroutine-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutine" }
 kotlin-coroutine-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutine" }
+kotlin-coroutine-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutine" }
+kotlin-test-junit = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit", version.ref = "kotlin" }
 
 androidx-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
@@ -62,8 +68,15 @@ android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", ver
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-serialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
 hilt-gradlePlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
+junit5-gradlePlugin = { group = "de.mannodermaus.gradle.plugins", name = "android-junit5", version.ref = "junit5-plugin" }
+
+junit5-jupiter-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit5" }
+junit5-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit5" }
+mockito = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 
 [bundles]
+test = ["junit5-jupiter-api", "junit5-jupiter-engine", "mockito", "mockk", "kotlin-test-junit", "kotlin-coroutine-test"]
 orbit = ["orbit", "orbit-viewmodel", "orbit-compose"]
 ktor = ["ktor-okhttp", "ktor-serialization", "ktor-serialization-kotlinx-json", "ktor-contentNegotiation", "ktor-logging", "sandwich"]
 presentation = ["kotlin-coroutine-core", "androidx-ktx", "hilt", "tedpermission"]
@@ -80,4 +93,5 @@ kotlin-kapt = { id = "kotlin-kapt", version.ref = "kotlin" }
 kotlin-percelize = { id = "kotlin-percelize", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
+junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "junit5-plugin" }
 

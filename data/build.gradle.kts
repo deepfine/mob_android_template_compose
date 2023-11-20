@@ -17,6 +17,8 @@ android {
     create("dev")
     create("production")
   }
+
+  testOptions.unitTests.all(Test::useJUnitPlatform)
 }
 
 dependencies {
@@ -27,4 +29,6 @@ dependencies {
   implementation(libs.hilt)
 
   kapt(libs.hilt.compiler.get())
+
+  testImplementation(libs.bundles.test)
 }

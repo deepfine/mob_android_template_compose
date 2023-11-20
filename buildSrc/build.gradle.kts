@@ -16,4 +16,5 @@ dependencies {
   implementation(libs.kotlin.gradlePlugin)
   implementation(libs.kotlin.serialization)
   implementation(libs.hilt.gradlePlugin)
+  implementation(libs.junit5.gradlePlugin)
 }
