@@ -21,7 +21,7 @@ spotless = "6.22.0"
 jvmTarget = "17"
 junit5 = "5.8.2"
 junit5-plugin = "1.10.0.0"
-mockito = "3.12.4"
+mockito = "5.7.0"
 mockk = "1.12.3"
 
 [libraries]
