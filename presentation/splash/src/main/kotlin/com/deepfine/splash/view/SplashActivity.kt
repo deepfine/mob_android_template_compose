@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,11 +17,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.deepfine.home.view.MainActivity
 import com.deepfine.presentation.ui.theme.ApplicationTheme
-import com.deepfine.presentation.ui.theme.WindowTheme
 import com.deepfine.splash.model.SplashSideEffect
 import com.deepfine.splash.viewModel.SplashViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import org.orbitmvi.orbit.compose.collectSideEffect
+import tech.thdev.compose.exteions.system.ui.controller.rememberExSystemUiController
 
 /**
  * @Description
@@ -38,13 +39,13 @@ class SplashActivity : ComponentActivity() {
     setContent {
       viewModel.collectSideEffect(sideEffect = ::handleSideEffects)
 
-      WindowTheme(
-        decorFitsSystemWindows = true,
-        statusBarColor = Color.White,
-        isAppearanceLightStatusBars = true,
-        navigationBarColor = Color.White,
-        isAppearanceLightNavigationBars = true,
-      )
+      val systemUIController = rememberExSystemUiController()
+
+      DisposableEffect(systemUIController) {
+        systemUIController.setSystemBarsColor(Color.White)
+
+        onDispose { }
+      }
 
       SplashScreen()
     }

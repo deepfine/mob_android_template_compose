@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
@@ -16,8 +17,8 @@ import androidx.navigation.compose.rememberNavController
 import com.deepfine.home.route.Route
 import com.deepfine.home.screen.FactDialog
 import com.deepfine.home.screen.MainScreen
-import com.deepfine.presentation.ui.theme.WindowTheme
 import dagger.hilt.android.AndroidEntryPoint
+import tech.thdev.compose.exteions.system.ui.controller.rememberExSystemUiController
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -25,13 +26,13 @@ class MainActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
 
     setContent {
-      WindowTheme(
-        decorFitsSystemWindows = true,
-        statusBarColor = Color.White,
-        isAppearanceLightStatusBars = true,
-        navigationBarColor = Color.White,
-        isAppearanceLightNavigationBars = true,
-      )
+      val systemUIController = rememberExSystemUiController()
+
+      DisposableEffect(systemUIController) {
+        systemUIController.setSystemBarsColor(Color.White)
+
+        onDispose { }
+      }
 
       val navController = rememberNavController()
 
