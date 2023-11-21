@@ -4,12 +4,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
-import com.deepfine.home.route.Route
+import com.deepfine.home.route.Screen
+import com.deepfine.splash.screen.SplashScreen
 
 /**
  * @Description
@@ -23,22 +23,29 @@ internal fun MainScreen() {
   Scaffold { paddingValues ->
     NavHost(
       navController = navController,
-      startDestination = Route.Main.id,
+      startDestination = Screen.Splash.route,
       Modifier.padding(paddingValues),
     ) {
-      composable(route = Route.Main.id) {
-        FactScreen({ navController.navigate(Route.Fact.id) })
+      composable(route = Screen.Splash.route) {
+        SplashScreen(
+          navigateToMain = {
+            navController.navigate(Screen.Main.route) {
+              popUpTo(Screen.Splash.route) {
+                inclusive = true
+              }
+              launchSingleTop = true
+            }
+          },
+        )
       }
 
-      dialog(route = Route.Fact.id) {
+      composable(route = Screen.Main.route) {
+        FactScreen({ navController.navigate(Screen.Fact.route) })
+      }
+
+      dialog(route = Screen.Fact.route) {
         FactDialog()
       }
     }
   }
-}
-
-@Composable
-@Preview
-private fun MainScreenPreview() {
-  MainScreen()
 }
