@@ -65,7 +65,7 @@ class SplashActivity : ComponentActivity() {
         Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
           Text(
             paddingValues.toString(),
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
           )
         }
       }
