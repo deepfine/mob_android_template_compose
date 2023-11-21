@@ -12,7 +12,6 @@ ktor = "2.3.6"
 sandwich = "2.0.2"
 hilt = "2.48.1"
 hiltNavigation = "1.1.0"
-tedpermission = "3.3.0"
 androidGradlePlugin = "8.1.4"
 lifecycleRuntimeCompose = "2.6.2"
 orbit = "6.1.0"
@@ -62,7 +61,6 @@ sandwich = { group = "com.github.skydoves", name = "sandwich-ktor", version.ref 
 hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 
-tedpermission = { group = "io.github.ParkSangGwon", name = "tedpermission-normal", version.ref = "tedpermission" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
@@ -79,7 +77,7 @@ mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 test = ["junit5-jupiter-api", "junit5-jupiter-engine", "mockito", "mockk", "kotlin-test-junit", "kotlin-coroutine-test"]
 orbit = ["orbit", "orbit-viewmodel", "orbit-compose"]
 ktor = ["ktor-okhttp", "ktor-serialization", "ktor-serialization-kotlinx-json", "ktor-contentNegotiation", "ktor-logging", "sandwich"]
-presentation = ["kotlin-coroutine-core", "androidx-ktx", "hilt", "tedpermission"]
+presentation = ["kotlin-coroutine-core", "androidx-ktx", "hilt"]
 compose = ["androidx-compose-foundation", "androidx-compose-material3", "androidx-compose-runtime", "androidx-compose-ui", "androidx-compose-ui-graphics", "androidx-compose-ui-tooling", "androidx-compose-ui-preview", "androidx-compose-activity", "androidx-lifecycle", "androidx-compose-navigation", "androidx-compose-hilt-navigation"]
 
 [plugins]
