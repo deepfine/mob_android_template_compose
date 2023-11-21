@@ -5,6 +5,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -32,18 +35,22 @@ class MainActivity : ComponentActivity() {
 
       val navController = rememberNavController()
 
-      NavHost(
-        navController = navController,
-        startDestination = Route.Main.id,
-      ) {
-        composable(route = Route.Main.id) {
-          MainScreen({ navController.navigate(Route.Fact.id) })
-        }
+      Scaffold { paddingValues ->
+        NavHost(
+          navController = navController,
+          startDestination = Route.Main.id,
+          Modifier.padding(paddingValues)
+        ) {
+          composable(route = Route.Main.id) {
+            MainScreen({ navController.navigate(Route.Fact.id) })
+          }
 
-        dialog(route = Route.Fact.id) {
-          FactDialog()
+          dialog(route = Route.Fact.id) {
+            FactDialog()
+          }
         }
       }
+
     }
   }
 

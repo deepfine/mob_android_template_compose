@@ -6,11 +6,13 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.deepfine.home.view.MainActivity
 import com.deepfine.presentation.ui.theme.ApplicationTheme
@@ -44,11 +46,7 @@ class SplashActivity : ComponentActivity() {
         isAppearanceLightNavigationBars = true,
       )
 
-      ApplicationTheme {
-        Box(contentAlignment = Alignment.Center) {
-          Text("Splash")
-        }
-      }
+      SplashScreen()
     }
   }
 
@@ -59,12 +57,23 @@ class SplashActivity : ComponentActivity() {
   }
 
   @Composable
-  @Preview
+  @Preview(showBackground = true)
   fun SplashScreen() {
     ApplicationTheme {
-      Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-        Text("Splash")
+      Scaffold { paddingValues ->
+        Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+          Text(
+            paddingValues.toString(),
+            textAlign = TextAlign.Center
+          )
+        }
       }
     }
+  }
+
+  @Composable
+  @Preview(showBackground = true)
+  fun SplashScreenPreview() {
+    SplashScreen()
   }
 }
