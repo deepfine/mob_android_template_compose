@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
  * @author yc.park (DEEP.FINE)
  */
 @Composable
-fun FactDialog() {
+internal fun FactDialog() {
   Surface(
     color = Color.White,
     modifier = Modifier
@@ -23,6 +23,6 @@ fun FactDialog() {
 
 @Composable
 @Preview
-fun FactDialogPreview() {
+private fun FactDialogPreview() {
   FactDialog()
 }

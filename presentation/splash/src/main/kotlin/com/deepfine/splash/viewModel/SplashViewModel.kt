@@ -21,7 +21,7 @@ import javax.inject.Inject
  * @version 1.0.0
  */
 @HiltViewModel
-class SplashViewModel @Inject constructor() : ViewModel(), ContainerHost<SplashState, SplashSideEffect> {
+internal class SplashViewModel @Inject constructor() : ViewModel(), ContainerHost<SplashState, SplashSideEffect> {
   override val container: Container<SplashState, SplashSideEffect> = container(SplashState())
 
   init {

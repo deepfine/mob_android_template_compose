@@ -21,7 +21,7 @@ import javax.inject.Inject
  */
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class FactViewModel @Inject constructor(
   private val getFacts: GetFactsUseCase
 ) : ViewModel(), ContainerHost<MainState, MainSideEffect> {
 
