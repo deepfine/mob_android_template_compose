@@ -40,7 +40,7 @@ class MainActivity : ComponentActivity() {
         NavHost(
           navController = navController,
           startDestination = Route.Main.id,
-          Modifier.padding(paddingValues)
+          Modifier.padding(paddingValues),
         ) {
           composable(route = Route.Main.id) {
             MainScreen({ navController.navigate(Route.Fact.id) })
@@ -51,7 +51,6 @@ class MainActivity : ComponentActivity() {
           }
         }
       }
-
     }
   }
 
