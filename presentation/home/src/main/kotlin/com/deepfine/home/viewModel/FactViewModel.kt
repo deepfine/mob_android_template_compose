@@ -33,7 +33,7 @@ class FactViewModel @Inject constructor(
 
   fun requestFacts() = intent {
     viewModelScope.launch {
-      reduce { state.copy(loading = true, error = null) }
+      reduce { state.copy(loading = true) }
       getFacts().collect { result ->
         result.fold(::onFetchFactsSuccess, ::onFetchFactsFailure)
       }
@@ -45,7 +45,7 @@ class FactViewModel @Inject constructor(
   }
 
   private fun onFetchFactsFailure(throwable: Throwable) = intent {
-    reduce { state.copy(loading = false, error = throwable) }
+    reduce { state.copy(loading = false, facts = emptyList(), error = throwable) }
     postSideEffect(MainSideEffect.Error(throwable))
   }
 }
