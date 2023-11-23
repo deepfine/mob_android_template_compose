@@ -23,6 +23,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -66,32 +67,36 @@ private fun handleSideEffects(context: Context, sideEffect: MainSideEffect) {
 @Composable
 private fun FactScreen(state: MainState, onRefreshClicked: () -> Unit = {}, navigateToFact: () -> Unit = {}) {
   ApplicationTheme {
-    Surface(
-      modifier = Modifier.fillMaxSize(),
-      color = MaterialTheme.colorScheme.background,
-    ) {
-      Column {
-        Row {
-          Spacer(modifier = Modifier.width(5.dp))
-          Button(
-            onRefreshClicked,
-            colors = ButtonDefaults.buttonColors(containerColor = Color.White),
-            border = BorderStroke(1.dp, Color.Black),
-            enabled = !state.loading,
-            shape = RoundedCornerShape(24.dp),
-            modifier = Modifier
-              .height(48.dp),
-          ) {
-            Text("새로고침", color = Color.Black)
+    Scaffold { paddingValues ->
+      Surface(
+        modifier = Modifier
+          .fillMaxSize()
+          .padding(paddingValues),
+        color = MaterialTheme.colorScheme.background,
+      ) {
+        Column {
+          Row {
+            Spacer(modifier = Modifier.width(5.dp))
+            Button(
+              onRefreshClicked,
+              colors = ButtonDefaults.buttonColors(containerColor = Color.White),
+              border = BorderStroke(1.dp, Color.Black),
+              enabled = !state.loading,
+              shape = RoundedCornerShape(24.dp),
+              modifier = Modifier
+                .height(48.dp),
+            ) {
+              Text("새로고침", color = Color.Black)
+            }
           }
+
+          Spacer(modifier = Modifier.height(10.dp))
+          FactList(state.facts, navigateToFact)
         }
 
-        Spacer(modifier = Modifier.height(10.dp))
-        FactList(state.facts, navigateToFact)
+        Loading(state.loading)
+        Error(state.error)
       }
-
-      Loading(state.loading)
-      Error(state.error)
     }
   }
 }

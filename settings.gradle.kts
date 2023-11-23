@@ -23,6 +23,5 @@ listOf(
   ":data:network",
   ":domain",
   ":presentation",
-  ":presentation:splash",
   ":presentation:home"
 ).forEach(::include)

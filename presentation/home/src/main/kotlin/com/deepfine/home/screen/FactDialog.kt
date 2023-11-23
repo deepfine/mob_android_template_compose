@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.deepfine.presentation.ui.theme.ApplicationTheme
 
 /**
  * @Description
@@ -13,11 +14,13 @@ import androidx.compose.ui.tooling.preview.Preview
  */
 @Composable
 internal fun FactDialog() {
-  Surface(
-    color = Color.White,
-    modifier = Modifier
-      .fillMaxSize(),
-  ) {
+  ApplicationTheme {
+    Surface(
+      color = Color.White,
+      modifier = Modifier
+        .fillMaxSize(),
+    ) {
+    }
   }
 }
 

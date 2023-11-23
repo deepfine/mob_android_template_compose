@@ -23,7 +23,6 @@ android {
 dependencies {
   implementation(project(":domain"))
   implementation(project(":presentation"))
-  implementation(project(":presentation:splash"))
   implementation(libs.bundles.presentation)
   implementation(libs.bundles.orbit)
   implementation(platform(libs.androidx.compose.bom))

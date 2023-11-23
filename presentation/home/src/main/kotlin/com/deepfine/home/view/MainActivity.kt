@@ -1,12 +1,11 @@
 package com.deepfine.home.view
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.graphics.Color
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.deepfine.home.screen.MainScreen
 import dagger.hilt.android.AndroidEntryPoint
 import tech.thdev.compose.exteions.system.ui.controller.rememberExSystemUiController
@@ -15,6 +14,8 @@ import tech.thdev.compose.exteions.system.ui.controller.rememberExSystemUiContro
 class MainActivity : ComponentActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+
+    installSplashScreen()
 
     setContent {
       val systemUIController = rememberExSystemUiController()
@@ -27,9 +28,5 @@ class MainActivity : ComponentActivity() {
 
       MainScreen()
     }
-  }
-
-  companion object {
-    fun newInstance(context: Context) = Intent(context, MainActivity::class.java)
   }
 }

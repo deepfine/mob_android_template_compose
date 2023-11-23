@@ -1,5 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-	<!-- Base application theme. -->
-	<style name="Theme.AndroidTemplate"
-		parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Base application theme. -->
+    <style name="Theme.AndroidTemplate" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="AppTheme.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@android:color/white</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.AndroidTemplate</item>
+    </style>
 </resources>

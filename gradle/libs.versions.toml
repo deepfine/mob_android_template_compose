@@ -22,6 +22,7 @@ junit5 = "5.10.1"
 junit5-plugin = "1.10.0.0"
 mockito = "5.7.0"
 mockk = "1.13.8"
+splash = "1.1.0-alpha02"
 
 [libraries]
 androidx-multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
@@ -46,7 +47,8 @@ androidx-compose-ui-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivity" }
 androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
 androidx-compose-hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigation" }
-compose-extensions = {group = "tech.thdev", name = "extensions-compose-system-ui-controller", version.ref = "composeExtensions"}
+compose-extensions = { group = "tech.thdev", name = "extensions-compose-system-ui-controller", version.ref = "composeExtensions" }
+splash-screen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splash" }
 
 orbit = { group = "org.orbit-mvi", name = "orbit-core", version.ref = "orbit" }
 orbit-viewmodel = { group = "org.orbit-mvi", name = "orbit-viewmodel", version.ref = "orbit" }
@@ -78,7 +80,7 @@ mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 test = ["junit5-jupiter-api", "junit5-jupiter-engine", "mockito", "mockk", "kotlin-test-junit", "kotlin-coroutine-test"]
 orbit = ["orbit", "orbit-viewmodel", "orbit-compose"]
 ktor = ["ktor-okhttp", "ktor-serialization", "ktor-serialization-kotlinx-json", "ktor-contentNegotiation", "ktor-logging", "sandwich"]
-presentation = ["kotlin-coroutine-core", "androidx-ktx", "hilt"]
+presentation = ["kotlin-coroutine-core", "androidx-ktx", "hilt", "splash-screen"]
 compose = ["androidx-compose-foundation", "androidx-compose-material3", "androidx-compose-runtime", "androidx-compose-ui", "androidx-compose-ui-graphics", "androidx-compose-ui-tooling", "androidx-compose-ui-preview", "androidx-compose-activity", "androidx-lifecycle", "androidx-compose-navigation", "androidx-compose-hilt-navigation", "compose-extensions"]
 
 [plugins]
