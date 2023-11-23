@@ -94,8 +94,8 @@ private fun FactScreen(state: MainState, onRefreshClicked: () -> Unit = {}, navi
           FactList(state.facts, navigateToFact)
         }
 
-        Loading(state.loading)
         Error(state.error)
+        Loading(state.loading)
       }
     }
   }
