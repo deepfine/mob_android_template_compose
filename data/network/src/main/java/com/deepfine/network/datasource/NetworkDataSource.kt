@@ -3,7 +3,9 @@ package com.deepfine.network.datasource
 import com.deepfine.network.entity.FactsEntity
 import com.deepfine.network.service.FactApiService
 import com.deepfine.network.util.responseToFlow
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 /**
@@ -20,5 +22,7 @@ class NetworkDataSourceImpl @Inject constructor(
   private val service: FactApiService
 ) : NetworkDataSource {
   override suspend fun getFacts(): Flow<FactsEntity> =
-    service.getFacts().responseToFlow()
+    service.getFacts()
+      .responseToFlow()
+      .flowOn(Dispatchers.IO)
 }
