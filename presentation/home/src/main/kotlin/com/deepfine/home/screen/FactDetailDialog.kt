@@ -11,7 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.deepfine.domain.model.Fact
+import com.deepfine.home.viewModel.FactDetailViewModel
 import com.deepfine.presentation.ui.theme.ApplicationTheme
 
 /**
@@ -19,7 +21,12 @@ import com.deepfine.presentation.ui.theme.ApplicationTheme
  * @author yc.park (DEEP.FINE)
  */
 @Composable
-internal fun FactDialog(fact: Fact) {
+internal fun FactDetailDialog(viewModel: FactDetailViewModel = hiltViewModel()) {
+  FactDetailDialog(viewModel.fact)
+}
+
+@Composable
+internal fun FactDetailDialog(fact: Fact) {
   ApplicationTheme {
     Surface(
       modifier = Modifier
@@ -37,8 +44,8 @@ internal fun FactDialog(fact: Fact) {
 
 @Composable
 @Preview
-private fun FactDialogPreview() {
-  FactDialog(
+private fun FactDetailDialogPreview() {
+  FactDetailDialog(
     Fact("Fact", 123),
   )
 }

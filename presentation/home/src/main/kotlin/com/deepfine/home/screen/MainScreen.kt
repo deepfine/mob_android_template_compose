@@ -9,8 +9,6 @@ import androidx.navigation.compose.rememberNavController
 import com.deepfine.home.route.Screen
 import com.deepfine.home.route.argumentedRoute
 import com.deepfine.home.route.createArgument
-import com.deepfine.home.route.decode
-import com.deepfine.presentation.ui.extensions.requireArgument
 
 /**
  * @Description
@@ -37,9 +35,8 @@ internal fun MainScreen() {
         dismissOnClickOutside = true,
         usePlatformDefaultWidth = false,
       ),
-    ) { backStackEntry ->
-      val fact = Screen.Fact.Detail.decode(backStackEntry.requireArgument())
-      FactDialog(fact)
+    ) { _ ->
+      FactDetailDialog()
     }
   }
 }
