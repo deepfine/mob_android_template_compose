@@ -19,37 +19,51 @@ typealias FactModel = com.deepfine.domain.model.Fact
  */
 
 internal sealed class Screen(val route: String) {
-  data object Fact : Screen("fact")
-
-  data object FactDetail : Screen("fact/{fact}"), Argumented<FactModel> {
-    private const val KEY = "fact"
-
-    override fun argumentedRoute(value: FactModel) = "fact/${Json.encodeToString(value)}"
-    override val argument: List<NamedNavArgument>
-      get() = listOf(
-        navArgument(KEY) {
-          type = createParcelableNavType<FactModel>(false)
-        },
-      )
-
-    override fun decodeArgument(bundle: Bundle): FactModel =
-      bundle.parseParcelable(KEY, FactModel::class.java)
+  data object Fact : Screen("fact") {
+    data object Detail : Screen("${Fact.route}/{fact}"), Argumented<FactModel> {
+      override val key: String = "fact"
+    }
   }
 }
 
-private interface Argumented<T> {
-  fun argumentedRoute(value: T): String
-  val argument: List<NamedNavArgument>
-  fun decodeArgument(bundle: Bundle): T
+internal interface Argumented<T> {
+  val key: String
 }
 
-private inline fun <reified T : Serializable> createSerializableNavType(isNullableAllowed: Boolean) = object : NavType<T>(isNullableAllowed) {
+internal inline fun <reified T> Argumented<T>.argumentedRoute(value: T): String =
+  "$key/${Json.encodeToString(value)}"
+
+@JvmName("createSerializableArgument")
+internal inline fun <reified T : Serializable> Argumented<T>.createArgument(isNullableAllowed: Boolean): List<NamedNavArgument> =
+  listOf(
+    navArgument(key) {
+      type = createSerializableNavType<T>(isNullableAllowed)
+    },
+  )
+
+@JvmName("createParcelableArgument")
+internal inline fun <reified T : Parcelable> Argumented<T>.createArgument(isNullableAllowed: Boolean): List<NamedNavArgument> =
+  listOf(
+    navArgument(key) {
+      type = createParcelableNavType<T>(isNullableAllowed)
+    },
+  )
+
+@JvmName("decodeSerializable")
+internal inline fun <reified T : Serializable> Argumented<T>.decode(bundle: Bundle): T =
+  bundle.parseSerializable(key, T::class.java)
+
+@JvmName("decodeParcelable")
+internal inline fun <reified T : Parcelable> Argumented<T>.decode(bundle: Bundle): T =
+  bundle.parseParcelable(key, T::class.java)
+
+private inline fun <reified T : Serializable> createSerializableNavType(isNullableAllowed: Boolean): NavType<T> = object : NavType<T>(isNullableAllowed) {
   override fun get(bundle: Bundle, key: String): T = bundle.parseSerializable(key, T::class.java)
   override fun parseValue(value: String): T = Json.decodeFromString(value)
   override fun put(bundle: Bundle, key: String, value: T) = bundle.putSerializable(key, value)
 }
 
-private inline fun <reified T : Parcelable> createParcelableNavType(isNullableAllowed: Boolean) = object : NavType<T>(isNullableAllowed) {
+private inline fun <reified T : Parcelable> createParcelableNavType(isNullableAllowed: Boolean): NavType<T> = object : NavType<T>(isNullableAllowed) {
   override fun get(bundle: Bundle, key: String): T = bundle.parseParcelable(key, T::class.java)
   override fun parseValue(value: String): T = Json.decodeFromString(value)
   override fun put(bundle: Bundle, key: String, value: T) = bundle.putParcelable(key, value)
