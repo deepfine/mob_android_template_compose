@@ -32,7 +32,7 @@ internal fun MainScreen() {
       arguments = Screen.Fact.Detail.createArgument(false),
       dialogProperties = DialogProperties(
         dismissOnBackPress = true,
-        dismissOnClickOutside = true,
+        dismissOnClickOutside = false,
         usePlatformDefaultWidth = false,
       ),
     ) { _ ->
