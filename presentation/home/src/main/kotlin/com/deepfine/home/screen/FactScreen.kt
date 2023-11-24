@@ -37,8 +37,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.deepfine.domain.model.Fact
-import com.deepfine.home.model.MainScreenPreviewParameterProvider
 import com.deepfine.home.model.FactSideEffect
+import com.deepfine.home.model.MainScreenPreviewParameterProvider
 import com.deepfine.home.model.MainState
 import com.deepfine.home.viewModel.FactViewModel
 import com.deepfine.presentation.ui.theme.ApplicationTheme
@@ -77,7 +77,7 @@ private fun FactScreen(state: MainState, onRefreshClicked: () -> Unit = {}, navi
         Column {
           Row {
             Spacer(
-              modifier = Modifier.width(5.dp)
+              modifier = Modifier.width(5.dp),
             )
             Button(
               onRefreshClicked,

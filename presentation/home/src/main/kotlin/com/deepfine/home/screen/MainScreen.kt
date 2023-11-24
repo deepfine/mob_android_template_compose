@@ -1,6 +1,7 @@
 package com.deepfine.home.screen
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
@@ -31,6 +32,11 @@ internal fun MainScreen() {
     dialog(
       route = Screen.Fact.Detail.route,
       arguments = Screen.Fact.Detail.createArgument(false),
+      dialogProperties = DialogProperties(
+        dismissOnBackPress = true,
+        dismissOnClickOutside = true,
+        usePlatformDefaultWidth = false,
+      ),
     ) { backStackEntry ->
       val fact = Screen.Fact.Detail.decode(backStackEntry.requireArgument())
       FactDialog(fact)
