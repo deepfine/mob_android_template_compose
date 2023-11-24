@@ -87,6 +87,7 @@ compose = ["androidx-compose-foundation", "androidx-compose-material3", "android
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-parcelize = { id = "kotlin-parcelize", version.ref = "kotlin" }
 hilt = { id = "dagger.hilt.android.plugin", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version = "1.8.22-1.0.11" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }

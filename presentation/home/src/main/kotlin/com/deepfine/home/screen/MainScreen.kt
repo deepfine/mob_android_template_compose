@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import com.deepfine.home.route.Screen
+import com.deepfine.presentation.ui.extensions.requireArgument
 
 /**
  * @Description
@@ -21,11 +22,15 @@ internal fun MainScreen() {
     startDestination = Screen.Fact.route,
   ) {
     composable(route = Screen.Fact.route) {
-      FactScreen({ navController.navigate(Screen.FactDetail.route) })
+      FactScreen({ fact -> navController.navigate(Screen.FactDetail.argumentedRoute(fact)) })
     }
 
-    dialog(route = Screen.FactDetail.route) {
-      FactDialog()
+    dialog(
+      route = Screen.FactDetail.route,
+      arguments = Screen.FactDetail.argument
+    ) { backStackEntry ->
+      val fact = Screen.FactDetail.decodeArgument(backStackEntry.requireArgument())
+      FactDialog(fact)
     }
   }
 }

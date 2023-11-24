@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.deepfine.domain.model.Fact
 import com.deepfine.home.model.MainScreenPreviewParameterProvider
-import com.deepfine.home.model.MainSideEffect
+import com.deepfine.home.model.FactSideEffect
 import com.deepfine.home.model.MainState
 import com.deepfine.home.viewModel.FactViewModel
 import com.deepfine.presentation.ui.theme.ApplicationTheme
@@ -51,21 +51,21 @@ import org.orbitmvi.orbit.compose.collectSideEffect
  */
 
 @Composable
-internal fun FactScreen(navigateToFact: () -> Unit, viewModel: FactViewModel = hiltViewModel()) {
+internal fun FactScreen(navigateToFact: (Fact) -> Unit, viewModel: FactViewModel = hiltViewModel()) {
   val context = LocalContext.current
   viewModel.collectSideEffect(sideEffect = { handleSideEffects(context, it) })
   val state by viewModel.collectAsState()
   FactScreen(state = state, onRefreshClicked = viewModel::requestFacts, navigateToFact = navigateToFact)
 }
 
-private fun handleSideEffects(context: Context, sideEffect: MainSideEffect) {
+private fun handleSideEffects(context: Context, sideEffect: FactSideEffect) {
   when (sideEffect) {
-    is MainSideEffect.Error -> Toast.makeText(context, sideEffect.throwable.toString(), Toast.LENGTH_SHORT).show()
+    is FactSideEffect.Error -> Toast.makeText(context, sideEffect.throwable.toString(), Toast.LENGTH_SHORT).show()
   }
 }
 
 @Composable
-private fun FactScreen(state: MainState, onRefreshClicked: () -> Unit = {}, navigateToFact: () -> Unit = {}) {
+private fun FactScreen(state: MainState, onRefreshClicked: () -> Unit = {}, navigateToFact: (Fact) -> Unit = {}) {
   ApplicationTheme {
     Scaffold { paddingValues ->
       Surface(
@@ -76,7 +76,9 @@ private fun FactScreen(state: MainState, onRefreshClicked: () -> Unit = {}, navi
       ) {
         Column {
           Row {
-            Spacer(modifier = Modifier.width(5.dp))
+            Spacer(
+              modifier = Modifier.width(5.dp)
+            )
             Button(
               onRefreshClicked,
               colors = ButtonDefaults.buttonColors(containerColor = Color.White),
@@ -102,8 +104,11 @@ private fun FactScreen(state: MainState, onRefreshClicked: () -> Unit = {}, navi
 }
 
 @Composable
-private fun FactList(facts: List<Fact>, navigateToFact: () -> Unit = {}) {
-  LazyColumn(verticalArrangement = Arrangement.spacedBy(5.dp), modifier = Modifier.padding(horizontal = 5.dp)) {
+private fun FactList(facts: List<Fact>, navigateToFact: (Fact) -> Unit = {}) {
+  LazyColumn(
+    modifier = Modifier.padding(horizontal = 5.dp),
+    verticalArrangement = Arrangement.spacedBy(5.dp),
+  ) {
     items(facts.size) { index ->
       FactItem(facts[index], navigateToFact)
     }
@@ -111,9 +116,7 @@ private fun FactList(facts: List<Fact>, navigateToFact: () -> Unit = {}) {
 }
 
 @Composable
-private fun FactItem(fact: Fact, navigateToFact: () -> Unit = {}) {
-  val context = LocalContext.current
-
+private fun FactItem(fact: Fact, navigateToFact: (Fact) -> Unit = {}) {
   Card(
     colors = CardDefaults.cardColors(
       containerColor = Color.White,
@@ -124,13 +127,13 @@ private fun FactItem(fact: Fact, navigateToFact: () -> Unit = {}) {
       .fillMaxWidth()
       .background(color = Color.White)
       .clickable {
-        navigateToFact()
-        Toast
-          .makeText(context, fact.fact, Toast.LENGTH_SHORT)
-          .show()
+        navigateToFact(fact)
       },
   ) {
-    Box(contentAlignment = Alignment.CenterStart, modifier = Modifier.padding(10.dp)) {
+    Box(
+      modifier = Modifier.padding(10.dp),
+      contentAlignment = Alignment.CenterStart,
+    ) {
       Text("${fact.length} // ${fact.fact}")
     }
   }
@@ -140,7 +143,10 @@ private fun FactItem(fact: Fact, navigateToFact: () -> Unit = {}) {
 private fun Loading(loading: Boolean) {
   if (loading) {
     Box {
-      CircularProgressIndicator(color = MaterialTheme.colorScheme.primary, modifier = Modifier.align(Alignment.Center))
+      CircularProgressIndicator(
+        modifier = Modifier.align(Alignment.Center),
+        color = MaterialTheme.colorScheme.primary,
+      )
     }
   }
 }
@@ -149,7 +155,11 @@ private fun Loading(loading: Boolean) {
 private fun Error(error: Throwable?) {
   if (error != null) {
     Box {
-      Text(text = error.message ?: "", color = Color.Red, modifier = Modifier.align(Alignment.Center))
+      Text(
+        text = error.message ?: "",
+        color = Color.Red,
+        modifier = Modifier.align(Alignment.Center),
+      )
     }
   }
 }

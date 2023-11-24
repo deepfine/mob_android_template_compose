@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.deepfine.domain.model.Fact
 import com.deepfine.domain.usecase.GetFactsUseCase
-import com.deepfine.home.model.MainSideEffect
+import com.deepfine.home.model.FactSideEffect
 import com.deepfine.home.model.MainState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -23,9 +23,9 @@ import javax.inject.Inject
 @HiltViewModel
 class FactViewModel @Inject constructor(
   private val getFacts: GetFactsUseCase
-) : ViewModel(), ContainerHost<MainState, MainSideEffect> {
+) : ViewModel(), ContainerHost<MainState, FactSideEffect> {
 
-  override val container = container<MainState, MainSideEffect>(MainState())
+  override val container = container<MainState, FactSideEffect>(MainState())
 
   init {
     requestFacts()
@@ -46,6 +46,6 @@ class FactViewModel @Inject constructor(
 
   private fun onFetchFactsFailure(throwable: Throwable) = intent {
     reduce { state.copy(loading = false, facts = emptyList(), error = throwable) }
-    postSideEffect(MainSideEffect.Error(throwable))
+    postSideEffect(FactSideEffect.Error(throwable))
   }
 }

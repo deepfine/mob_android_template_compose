@@ -6,6 +6,7 @@ plugins {
   id(libs.plugins.kotlin.android.get().pluginId)
   id(libs.plugins.hilt.get().pluginId)
   id(libs.plugins.kotlin.kapt.get().pluginId)
+  id(libs.plugins.kotlin.serialization.get().pluginId)
 }
 
 android {
@@ -27,6 +28,8 @@ dependencies {
   implementation(libs.bundles.orbit)
   implementation(platform(libs.androidx.compose.bom))
   implementation(libs.bundles.compose)
+  implementation(libs.ktor.serialization.kotlinx.json)
+  implementation(libs.ktor.serialization)
 
   kapt(libs.hilt.compiler.get())
 }
