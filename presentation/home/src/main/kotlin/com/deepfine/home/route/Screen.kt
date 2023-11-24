@@ -22,18 +22,18 @@ internal sealed class Screen(val route: String) {
   data object Fact : Screen("fact")
 
   data object FactDetail : Screen("fact/{fact}"), Argumented<FactModel> {
-    private const val key = "fact"
+    private const val KEY = "fact"
 
     override fun argumentedRoute(value: FactModel) = "fact/${Json.encodeToString(value)}"
     override val argument: List<NamedNavArgument>
       get() = listOf(
-        navArgument(key) {
+        navArgument(KEY) {
           type = createParcelableNavType<FactModel>(false)
-        }
+        },
       )
 
     override fun decodeArgument(bundle: Bundle): FactModel =
-      bundle.parseParcelable(key, FactModel::class.java)
+      bundle.parseParcelable(KEY, FactModel::class.java)
   }
 }
 
@@ -42,7 +42,6 @@ private interface Argumented<T> {
   val argument: List<NamedNavArgument>
   fun decodeArgument(bundle: Bundle): T
 }
-
 
 private inline fun <reified T : Serializable> createSerializableNavType(isNullableAllowed: Boolean) = object : NavType<T>(isNullableAllowed) {
   override fun get(bundle: Bundle, key: String): T = bundle.parseSerializable(key, T::class.java)
