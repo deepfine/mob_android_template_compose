@@ -19,6 +19,6 @@ class FactDetailViewModel @Inject constructor(
   }
 
   companion object {
-    private const val ARG_FACT = "fact"
+    const val ARG_FACT = "fact"
   }
 }

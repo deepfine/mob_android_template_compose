@@ -11,36 +11,30 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.Serializable
 
-typealias FactModel = com.deepfine.domain.model.Fact
-
 /**
  * @Description
  * @author yc.park (DEEP.FINE)
  */
-
-internal sealed class Screen(val route: String) {
-  data object Fact : Screen("fact"), NavGraphRoot {
-    override val destination: String = "factDest"
-
-    data object Detail : Screen("${Fact.route}/{fact}"), Argumented<FactModel> {
-      override val key: String = "fact"
-    }
-  }
+internal sealed interface Route {
+  val parent: Route?
+  val route: String
 }
 
-internal interface NavGraphRoot {
+internal interface NavGraphRoot : Route {
   val destination: String
 }
 
-internal interface Argumented<T> {
+internal interface ArgumentedRoute<T> : Route {
   val key: String
+  override val route: String
+    get() = "${parent!!.route}/{$key}"
 }
 
-internal inline fun <reified T> Argumented<T>.argumentedRoute(value: T): String =
-  "$key/${Json.encodeToString(value)}"
+internal inline fun <reified T> ArgumentedRoute<T>.argumentedRoute(value: T): String =
+  "${parent!!.route}/${Json.encodeToString(value)}"
 
 @JvmName("createSerializableArgument")
-internal inline fun <reified T : Serializable> Argumented<T>.createArgument(isNullableAllowed: Boolean): List<NamedNavArgument> =
+internal inline fun <reified T : Serializable> ArgumentedRoute<T>.createArgument(isNullableAllowed: Boolean): List<NamedNavArgument> =
   listOf(
     navArgument(key) {
       type = createSerializableNavType<T>(isNullableAllowed)
@@ -48,7 +42,7 @@ internal inline fun <reified T : Serializable> Argumented<T>.createArgument(isNu
   )
 
 @JvmName("createParcelableArgument")
-internal inline fun <reified T : Parcelable> Argumented<T>.createArgument(isNullableAllowed: Boolean): List<NamedNavArgument> =
+internal inline fun <reified T : Parcelable> ArgumentedRoute<T>.createArgument(isNullableAllowed: Boolean): List<NamedNavArgument> =
   listOf(
     navArgument(key) {
       type = createParcelableNavType<T>(isNullableAllowed)
@@ -56,11 +50,11 @@ internal inline fun <reified T : Parcelable> Argumented<T>.createArgument(isNull
   )
 
 @JvmName("decodeSerializable")
-internal inline fun <reified T : Serializable> Argumented<T>.decode(bundle: Bundle): T =
+internal inline fun <reified T : Serializable> ArgumentedRoute<T>.decode(bundle: Bundle): T =
   bundle.parseSerializable(key, T::class.java)
 
 @JvmName("decodeParcelable")
-internal inline fun <reified T : Parcelable> Argumented<T>.decode(bundle: Bundle): T =
+internal inline fun <reified T : Parcelable> ArgumentedRoute<T>.decode(bundle: Bundle): T =
   bundle.parseParcelable(key, T::class.java)
 
 private inline fun <reified T : Serializable> createSerializableNavType(isNullableAllowed: Boolean): NavType<T> = object : NavType<T>(isNullableAllowed) {
