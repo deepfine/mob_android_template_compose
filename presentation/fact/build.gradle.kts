@@ -10,7 +10,7 @@ plugins {
 }
 
 android {
-  namespace = "com.deepfine.home"
+  namespace = "com.deepfine.fact"
   setLibraryConfig()
   setComposeEnabled()
 
@@ -24,7 +24,6 @@ android {
 dependencies {
   implementation(project(":domain"))
   implementation(project(":presentation"))
-  implementation(project(":presentation:fact"))
   implementation(libs.bundles.presentation)
   implementation(libs.bundles.orbit)
   implementation(platform(libs.androidx.compose.bom))

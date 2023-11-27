@@ -1,4 +1,4 @@
-package com.deepfine.home.screen
+package com.deepfine.home.ui
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.window.DialogProperties
@@ -9,6 +9,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
+import com.deepfine.fact.ui.FactDetailDialog
+import com.deepfine.fact.ui.FactScreen
 import com.deepfine.home.route.Screen
 import com.deepfine.home.route.argumentedRoute
 import com.deepfine.home.route.createArgument
@@ -45,7 +47,7 @@ private fun NavGraphBuilder.factGraph(navController: NavController) {
         usePlatformDefaultWidth = false,
       ),
     ) { _ ->
-      FactDetailDialog()
+      FactDetailDialog(onCloseClicked = navController::popBackStack)
     }
   }
 }

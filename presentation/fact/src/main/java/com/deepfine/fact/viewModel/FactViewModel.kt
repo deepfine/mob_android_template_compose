@@ -1,11 +1,11 @@
-package com.deepfine.home.viewModel
+package com.deepfine.fact.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.deepfine.domain.model.Fact
 import com.deepfine.domain.usecase.GetFactsUseCase
-import com.deepfine.home.model.FactSideEffect
-import com.deepfine.home.model.MainState
+import com.deepfine.fact.model.FactSideEffect
+import com.deepfine.fact.model.FactState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
@@ -23,9 +23,9 @@ import javax.inject.Inject
 @HiltViewModel
 class FactViewModel @Inject constructor(
   private val getFacts: GetFactsUseCase
-) : ViewModel(), ContainerHost<MainState, FactSideEffect> {
+) : ViewModel(), ContainerHost<FactState, FactSideEffect> {
 
-  override val container = container<MainState, FactSideEffect>(MainState())
+  override val container = container<FactState, FactSideEffect>(FactState())
 
   init {
     requestFacts()

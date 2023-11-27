@@ -1,4 +1,4 @@
-package com.deepfine.home.model
+package com.deepfine.fact.model
 
 /**
  * @Description

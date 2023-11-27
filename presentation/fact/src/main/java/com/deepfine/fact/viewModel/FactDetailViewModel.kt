@@ -1,4 +1,4 @@
-package com.deepfine.home.viewModel
+package com.deepfine.fact.viewModel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -11,7 +11,7 @@ import javax.inject.Inject
  * @author yc.park (DEEP.FINE)
  */
 @HiltViewModel
-internal class FactDetailViewModel @Inject constructor(
+class FactDetailViewModel @Inject constructor(
   savedStateHandle: SavedStateHandle
 ) : ViewModel() {
   val fact: Fact by lazy {

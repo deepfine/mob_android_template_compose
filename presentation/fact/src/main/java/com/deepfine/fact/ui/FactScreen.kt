@@ -1,4 +1,4 @@
-package com.deepfine.home.screen
+package com.deepfine.fact.ui
 
 import android.content.Context
 import android.widget.Toast
@@ -37,10 +37,10 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.deepfine.domain.model.Fact
-import com.deepfine.home.model.FactSideEffect
-import com.deepfine.home.model.MainScreenPreviewParameterProvider
-import com.deepfine.home.model.MainState
-import com.deepfine.home.viewModel.FactViewModel
+import com.deepfine.fact.model.FactScreenPreviewParameterProvider
+import com.deepfine.fact.model.FactSideEffect
+import com.deepfine.fact.model.FactState
+import com.deepfine.fact.viewModel.FactViewModel
 import com.deepfine.presentation.ui.theme.ApplicationTheme
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
@@ -51,7 +51,7 @@ import org.orbitmvi.orbit.compose.collectSideEffect
  */
 
 @Composable
-internal fun FactScreen(navigateToFact: (Fact) -> Unit, viewModel: FactViewModel = hiltViewModel()) {
+fun FactScreen(navigateToFact: (Fact) -> Unit, viewModel: FactViewModel = hiltViewModel()) {
   val context = LocalContext.current
   viewModel.collectSideEffect(sideEffect = { handleSideEffects(context, it) })
   val state by viewModel.collectAsState()
@@ -65,7 +65,7 @@ private fun handleSideEffects(context: Context, sideEffect: FactSideEffect) {
 }
 
 @Composable
-private fun FactScreen(state: MainState, onRefreshClicked: () -> Unit = {}, navigateToFact: (Fact) -> Unit = {}) {
+private fun FactScreen(state: FactState, onRefreshClicked: () -> Unit = {}, navigateToFact: (Fact) -> Unit = {}) {
   ApplicationTheme {
     Scaffold { paddingValues ->
       Surface(
@@ -166,6 +166,6 @@ private fun Error(error: Throwable?) {
 
 @Preview
 @Composable
-private fun FactScreenPreview(@PreviewParameter(MainScreenPreviewParameterProvider::class) state: MainState) {
+private fun FactScreenPreview(@PreviewParameter(FactScreenPreviewParameterProvider::class) state: FactState) {
   FactScreen(state = state)
 }
