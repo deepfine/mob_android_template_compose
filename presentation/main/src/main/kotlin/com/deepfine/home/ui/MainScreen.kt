@@ -12,7 +12,6 @@ import androidx.navigation.navigation
 import com.deepfine.fact.ui.FactDetailDialog
 import com.deepfine.fact.ui.FactScreen
 import com.deepfine.home.route.Screen
-import com.deepfine.home.route.argumentedRoute
 import com.deepfine.home.route.createArgument
 
 /**
@@ -40,7 +39,7 @@ private fun NavGraphBuilder.factGraph(navController: NavController) {
 
     dialog(
       route = Screen.Fact.Detail.route,
-      arguments = Screen.Fact.Detail.createArgument(false),
+      arguments = Screen.Fact.Detail.createArgument(),
       dialogProperties = DialogProperties(
         dismissOnBackPress = true,
         dismissOnClickOutside = false,
