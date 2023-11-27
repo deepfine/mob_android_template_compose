@@ -1,10 +1,12 @@
 package com.deepfine.home.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Surface
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -26,17 +28,19 @@ internal fun FactDetailDialog(viewModel: FactDetailViewModel = hiltViewModel()) 
 }
 
 @Composable
-internal fun FactDetailDialog(fact: Fact) {
+private fun FactDetailDialog(fact: Fact) {
   ApplicationTheme {
-    Surface(
+    Box(
       modifier = Modifier
         .fillMaxWidth(0.8F)
-        .background(Color.White)
-        .padding(20.dp),
+        .border(1.dp, Color.Black, RoundedCornerShape(10.dp))
+        .background(Color.White, RoundedCornerShape(10.dp))
+        .padding(10.dp),
     ) {
       Column {
-        Text("Fact : ${fact.fact}")
-        Text("Length : ${fact.length}", color = Color.Red)
+        Text(
+          fact.toString(),
+        )
       }
     }
   }

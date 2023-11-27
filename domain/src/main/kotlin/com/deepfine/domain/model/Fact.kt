@@ -14,4 +14,6 @@ import kotlinx.serialization.Serializable
 data class Fact(
   val fact: String,
   val length: Int
-) : Parcelable
+) : Parcelable {
+  override fun toString(): String = "$length. $fact"
+}

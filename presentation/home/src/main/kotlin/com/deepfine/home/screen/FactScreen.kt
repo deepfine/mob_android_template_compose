@@ -134,7 +134,7 @@ private fun FactItem(fact: Fact, navigateToFact: (Fact) -> Unit = {}) {
       modifier = Modifier.padding(10.dp),
       contentAlignment = Alignment.CenterStart,
     ) {
-      Text("${fact.length} // ${fact.fact}")
+      Text(fact.toString())
     }
   }
 }
