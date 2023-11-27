@@ -19,11 +19,17 @@ typealias FactModel = com.deepfine.domain.model.Fact
  */
 
 internal sealed class Screen(val route: String) {
-  data object Fact : Screen("fact") {
+  data object Fact : Screen("fact"), NavGraphRoot {
+    override val destination: String = "factDest"
+
     data object Detail : Screen("${Fact.route}/{fact}"), Argumented<FactModel> {
       override val key: String = "fact"
     }
   }
+}
+
+internal interface NavGraphRoot {
+  val destination: String
 }
 
 internal interface Argumented<T> {

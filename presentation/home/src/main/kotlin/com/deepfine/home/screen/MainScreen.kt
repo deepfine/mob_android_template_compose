@@ -2,10 +2,13 @@ package com.deepfine.home.screen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.window.DialogProperties
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navigation
 import com.deepfine.home.route.Screen
 import com.deepfine.home.route.argumentedRoute
 import com.deepfine.home.route.createArgument
@@ -21,8 +24,14 @@ internal fun MainScreen() {
 
   NavHost(
     navController = navController,
-    startDestination = Screen.Fact.route,
+    startDestination = Screen.Fact.destination,
   ) {
+    factGraph(navController)
+  }
+}
+
+private fun NavGraphBuilder.factGraph(navController: NavController) {
+  navigation(startDestination = Screen.Fact.route, route = Screen.Fact.destination) {
     composable(route = Screen.Fact.route) {
       FactScreen({ fact -> navController.navigate(Screen.Fact.Detail.argumentedRoute(fact)) })
     }
