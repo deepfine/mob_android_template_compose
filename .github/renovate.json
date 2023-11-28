@@ -9,8 +9,9 @@
       "description": "Automatically merge minor and patch-level updates",
       "matchUpdateTypes": ["minor", "patch", "digest"],
       "automerge": true,
-      "ignoreTests" : true,
-      "automergeType": "pr"
+      "automergeType": "pr",
+      "platformAutomerge" : true,
+      "ignoreTests" : true
     }
   ]
 }
