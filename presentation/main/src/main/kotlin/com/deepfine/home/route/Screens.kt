@@ -19,8 +19,8 @@ object Screen {
 
     data object Detail : ArgumentedRoute {
       override val parent: Route = Fact
-      override val keys: Set<Pair<String, NavType<*>>>
-        get() = setOf(
+      override val arguments: Map<String, NavType<*>>
+        get() = mapOf(
           "fact" to createParcelableNavType<FactModel>(false),
         )
 

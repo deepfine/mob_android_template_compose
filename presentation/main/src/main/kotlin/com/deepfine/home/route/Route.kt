@@ -24,17 +24,17 @@ internal interface NavGraphRoot : Route {
 }
 
 internal interface ArgumentedRoute : Route {
-  val keys: Set<Pair<String, NavType<*>>>
+  val arguments: Map<String, NavType<*>>
   override val route: String
     get() = "${parent!!.route}?${
-      keys.joinToString("&") { (key, _) ->
+      arguments.keys.joinToString("&") { key ->
         "$key={$key}"
       }
     }"
 }
 
 internal fun ArgumentedRoute.createArgument(): List<NamedNavArgument> =
-  keys.map { (key, navType) ->
+  arguments.map { (key, navType) ->
     navArgument(key) {
       type = navType
     }
