@@ -7,6 +7,11 @@ plugins {
   alias(libs.plugins.spotless)
   id(libs.plugins.android.application.get().pluginId) apply false
   id(libs.plugins.android.library.get().pluginId) apply false
+  id(libs.plugins.kotlin.android.get().pluginId) apply false
+  id(libs.plugins.kotlin.parcelize.get().pluginId) apply false
+  id(libs.plugins.kotlin.serialization.get().pluginId) apply false
+  id(libs.plugins.hilt.get().pluginId) apply false
+  id(libs.plugins.kotlin.kapt.get().pluginId) apply false
 }
 
 subprojects {

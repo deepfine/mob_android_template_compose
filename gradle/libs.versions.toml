@@ -17,7 +17,6 @@ hiltNavigation = "1.1.0"
 androidGradlePlugin = "8.1.4"
 lifecycleRuntimeCompose = "2.6.2"
 orbit = "6.1.0"
-org-jetbrains-kotlin-jvm = "1.9.20"
 spotless = "6.22.0"
 jvmTarget = "17"
 junit5 = "5.10.1"
@@ -70,7 +69,7 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", v
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlin-serialization-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlinSerialization" }
+kotlin-serialization-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
 hilt-gradlePlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
 junit5-gradlePlugin = { group = "de.mannodermaus.gradle.plugins", name = "android-junit5", version.ref = "junit5-plugin" }
 
@@ -91,12 +90,10 @@ android-application = { id = "com.android.application", version.ref = "androidGr
 android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-parcelize = { id = "kotlin-parcelize", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 hilt = { id = "dagger.hilt.android.plugin", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version = "1.8.22-1.0.11" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 kotlin-kapt = { id = "kotlin-kapt", version.ref = "kotlin" }
-kotlin-percelize = { id = "kotlin-percelize", version.ref = "kotlin" }
-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "org-jetbrains-kotlin-jvm" }
 junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "junit5-plugin" }
 
