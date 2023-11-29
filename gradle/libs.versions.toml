@@ -64,6 +64,7 @@ ktor-contentNegotiation = { group = "io.ktor", name = "ktor-client-content-negot
 sandwich = { group = "com.github.skydoves", name = "sandwich-ktor", version.ref = "sandwich" }
 
 hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-javax = { group = "javax.inject", name = "javax.inject", version = "1" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 
 
@@ -96,4 +97,4 @@ ksp = { id = "com.google.devtools.ksp", version = "1.8.22-1.0.11" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 kotlin-kapt = { id = "kotlin-kapt", version.ref = "kotlin" }
 junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "junit5-plugin" }
-
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

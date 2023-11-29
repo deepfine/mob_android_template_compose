@@ -21,7 +21,7 @@ object Screen {
       override val parent: Route = Fact
       override val arguments: Map<String, NavType<*>>
         get() = mapOf(
-          "fact" to createParcelableNavType<FactModel>(false),
+          "fact" to createSerializableNavType<FactModel>(false),
         )
 
       fun argumentedRoute(fact: FactModel): String = "${parent.route}?fact=${Json.encodeToString(fact)}"

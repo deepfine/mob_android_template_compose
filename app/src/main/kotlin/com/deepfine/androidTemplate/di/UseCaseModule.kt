@@ -1,4 +1,4 @@
-package com.deepfine.domain.di
+package com.deepfine.androidTemplate.di
 
 import com.deepfine.domain.repository.MainRepository
 import com.deepfine.domain.usecase.GetFactsUseCase
