@@ -10,7 +10,13 @@ plugins {
 
 android {
   namespace = "com.deepfine.data"
-  setLibraryConfig()
+
+  compileSdk = AppConfiguration.COMPILE_SDK
+
+  compileOptions {
+    sourceCompatibility = AppConfiguration.JAVA_VERSION
+    targetCompatibility = AppConfiguration.JAVA_VERSION
+  }
 
   flavorDimensions.add("api")
   productFlavors {

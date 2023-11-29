@@ -12,20 +12,19 @@ plugins {
 
 android {
   namespace = "com.deepfine.domain"
-  setLibraryConfig()
 
-  flavorDimensions.add("api")
-  productFlavors {
-    create("dev")
-    create("production")
+  compileSdk = AppConfiguration.COMPILE_SDK
+  compileOptions {
+    sourceCompatibility = AppConfiguration.JAVA_VERSION
+    targetCompatibility = AppConfiguration.JAVA_VERSION
   }
 }
+
 
 dependencies {
   implementation(libs.kotlin.coroutine.core)
   implementation(libs.hilt)
-  implementation(libs.ktor.serialization.kotlinx.json)
-  implementation(libs.ktor.serialization)
+  implementation(libs.kotlin.serialization)
 
   kapt(libs.hilt.compiler.get())
 }

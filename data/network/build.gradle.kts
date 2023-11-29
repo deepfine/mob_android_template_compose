@@ -11,7 +11,13 @@ plugins {
 
 android {
   namespace = "com.deepfine.network"
-  setLibraryConfig()
+
+  compileSdk = AppConfiguration.COMPILE_SDK
+
+  compileOptions {
+    sourceCompatibility = AppConfiguration.JAVA_VERSION
+    targetCompatibility = AppConfiguration.JAVA_VERSION
+  }
 
   flavorDimensions.add("api")
 

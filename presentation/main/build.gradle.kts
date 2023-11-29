@@ -10,27 +10,29 @@ plugins {
 }
 
 android {
-  namespace = "com.deepfine.home"
-  setLibraryConfig()
-  setComposeEnabled()
+  namespace = "com.deepfine.main"
 
-  flavorDimensions.add("api")
-  productFlavors {
-    create("dev")
-    create("production")
+  compileSdk = AppConfiguration.COMPILE_SDK
+
+  compileOptions {
+    sourceCompatibility = AppConfiguration.JAVA_VERSION
+    targetCompatibility = AppConfiguration.JAVA_VERSION
   }
+
+  buildFeatures.compose = true
+  composeOptions.kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
 }
 
 dependencies {
   implementation(project(":domain"))
   implementation(project(":presentation"))
   implementation(project(":presentation:fact"))
+
   implementation(libs.bundles.presentation)
   implementation(libs.bundles.orbit)
   implementation(platform(libs.androidx.compose.bom))
   implementation(libs.bundles.compose)
-  implementation(libs.ktor.serialization.kotlinx.json)
-  implementation(libs.ktor.serialization)
+  implementation(libs.kotlin.serialization)
 
   kapt(libs.hilt.compiler.get())
 }

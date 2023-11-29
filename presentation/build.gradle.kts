@@ -10,14 +10,16 @@ plugins {
 
 android {
   namespace = "com.deepfine.presentation"
-  setLibraryConfig()
-  setComposeEnabled()
 
-  flavorDimensions.add("api")
-  productFlavors {
-    create("dev")
-    create("production")
+  compileSdk = AppConfiguration.COMPILE_SDK
+
+  compileOptions {
+    sourceCompatibility = AppConfiguration.JAVA_VERSION
+    targetCompatibility = AppConfiguration.JAVA_VERSION
   }
+
+  buildFeatures.compose = true
+  composeOptions.kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
 }
 
 dependencies {

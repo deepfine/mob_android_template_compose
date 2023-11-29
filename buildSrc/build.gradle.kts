@@ -14,7 +14,7 @@ dependencies {
   implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
   implementation(libs.android.gradlePlugin)
   implementation(libs.kotlin.gradlePlugin)
-  implementation(libs.kotlin.serialization)
+  implementation(libs.kotlin.serialization.gradlePlugin)
   implementation(libs.hilt.gradlePlugin)
   implementation(libs.junit5.gradlePlugin)
 }
