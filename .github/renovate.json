@@ -22,8 +22,7 @@
       "matchUpdateTypes": ["minor", "patch", "digest"],
       "automerge": true,
       "automergeType": "pr",
-      "platformAutomerge" : true,
-      "ignoreTests" : true
+      "platformAutomerge" : true
     }
   ]
 }
