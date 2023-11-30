@@ -21,6 +21,10 @@ android {
 
   buildFeatures.compose = true
   composeOptions.kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
+
+  hilt {
+    enableAggregatingTask = true
+  }
 }
 
 dependencies {
@@ -32,6 +36,8 @@ dependencies {
   implementation(libs.bundles.orbit)
   implementation(platform(libs.androidx.compose.bom))
   implementation(libs.bundles.compose)
+  implementation(libs.splashScreen)
+  implementation(libs.hilt)
   implementation(libs.kotlin.serialization)
 
   kapt(libs.hilt.compiler.get())

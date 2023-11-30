@@ -26,6 +26,7 @@ dependencies {
   implementation(project(":domain"))
   implementation(project(":presentation"))
   implementation(libs.bundles.presentation)
+  implementation(libs.hilt)
   implementation(libs.bundles.orbit)
   implementation(platform(libs.androidx.compose.bom))
   implementation(libs.bundles.compose)
