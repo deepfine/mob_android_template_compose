@@ -1,11 +1,9 @@
 package com.deepfine.network.datasource
 
-import com.deepfine.network.entity.FactsEntity
+import com.deepfine.network.di.FakeNetworkModule
 import com.deepfine.network.service.FactApiService
-import com.skydoves.sandwich.ApiResponse
+import com.deepfine.network.service.FactApiServiceImpl
 import io.mockk.clearAllMocks
-import io.mockk.coEvery
-import io.mockk.mockk
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.AfterEach
@@ -21,7 +19,7 @@ import kotlin.test.assertFailsWith
  */
 
 class NetworkDataSourceTest {
-  private val service: FactApiService = mockk()
+  private val service: FactApiService = FactApiServiceImpl(FakeNetworkModule.provideKtorClient())
   private lateinit var dataSource: NetworkDataSource
 
   @BeforeEach
@@ -38,14 +36,11 @@ class NetworkDataSourceTest {
   inner class SucceedGetFacts {
     @BeforeEach
     fun arrange() {
-      coEvery {
-        service.getFacts()
-      } returns ApiResponse.of { FactsEntity(emptyList()) }
     }
 
     @Test
     fun getFacts() = runTest {
-      Assertions.assertEquals(dataSource.getFacts().first(), FactsEntity(emptyList()))
+      Assertions.assertEquals(dataSource.getFacts().first().facts.size, 10)
     }
   }
 
@@ -53,9 +48,6 @@ class NetworkDataSourceTest {
   inner class FailedGetFacts {
     @BeforeEach
     fun arrange() {
-      coEvery {
-        service.getFacts()
-      } throws RuntimeException()
     }
 
     @Test

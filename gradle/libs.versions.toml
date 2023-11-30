@@ -61,6 +61,7 @@ ktor-serialization = { group = "io.ktor", name = "ktor-client-serialization", ve
 ktor-serialization-kotlinx-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
 ktor-logging = { group = "io.ktor", name = "ktor-client-logging-jvm", version.ref = "ktor" }
 ktor-contentNegotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
 sandwich = { group = "com.github.skydoves", name = "sandwich-ktor", version.ref = "sandwich" }
 
 hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }

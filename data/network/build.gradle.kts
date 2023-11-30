@@ -37,12 +37,12 @@ android {
 
 dependencies {
   implementation(project(":domain"))
-
   implementation(libs.bundles.ktor)
   implementation(libs.kotlin.coroutine.core)
   implementation(libs.hilt)
 
   kapt(libs.hilt.compiler.get())
 
+  testImplementation(libs.ktor.mock)
   testImplementation(libs.bundles.test)
 }
