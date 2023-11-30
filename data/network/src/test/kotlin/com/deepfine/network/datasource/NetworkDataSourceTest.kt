@@ -1,17 +1,16 @@
 package com.deepfine.network.datasource
 
+import app.cash.turbine.test
 import com.deepfine.network.di.FakeNetworkModule
 import com.deepfine.network.service.FactApiService
 import com.deepfine.network.service.FactApiServiceImpl
 import io.mockk.clearAllMocks
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import kotlin.test.assertFailsWith
+import kotlin.test.assertTrue
 
 /**
  * @Description
@@ -19,12 +18,15 @@ import kotlin.test.assertFailsWith
  */
 
 class NetworkDataSourceTest {
-  private val service: FactApiService = FactApiServiceImpl(FakeNetworkModule.provideKtorClient())
-  private lateinit var dataSource: NetworkDataSource
+  private val successService: FactApiService = FactApiServiceImpl(FakeNetworkModule.provideKtorSuccessClient())
+  private val failureService: FactApiService = FactApiServiceImpl(FakeNetworkModule.provideKtorFailureClient())
+  private lateinit var successDataSource: NetworkDataSource
+  private lateinit var failureDataSource: NetworkDataSource
 
   @BeforeEach
   fun setUp() {
-    dataSource = NetworkDataSourceImpl(service)
+    successDataSource = NetworkDataSourceImpl(successService)
+    failureDataSource = NetworkDataSourceImpl(failureService)
   }
 
   @AfterEach
@@ -40,7 +42,10 @@ class NetworkDataSourceTest {
 
     @Test
     fun getFacts() = runTest {
-      Assertions.assertEquals(dataSource.getFacts().first().facts.size, 10)
+      successDataSource.getFacts().test {
+        assertTrue(awaitItem().facts.isNotEmpty())
+        awaitComplete()
+      }
     }
   }
 
@@ -52,8 +57,8 @@ class NetworkDataSourceTest {
 
     @Test
     fun getFacts() = runTest {
-      assertFailsWith(RuntimeException::class) {
-        dataSource.getFacts()
+      failureDataSource.getFacts().test {
+        awaitError()
       }
     }
   }

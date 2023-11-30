@@ -1,6 +1,7 @@
 package com.deepfine.network.di
 
 import io.ktor.client.HttpClient
+import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.mock.MockEngine
 import io.ktor.client.engine.mock.respond
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
@@ -18,7 +19,10 @@ import kotlinx.serialization.json.Json
  */
 
 object FakeNetworkModule {
-  fun provideKtorClient() = HttpClient(FakeEngine.get()) {
+  fun provideKtorSuccessClient() = provideKtorClient(FakeEngine.getSuccess())
+  fun provideKtorFailureClient() = provideKtorClient(FakeEngine.getFailure())
+
+  private fun provideKtorClient(engine: HttpClientEngine) = HttpClient(engine) {
     install(ContentNegotiation) {
       json(
         Json {
@@ -33,14 +37,23 @@ object FakeNetworkModule {
 }
 
 object FakeEngine {
-  fun get() = client.engine
+  fun getSuccess() = successClient.engine
+  fun getFailure() = failureClient.engine
 
   private val responseHeaders = headersOf("Content-Type" to listOf(ContentType.Application.Json.toString()))
 
-  private val client = HttpClient(MockEngine) {
+  private val successClient = HttpClient(MockEngine) {
     engine {
       addHandler { request ->
         respond(FakeRespond.fromEncodedPath(request.url.encodedPath), HttpStatusCode.OK, responseHeaders)
+      }
+    }
+  }
+
+  private val failureClient = HttpClient(MockEngine) {
+    engine {
+      addHandler { request ->
+        respond(FakeRespond.fromEncodedPath(request.url.encodedPath), HttpStatusCode.BadRequest, responseHeaders)
       }
     }
   }

@@ -1,6 +1,7 @@
 package com.deepfine.network.service
 
 import com.deepfine.network.di.FakeNetworkModule
+import com.skydoves.sandwich.isFailure
 import com.skydoves.sandwich.isSuccess
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
@@ -13,7 +14,8 @@ import org.junit.jupiter.api.Test
  * @author yc.park (DEEP.FINE)
  */
 class FactApiServiceTest {
-  private val apiService: FactApiService = FactApiServiceImpl(FakeNetworkModule.provideKtorClient())
+  private val successService: FactApiService = FactApiServiceImpl(FakeNetworkModule.provideKtorSuccessClient())
+  private val failureService: FactApiService = FactApiServiceImpl(FakeNetworkModule.provideKtorFailureClient())
 
   @Before
   fun setUp() {
@@ -24,7 +26,12 @@ class FactApiServiceTest {
   }
 
   @Test
-  fun getFacts() = runTest {
-    Assertions.assertTrue(apiService.getFacts().isSuccess)
+  fun getFactsSuccess() = runTest {
+    Assertions.assertTrue(successService.getFacts().isSuccess)
+  }
+
+  @Test
+  fun getFactsFailure() = runTest {
+    Assertions.assertTrue(failureService.getFacts().isFailure)
   }
 }
