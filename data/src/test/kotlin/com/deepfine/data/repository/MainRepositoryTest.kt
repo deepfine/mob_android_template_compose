@@ -1,5 +1,6 @@
 package com.deepfine.data.repository
 
+import app.cash.turbine.test
 import com.deepfine.domain.model.Fact
 import com.deepfine.domain.repository.MainRepository
 import com.deepfine.network.datasource.NetworkDataSource
@@ -8,7 +9,6 @@ import com.deepfine.network.entity.FactsEntity
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.mockk
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.AfterEach
@@ -16,6 +16,8 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 /**
  * @Description
@@ -55,18 +57,20 @@ class MainRepositoryTest {
 
     @Test
     fun getFacts() = runTest {
-      val result = repository.getFacts().first()
-
-      Assertions.assertTrue(result.isSuccess)
-      Assertions.assertEquals(
-        result,
-        Result.success(
-          listOf(
-            Fact("Fact1", 5),
-            Fact("Fact2", 6),
+      repository.getFacts().test {
+        val result = awaitItem()
+        assertTrue(result.isSuccess)
+        assertEquals(
+          result,
+          Result.success(
+            listOf(
+              Fact("Fact1", 5),
+              Fact("Fact2", 6),
+            ),
           ),
-        ),
-      )
+        )
+        awaitComplete()
+      }
     }
   }
 
@@ -83,10 +87,12 @@ class MainRepositoryTest {
 
     @Test
     fun getFacts() = runTest {
-      val result = repository.getFacts().first()
-
-      Assertions.assertTrue(result.isFailure)
-      Assertions.assertInstanceOf(RuntimeException::class.java, result.exceptionOrNull())
+      repository.getFacts().test {
+        val result = awaitItem()
+        assertTrue(result.isFailure)
+        Assertions.assertInstanceOf(RuntimeException::class.java, result.exceptionOrNull())
+        awaitComplete()
+      }
     }
   }
 }
