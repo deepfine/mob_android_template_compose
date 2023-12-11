@@ -1,6 +1,6 @@
 package com.deepfine.domain.usecase
 
-import com.deepfine.domain.repository.MainRepository
+import com.deepfine.domain.repository.FactRepository
 import javax.inject.Inject
 
 /**
@@ -9,6 +9,6 @@ import javax.inject.Inject
  * @since 2023-08-08
  * @version 1.0.0
  */
-class GetFactsUseCase @Inject constructor(private val repository: MainRepository) {
+class GetFactsUseCase @Inject constructor(private val repository: FactRepository) {
   suspend operator fun invoke() = repository.getFacts()
 }

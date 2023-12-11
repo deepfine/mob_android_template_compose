@@ -72,7 +72,7 @@ android {
 dependencies {
   implementation(project(":data"))
   implementation(project(":domain"))
-  implementation(project(":presentation:main"))
+  implementation(project(":presentation:scheme"))
 
   implementation(libs.androidx.multidex)
   implementation(libs.androidx.ktx)

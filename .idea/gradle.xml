@@ -27,7 +27,7 @@
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/presentation" />
             <option value="$PROJECT_DIR$/presentation/fact" />
-            <option value="$PROJECT_DIR$/presentation/main" />
+            <option value="$PROJECT_DIR$/presentation/scheme" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

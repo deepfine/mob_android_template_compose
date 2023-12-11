@@ -2,7 +2,7 @@ package com.deepfine.data.repository
 
 import app.cash.turbine.test
 import com.deepfine.domain.model.Fact
-import com.deepfine.domain.repository.MainRepository
+import com.deepfine.domain.repository.FactRepository
 import com.deepfine.network.datasource.NetworkDataSource
 import com.deepfine.network.entity.FactEntity
 import com.deepfine.network.entity.FactsEntity
@@ -23,13 +23,13 @@ import kotlin.test.assertTrue
  * @Description
  * @author yc.park (DEEP.FINE)
  */
-class MainRepositoryTest {
+class FactRepositoryTest {
   private val dataSource = mockk<NetworkDataSource>()
-  private lateinit var repository: MainRepository
+  private lateinit var repository: FactRepository
 
   @BeforeEach
   fun setUp() {
-    repository = MainRepositoryImpl(dataSource)
+    repository = FactRepositoryImpl(dataSource)
   }
 
   @AfterEach

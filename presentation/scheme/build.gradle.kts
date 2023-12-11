@@ -10,7 +10,7 @@ plugins {
 }
 
 android {
-  namespace = "com.deepfine.main"
+  namespace = "com.deepfine.scheme"
 
   compileSdk = AppConfiguration.COMPILE_SDK
 

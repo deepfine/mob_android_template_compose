@@ -20,7 +20,7 @@ import com.deepfine.home.route.createArgument
  */
 
 @Composable
-internal fun MainScreen() {
+internal fun SchemeScreen() {
   val navController = rememberNavController()
 
   NavHost(

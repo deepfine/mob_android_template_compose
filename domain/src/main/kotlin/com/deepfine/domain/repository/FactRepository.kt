@@ -9,6 +9,6 @@ import kotlinx.coroutines.flow.Flow
  * @since 2023-08-08
  * @version 1.0.0
  */
-interface MainRepository {
+interface FactRepository {
   suspend fun getFacts(): Flow<Result<List<Fact>>>
 }
