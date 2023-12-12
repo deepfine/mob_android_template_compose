@@ -25,6 +25,8 @@ mockito = "5.8.0"
 mockk = "1.13.8"
 turbine = "1.0.0"
 splash = "1.1.0-alpha02"
+compileSdk = "34"
+
 
 [libraries]
 androidx-multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
@@ -101,3 +103,5 @@ spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 kotlin-kapt = { id = "kotlin-kapt", version.ref = "kotlin" }
 junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "junit5-plugin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+deepfine-android = { id = "lib-deepfine-android" }
+deepfine-presentation = { id = "lib-deepfine-presentation" }
