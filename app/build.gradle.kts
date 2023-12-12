@@ -9,15 +9,15 @@ plugins {
 }
 
 android {
-  namespace = AppConfiguration.APPLICATION_ID
+  namespace = libs.versions.applicationId.get()
 
   defaultConfig {
-    applicationId = AppConfiguration.APPLICATION_ID
-    compileSdk = AppConfiguration.COMPILE_SDK
-    minSdk = AppConfiguration.MIN_SDK
-    targetSdk = AppConfiguration.TARGET_SDK
-    versionCode = AppConfiguration.VERSION_CODE
-    versionName = AppConfiguration.VERSION_NAME
+    applicationId = libs.versions.applicationId.get()
+    compileSdk = libs.versions.compileSdk.get().toInt()
+    minSdk = libs.versions.minSdk.get().toInt()
+    targetSdk = libs.versions.targetSdk.get().toInt()
+    versionCode = libs.versions.versionCode.get().toInt()
+    versionName = libs.versions.versionName.get()
   }
 
   flavorDimensions.add("api")
@@ -25,21 +25,19 @@ android {
   productFlavors {
     // 개발계
     create("dev") {
-      buildConfigField("String", "VERSION_NAME", "\"${AppConfiguration.VERSION_NAME}\"")
-      buildConfigField("Integer", "VERSION_CODE", AppConfiguration.VERSION_CODE.toString())
+      buildConfigField("String", "VERSION_NAME", "\"${libs.versions.versionName.get()}\"")
+      buildConfigField("Integer", "VERSION_CODE", libs.versions.versionCode.get())
       buildConfigField("String", "API_URL", project.property("api.url").toString())
-      resValue("string", "app_name", AppConfiguration.APPLICATION_NAME)
-      resValue("string", "applicationId", applicationId + applicationIdSuffix)
+      resValue("string", "app_name", libs.versions.applicationName.get())
+      resValue("string", "applicationId", libs.versions.applicationId.get() + applicationIdSuffix)
     }
 
     create("production") {
-      versionCode = AppConfiguration.PRODUCTION_VERSION_CODE
-      versionName = AppConfiguration.PRODUCTION_VERSION_NAME
-      buildConfigField("String", "VERSION_NAME", "\"${AppConfiguration.VERSION_NAME}\"")
-      buildConfigField("Integer", "VERSION_CODE", AppConfiguration.VERSION_CODE.toString())
+      buildConfigField("String", "VERSION_NAME", "\"${libs.versions.versionName.get()}\"")
+      buildConfigField("Integer", "VERSION_CODE", libs.versions.versionCode.get())
       buildConfigField("String", "API_URL", project.property("production.api.url").toString())
-      resValue("string", "app_name", AppConfiguration.APPLICATION_NAME)
-      resValue("string", "applicationId", AppConfiguration.APPLICATION_ID)
+      resValue("string", "app_name", libs.versions.applicationName.get())
+      resValue("string", "applicationId", libs.versions.applicationId.get())
     }
   }
 
@@ -60,8 +58,8 @@ android {
   }
 
   compileOptions {
-    sourceCompatibility = AppConfiguration.JAVA_VERSION
-    targetCompatibility = AppConfiguration.JAVA_VERSION
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
   }
 
   lint {
