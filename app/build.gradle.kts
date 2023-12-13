@@ -22,19 +22,17 @@ android {
 
   flavorDimensions.add("api")
 
+  buildFeatures.buildConfig = true
+
   productFlavors {
     // 개발계
     create("dev") {
-      buildConfigField("String", "VERSION_NAME", "\"${libs.versions.versionName.get()}\"")
-      buildConfigField("Integer", "VERSION_CODE", libs.versions.versionCode.get())
       buildConfigField("String", "API_URL", project.property("api.url").toString())
       resValue("string", "app_name", libs.versions.applicationName.get())
       resValue("string", "applicationId", libs.versions.applicationId.get() + applicationIdSuffix)
     }
 
     create("production") {
-      buildConfigField("String", "VERSION_NAME", "\"${libs.versions.versionName.get()}\"")
-      buildConfigField("Integer", "VERSION_CODE", libs.versions.versionCode.get())
       buildConfigField("String", "API_URL", project.property("production.api.url").toString())
       resValue("string", "app_name", libs.versions.applicationName.get())
       resValue("string", "applicationId", libs.versions.applicationId.get())
