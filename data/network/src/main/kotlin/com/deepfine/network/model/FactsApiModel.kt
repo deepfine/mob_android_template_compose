@@ -1,6 +1,5 @@
-package com.deepfine.network.entity
+package com.deepfine.network.model
 
-import com.deepfine.domain.model.Fact
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -9,21 +8,16 @@ import kotlinx.serialization.Serializable
  * @author yc.park (DEEP.FINE)
  */
 @Serializable
-data class FactsEntity(
+data class FactsApiModel(
   @SerialName("data")
-  val facts: List<FactEntity>
-) {
-  fun toDomain() =
-    facts.map(FactEntity::toDomain)
-}
+  val facts: List<FactApiModel>
+)
 
 @Serializable
-data class FactEntity(
+data class FactApiModel(
   @SerialName("fact")
   val fact: String,
 
   @SerialName("length")
   val length: Int
-) {
-  fun toDomain() = Fact(fact, length)
-}
+)

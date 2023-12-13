@@ -24,7 +24,6 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/data/network" />
-            <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/presentation" />
             <option value="$PROJECT_DIR$/presentation/fact" />
             <option value="$PROJECT_DIR$/presentation/scheme" />

@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-  implementation(project(":domain"))
+  implementation(project(":data"))
 
   implementation(libs.findBundle("presentation").get())
   implementation(libs.findBundle("orbit").get())

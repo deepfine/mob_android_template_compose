@@ -24,7 +24,6 @@ android {
 }
 
 dependencies {
-  implementation(project(":domain"))
   implementation(libs.bundles.ktor)
   testImplementation(libs.ktor.mock)
 }

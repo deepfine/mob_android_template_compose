@@ -1,10 +1,11 @@
 package com.deepfine.home.route
 
 import androidx.navigation.NavType
+import com.deepfine.data.model.Fact
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
-typealias FactModel = com.deepfine.domain.model.Fact
+typealias FactModel = Fact
 
 /**
  * @Description

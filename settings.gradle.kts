@@ -21,7 +21,6 @@ listOf(
   ":app",
   ":data",
   ":data:network",
-  ":domain",
   ":presentation",
   ":presentation:scheme",
   ":presentation:fact"

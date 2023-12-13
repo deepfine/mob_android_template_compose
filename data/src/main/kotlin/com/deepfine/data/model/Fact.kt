@@ -1,11 +1,6 @@
-package com.deepfine.domain.model
+package com.deepfine.data.model
 
 import kotlinx.serialization.Serializable
-
-/**
- * @Description
- * @author yc.park (DEEP.FINE)
- */
 
 @Serializable
 data class Fact(

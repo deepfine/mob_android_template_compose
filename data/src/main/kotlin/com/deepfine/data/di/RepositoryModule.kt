@@ -1,7 +1,7 @@
 package com.deepfine.data.di
 
+import com.deepfine.data.repository.FactRepository
 import com.deepfine.data.repository.FactRepositoryImpl
-import com.deepfine.domain.repository.FactRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

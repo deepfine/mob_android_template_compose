@@ -2,7 +2,7 @@ package com.deepfine.fact.viewModel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.deepfine.domain.model.Fact
+import com.deepfine.data.model.Fact
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

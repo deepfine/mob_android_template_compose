@@ -4,8 +4,8 @@ import app.cash.turbine.test
 import com.deepfine.domain.model.Fact
 import com.deepfine.domain.repository.FactRepository
 import com.deepfine.network.datasource.NetworkDataSource
-import com.deepfine.network.entity.FactEntity
-import com.deepfine.network.entity.FactsEntity
+import com.deepfine.network.model.FactApiModel
+import com.deepfine.network.model.FactsApiModel
 import io.mockk.clearAllMocks
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -45,10 +45,10 @@ class FactRepositoryTest {
         dataSource.getFacts()
       } returns flow {
         emit(
-          FactsEntity(
+          FactsApiModel(
             listOf(
-              FactEntity("Fact1", 5),
-              FactEntity("Fact2", 6),
+              FactApiModel("Fact1", 5),
+              FactApiModel("Fact2", 6),
             ),
           ),
         )

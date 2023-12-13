@@ -1,7 +1,7 @@
 package com.deepfine.fact.model
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import com.deepfine.domain.model.Fact
+import com.deepfine.data.model.Fact
 
 /**
  * @Description

@@ -36,7 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.deepfine.domain.model.Fact
+import com.deepfine.data.model.Fact
 import com.deepfine.fact.model.FactScreenPreviewParameterProvider
 import com.deepfine.fact.model.FactSideEffect
 import com.deepfine.fact.model.FactState
