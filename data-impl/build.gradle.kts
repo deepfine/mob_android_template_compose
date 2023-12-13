@@ -7,13 +7,13 @@ plugins {
 }
 
 android {
-  namespace = "com.deepfine.network"
+  namespace = "com.deepfine.data"
 }
 
 dependencies {
-  compileOnly(project(":buildconfig-stub"))
-  implementation(project(":data:network-api"))
+  implementation(project(":data-api"))
+  implementation(project(":data-api:network-api"))
+  runtimeOnly(project(":data-impl:network-impl"))
 
-  implementation(libs.bundles.ktor)
-  testImplementation(libs.ktor.mock)
+  implementation(libs.kotlin.serialization)
 }

@@ -1,4 +1,4 @@
-package com.deepfine.data.utils
+package com.deepfine.data.util
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -10,8 +10,6 @@ import kotlinx.coroutines.flow.map
 /**
  * @Description
  * @author yc.park (DEEP.FINE)
- * @since 2023-08-09
- * @version 1.0.0
  */
 
 internal inline fun <reified T> T.asFlow() = flow {

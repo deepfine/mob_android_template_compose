@@ -10,16 +10,13 @@ import dagger.hilt.components.SingletonComponent
 /**
  * @Description
  * @author yc.park (DEEP.FINE)
- * @since 2023-08-08
- * @version 1.0.0
  */
-
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
 
   @Binds
-  abstract fun bindSampleRepository(
-    splashRepositoryImpl: FactRepositoryImpl
+  abstract fun bindFactRepository(
+    factRepositoryImpl: FactRepositoryImpl
   ): FactRepository
 }

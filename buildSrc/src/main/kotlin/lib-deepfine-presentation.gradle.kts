@@ -32,7 +32,8 @@ android {
 }
 
 dependencies {
-  implementation(project(":data"))
+  implementation(project(":data-api"))
+  runtimeOnly(project(":data-impl"))
 
   implementation(libs.findBundle("presentation").get())
   implementation(libs.findBundle("orbit").get())

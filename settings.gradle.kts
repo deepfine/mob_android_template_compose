@@ -19,9 +19,10 @@ dependencyResolutionManagement {
 
 listOf(
   ":app",
-  ":data",
-  ":data:network-api",
-  ":data:network-impl",
+  ":data-api",
+  ":data-impl",
+  ":data-api:network-api",
+  ":data-impl:network-impl",
   ":presentation",
   ":presentation:scheme",
   ":presentation:fact",
