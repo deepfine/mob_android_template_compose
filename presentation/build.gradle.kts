@@ -7,12 +7,6 @@ plugins {
 
 android {
   namespace = "com.deepfine.presentation"
-
-  flavorDimensions.add("api")
-  productFlavors {
-    create("dev")
-    create("production")
-  }
 }
 
 dependencies {

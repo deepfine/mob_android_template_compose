@@ -1,6 +1,6 @@
 package com.deepfine.network.di
 
-import com.deepfine.network.BuildConfig
+import com.deepfine.buildconfig.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,8 +33,7 @@ class NetworkModule {
     install(DefaultRequest) {
       url {
         protocol = URLProtocol.HTTPS
-        host = BuildConfig.API_URL
-        host = "catfact.ninja"
+        host = BuildConfig.API_URL.split("https://").last()
       }
     }
 

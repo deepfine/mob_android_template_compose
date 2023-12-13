@@ -1,5 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
+
+
 pluginManagement {
   repositories {
     google()
@@ -23,5 +25,7 @@ listOf(
   ":data:network",
   ":presentation",
   ":presentation:scheme",
-  ":presentation:fact"
+  ":presentation:fact",
+  ":buildconfig",
+  ":buildconfig-stub"
 ).forEach(::include)
