@@ -26,7 +26,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
-
   @Singleton
   @Provides
   fun provideKtorClient() = HttpClient {

@@ -12,6 +12,7 @@ android {
 
 dependencies {
   compileOnly(project(":buildconfig-stub"))
+  implementation(project(":data:network-api"))
 
   implementation(libs.bundles.ktor)
   testImplementation(libs.ktor.mock)

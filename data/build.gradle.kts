@@ -11,7 +11,8 @@ android {
 }
 
 dependencies {
-  implementation(project(":data:network"))
+  implementation(project(":data:network-api"))
+  runtimeOnly(project(":data:network-impl"))
 
   implementation(libs.kotlin.serialization)
 }

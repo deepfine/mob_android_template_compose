@@ -1,7 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-
-
 pluginManagement {
   repositories {
     google()
@@ -22,7 +20,8 @@ dependencyResolutionManagement {
 listOf(
   ":app",
   ":data",
-  ":data:network",
+  ":data:network-api",
+  ":data:network-impl",
   ":presentation",
   ":presentation:scheme",
   ":presentation:fact",

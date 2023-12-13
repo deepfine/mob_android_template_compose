@@ -16,9 +16,8 @@ import dagger.hilt.components.SingletonComponent
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class ApiServiceModule {
-
   @Binds
-  abstract fun bindSampleApiService(
-    sampleApiServiceImpl: FactApiServiceImpl
+  abstract fun bindFactApiService(
+    factApiServiceImpl: FactApiServiceImpl
   ): FactApiService
 }
