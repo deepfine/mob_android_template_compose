@@ -10,5 +10,4 @@ android {
 }
 
 dependencies {
-  implementation(project(":data"))
 }

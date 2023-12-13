@@ -63,7 +63,6 @@ android {
 
 dependencies {
   implementation(project(":buildconfig"))
-  implementation(project(":data"))
   implementation(project(":presentation:scheme"))
 
   implementation(libs.androidx.multidex)
