@@ -112,3 +112,4 @@ junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "junit5-plugin" 
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 deepfine-android = { id = "lib-deepfine-android" }
 deepfine-presentation = { id = "lib-deepfine-presentation" }
+deepfine-buildconfig = {id = "lib-deepfine-buildconfig"}
