@@ -14,7 +14,9 @@ Android Template based on [MVI](https://github.com/orbit-mvi/orbit-mvi) & [Jetpa
 <br>
 
 ## Project Structure
-<img width="1937" alt="image" src="https://github.com/deepfine/mob_android_template/assets/58277725/860de077-d4b1-43c4-9220-4fc5811d3762">
+![image](https://github.com/deepfine/mob_android_template/assets/58277725/1202e168-2a99-44a7-979c-2b54dd7be9a0)
+
+
 
 
 
