@@ -20,6 +20,8 @@ internal sealed interface Route {
 }
 
 internal interface NavGraphRoot : Route {
+  override val parent: Route?
+    get() = null
   val destination: String
 }
 
