@@ -14,7 +14,6 @@ typealias FactModel = Fact
 
 object Screen {
   internal data object Fact : NavGraphRoot {
-    override val parent: Route? = null
     override val destination: String = "navFact"
     override val route: String = "fact"
 
