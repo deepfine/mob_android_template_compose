@@ -29,6 +29,8 @@ jobs:
         run: ./gradlew spotlessCheck
 
   build:
+    needs: lint
+    if: ${{ needs.lint.result == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
