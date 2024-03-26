@@ -5,7 +5,7 @@ Android Template based on [MVI](https://github.com/orbit-mvi/orbit-mvi) & [Jetpa
 <details>
     <summary><b>Environment Setup</b></summary>
       <ol>
-        <li>Android Studio Hedgehog</li>
+        <li>Android Studio Iguana</li>
         <li>Java version 17</li>
       </ol>
 </details>
