@@ -30,7 +30,7 @@ jvmTarget = "17"
 junit5 = "5.10.2"
 junit5-plugin = "1.10.0.0"
 mockito = "5.12.0"
-mockk = "1.13.10"
+mockk = "1.13.11"
 turbine = "1.1.0"
 splash = "1.1.0-rc01"
 
