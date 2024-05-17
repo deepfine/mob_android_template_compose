@@ -1,4 +1,4 @@
-package com.deepfine.home.route
+package com.deepfine.scheme.route
 
 import androidx.navigation.NavType
 import com.deepfine.data.model.Fact

@@ -32,6 +32,7 @@ android {
 }
 
 dependencies {
+  implementation(project(":navigator"))
   implementation(project(":data-api"))
   runtimeOnly(project(":data-impl"))
 

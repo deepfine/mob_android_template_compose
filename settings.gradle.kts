@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":navigator")
+
+
 pluginManagement {
   repositories {
     google()
@@ -14,6 +17,7 @@ dependencyResolutionManagement {
   repositories {
     google()
     mavenCentral()
+    maven(url = "https://www.jitpack.io")
   }
 }
 

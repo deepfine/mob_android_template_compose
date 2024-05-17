@@ -23,7 +23,8 @@ sandwich = "2.0.7"
 hilt = "2.51.1"
 hiltNavigation = "1.2.0"
 androidGradlePlugin = "8.4.0"
-lifecycleRuntimeCompose = "2.8.0"
+lifecycleRuntimeCompose = "2.7.0"
+bottomSheetNavigator = "1.0.5"
 orbit = "7.1.0"
 spotless = "6.25.0"
 jvmTarget = "17"
@@ -73,6 +74,7 @@ ktor-logging = { group = "io.ktor", name = "ktor-client-logging-jvm", version.re
 ktor-contentNegotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-mock = { group = "io.ktor", name = "ktor-client-mock", version.ref = "ktor" }
 sandwich = { group = "com.github.skydoves", name = "sandwich-ktor", version.ref = "sandwich" }
+bottomsheet-navigator = { group = "com.github.chandroidx", name = "BottomSheetNavigator", version.ref = "bottomSheetNavigator" }
 
 hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-javax = { group = "javax.inject", name = "javax.inject", version = "1" }

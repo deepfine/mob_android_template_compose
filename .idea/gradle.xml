@@ -28,6 +28,7 @@
             <option value="$PROJECT_DIR$/data-api/network-api" />
             <option value="$PROJECT_DIR$/data-impl" />
             <option value="$PROJECT_DIR$/data-impl/network-impl" />
+            <option value="$PROJECT_DIR$/navigator" />
             <option value="$PROJECT_DIR$/presentation" />
             <option value="$PROJECT_DIR$/presentation/fact" />
             <option value="$PROJECT_DIR$/presentation/scheme" />

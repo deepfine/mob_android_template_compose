@@ -1,4 +1,4 @@
-package com.deepfine.home.route
+package com.deepfine.scheme.route
 
 import android.os.Bundle
 import android.os.Parcelable

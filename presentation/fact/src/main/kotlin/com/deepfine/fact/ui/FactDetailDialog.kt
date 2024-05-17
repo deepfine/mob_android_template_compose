@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.deepfine.data.model.Fact
 import com.deepfine.fact.viewModel.FactDetailViewModel
+import com.deepfine.navigator.LocalNavigator
 import com.deepfine.presentation.ui.theme.ApplicationTheme
 
 /**
@@ -31,12 +32,12 @@ import com.deepfine.presentation.ui.theme.ApplicationTheme
  * @author yc.park (DEEP.FINE)
  */
 @Composable
-fun FactDetailDialog(viewModel: FactDetailViewModel = hiltViewModel(), onCloseClicked: () -> Unit) {
-  FactDetailDialog(viewModel.fact, onCloseClicked)
+fun FactDetailDialog(viewModel: FactDetailViewModel = hiltViewModel()) {
+  FactDetailDialog(viewModel.fact)
 }
 
 @Composable
-private fun FactDetailDialog(fact: Fact, onCloseClicked: () -> Unit = {}) {
+private fun FactDetailDialog(fact: Fact) {
   ApplicationTheme {
     Column(
       modifier = Modifier
@@ -46,8 +47,7 @@ private fun FactDetailDialog(fact: Fact, onCloseClicked: () -> Unit = {}) {
         .padding(10.dp),
     ) {
       Row(
-        modifier = Modifier
-          .fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
       ) {
@@ -57,9 +57,8 @@ private fun FactDetailDialog(fact: Fact, onCloseClicked: () -> Unit = {}) {
         )
 
         IconButton(
-          modifier = Modifier
-            .size(20.dp),
-          onClick = onCloseClicked,
+          modifier = Modifier.size(20.dp),
+          onClick = LocalNavigator.current.navigateUp,
         ) {
           Icon(
             imageVector = Icons.Filled.Close,

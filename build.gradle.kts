@@ -39,7 +39,8 @@ subprojects {
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
       kotlinOptions.jvmTarget = libs.versions.jvmTarget.get()
       kotlinOptions.freeCompilerArgs += listOf(
-        "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+        "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+        "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
       )
     }
   }

@@ -13,4 +13,5 @@ dependencies {
 
   implementation(libs.splashScreen)
   implementation(libs.kotlin.serialization)
+  implementation(libs.bottomsheet.navigator)
 }

@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name="com.deepfine.home.view.SchemeActivity"
+            android:name="com.deepfine.scheme.view.SchemeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
