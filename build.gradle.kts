@@ -21,6 +21,7 @@ subprojects {
           "indent_size" to "2",
           "continuation_indent_size" to "2",
           "ktlint_standard_function-naming" to "disabled",
+          "ktlint_standard_property-naming" to "disabled",
           "ij_kotlin_allow_trailing_comma" to "false"
         )
       )

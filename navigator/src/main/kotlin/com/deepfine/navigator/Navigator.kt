@@ -14,7 +14,7 @@ val LocalNavigator = compositionLocalOf<Navigator> {
 }
 
 private class NavigatorImpl(
-  private val navController: NavController,
+  private val navController: NavController
 ) : Navigator {
   override val navigateUp: () -> Unit = {
     navController.navigateUp()

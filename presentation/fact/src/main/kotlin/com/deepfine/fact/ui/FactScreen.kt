@@ -54,7 +54,7 @@ import org.orbitmvi.orbit.compose.collectSideEffect
 
 @Composable
 fun FactScreen(
-  viewModel: FactViewModel = hiltViewModel(),
+  viewModel: FactViewModel = hiltViewModel()
 ) {
   val context = LocalContext.current
   val state by viewModel.collectAsState()
@@ -65,7 +65,9 @@ fun FactScreen(
 private fun handleSideEffects(context: Context, sideEffect: FactSideEffect) {
   when (sideEffect) {
     is FactSideEffect.Error -> Toast.makeText(
-      context, sideEffect.throwable.toString(), Toast.LENGTH_SHORT
+      context,
+      sideEffect.throwable.toString(),
+      Toast.LENGTH_SHORT,
     ).show()
   }
 }
@@ -73,7 +75,7 @@ private fun handleSideEffects(context: Context, sideEffect: FactSideEffect) {
 @Composable
 private fun FactScreen(
   state: FactState,
-  onRefreshClicked: () -> Unit = {},
+  onRefreshClicked: () -> Unit = {}
 ) {
   ApplicationTheme {
     Scaffold { paddingValues ->
@@ -113,7 +115,7 @@ private fun FactScreen(
 
 @Composable
 private fun FactList(
-  facts: List<Fact>,
+  facts: List<Fact>
 ) {
   LazyColumn(
     modifier = Modifier.padding(horizontal = 5.dp),
@@ -127,7 +129,7 @@ private fun FactList(
 
 @Composable
 private fun FactItem(
-  fact: Fact,
+  fact: Fact
 ) {
   val navigator = LocalNavigator.current
   Card(
@@ -154,7 +156,7 @@ private fun FactItem(
 
 @Composable
 private fun Loading(
-  loading: Boolean,
+  loading: Boolean
 ) {
   if (loading) {
     Box {
@@ -168,7 +170,7 @@ private fun Loading(
 
 @Composable
 private fun Error(
-  error: Throwable?,
+  error: Throwable?
 ) {
   if (error != null) {
     Box {
@@ -184,7 +186,7 @@ private fun Error(
 @Preview
 @Composable
 private fun FactScreenPreview(
-  @PreviewParameter(FactScreenPreviewParameterProvider::class) state: FactState,
+  @PreviewParameter(FactScreenPreviewParameterProvider::class) state: FactState
 ) {
   FactScreen(state = state)
 }
