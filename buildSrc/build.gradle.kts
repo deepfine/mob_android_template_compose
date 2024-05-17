@@ -1,4 +1,3 @@
-@file:Suppress("UnstableApiUsage")
 repositories {
   google()
   mavenCentral()

@@ -11,7 +11,8 @@ import javax.inject.Inject
  * @author yc.park (DEEP.FINE)
  */
 @HiltViewModel
-class FactDetailViewModel @Inject constructor(
+class
+FactDetailViewModel @Inject constructor(
   savedStateHandle: SavedStateHandle
 ) : ViewModel() {
   val fact: Fact by lazy {
