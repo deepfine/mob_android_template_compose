@@ -41,6 +41,8 @@ import com.deepfine.fact.model.FactScreenPreviewParameterProvider
 import com.deepfine.fact.model.FactSideEffect
 import com.deepfine.fact.model.FactState
 import com.deepfine.fact.viewModel.FactViewModel
+import com.deepfine.navigator.LocalNavigator
+import com.deepfine.navigator.Navigator
 import com.deepfine.presentation.ui.theme.ApplicationTheme
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
@@ -51,21 +53,28 @@ import org.orbitmvi.orbit.compose.collectSideEffect
  */
 
 @Composable
-fun FactScreen(navigateToFact: (Fact) -> Unit, viewModel: FactViewModel = hiltViewModel()) {
+fun FactScreen(
+  viewModel: FactViewModel = hiltViewModel(),
+) {
   val context = LocalContext.current
-  viewModel.collectSideEffect(sideEffect = { handleSideEffects(context, it) })
   val state by viewModel.collectAsState()
-  FactScreen(state = state, onRefreshClicked = viewModel::requestFacts, navigateToFact = navigateToFact)
+  viewModel.collectSideEffect(sideEffect = { handleSideEffects(context, it) })
+  FactScreen(state = state, onRefreshClicked = viewModel::requestFacts)
 }
 
 private fun handleSideEffects(context: Context, sideEffect: FactSideEffect) {
   when (sideEffect) {
-    is FactSideEffect.Error -> Toast.makeText(context, sideEffect.throwable.toString(), Toast.LENGTH_SHORT).show()
+    is FactSideEffect.Error -> Toast.makeText(
+      context, sideEffect.throwable.toString(), Toast.LENGTH_SHORT
+    ).show()
   }
 }
 
 @Composable
-private fun FactScreen(state: FactState, onRefreshClicked: () -> Unit = {}, navigateToFact: (Fact) -> Unit = {}) {
+private fun FactScreen(
+  state: FactState,
+  onRefreshClicked: () -> Unit = {},
+) {
   ApplicationTheme {
     Scaffold { paddingValues ->
       Surface(
@@ -85,15 +94,14 @@ private fun FactScreen(state: FactState, onRefreshClicked: () -> Unit = {}, navi
               border = BorderStroke(1.dp, Color.Black),
               enabled = !state.loading,
               shape = RoundedCornerShape(24.dp),
-              modifier = Modifier
-                .height(48.dp),
+              modifier = Modifier.height(48.dp),
             ) {
               Text("새로고침", color = Color.Black)
             }
           }
 
           Spacer(modifier = Modifier.height(10.dp))
-          FactList(state.facts, navigateToFact)
+          FactList(state.facts)
         }
 
         Error(state.error)
@@ -104,19 +112,24 @@ private fun FactScreen(state: FactState, onRefreshClicked: () -> Unit = {}, navi
 }
 
 @Composable
-private fun FactList(facts: List<Fact>, navigateToFact: (Fact) -> Unit = {}) {
+private fun FactList(
+  facts: List<Fact>,
+) {
   LazyColumn(
     modifier = Modifier.padding(horizontal = 5.dp),
     verticalArrangement = Arrangement.spacedBy(5.dp),
   ) {
     items(facts.size) { index ->
-      FactItem(facts[index], navigateToFact)
+      FactItem(facts[index])
     }
   }
 }
 
 @Composable
-private fun FactItem(fact: Fact, navigateToFact: (Fact) -> Unit = {}) {
+private fun FactItem(
+  fact: Fact,
+) {
+  val navigator = LocalNavigator.current
   Card(
     colors = CardDefaults.cardColors(
       containerColor = Color.White,
@@ -127,7 +140,7 @@ private fun FactItem(fact: Fact, navigateToFact: (Fact) -> Unit = {}) {
       .fillMaxWidth()
       .background(color = Color.White)
       .clickable {
-        navigateToFact(fact)
+        navigator.navigateToFact(fact)
       },
   ) {
     Box(
@@ -140,7 +153,9 @@ private fun FactItem(fact: Fact, navigateToFact: (Fact) -> Unit = {}) {
 }
 
 @Composable
-private fun Loading(loading: Boolean) {
+private fun Loading(
+  loading: Boolean,
+) {
   if (loading) {
     Box {
       CircularProgressIndicator(
@@ -152,7 +167,9 @@ private fun Loading(loading: Boolean) {
 }
 
 @Composable
-private fun Error(error: Throwable?) {
+private fun Error(
+  error: Throwable?,
+) {
   if (error != null) {
     Box {
       Text(
@@ -166,6 +183,16 @@ private fun Error(error: Throwable?) {
 
 @Preview
 @Composable
-private fun FactScreenPreview(@PreviewParameter(FactScreenPreviewParameterProvider::class) state: FactState) {
+private fun FactScreenPreview(
+  @PreviewParameter(FactScreenPreviewParameterProvider::class) state: FactState,
+) {
   FactScreen(state = state)
+}
+
+@Preview
+@Composable
+private fun FactItemPreview() {
+  Navigator.PreviewWrapper {
+    FactItem(fact = Fact("123", 1))
+  }
 }

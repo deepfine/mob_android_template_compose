@@ -1,5 +1,6 @@
 plugins {
   id(libs.plugins.android.library.get().pluginId)
+  id(libs.plugins.kotlin.serialization.get().pluginId)
   kotlin("android")
 }
 
@@ -18,5 +19,7 @@ android {
 }
 
 dependencies {
+  implementation(project(":data-api"))
   implementation(libs.androidx.compose.navigation)
+  implementation(libs.kotlin.serialization)
 }

@@ -11,12 +11,14 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
+import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.chandroidx.bottomsheetnavigator.ModalBottomSheetLayout
 import com.chandroidx.bottomsheetnavigator.bottomSheet
@@ -25,15 +27,15 @@ import com.deepfine.fact.ui.FactDetailDialog
 import com.deepfine.fact.ui.FactScreen
 import com.deepfine.navigator.LocalNavigator
 import com.deepfine.navigator.Navigator
-import com.deepfine.scheme.route.Screen
+import com.deepfine.scheme.route.FactModel
 import com.deepfine.scheme.route.createArgument
+import com.deepfine.scheme.route.createSerializableNavType
 
 /**
  * @Description
  * @author yc.park (DEEP.FINE)
  */
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun SchemeScreen() {
   val navigator = rememberBottomSheetNavigator()
@@ -53,23 +55,27 @@ internal fun SchemeScreen() {
     ) {
       NavHost(
         navController = navController,
-        startDestination = Screen.Fact.destination,
+        startDestination = "navFact",
       ) {
-        factGraph(navController)
+        factGraph()
       }
     }
   }
 }
 
-private fun NavGraphBuilder.factGraph(navController: NavController) {
-  navigation(startDestination = Screen.Fact.route, route = Screen.Fact.destination) {
-    composable(route = Screen.Fact.route) {
-      FactScreen({ fact -> navController.navigate(Screen.Fact.Detail.argumentedRoute(fact)) })
+private fun NavGraphBuilder.factGraph() {
+  navigation(startDestination = "fact", route = "navFact") {
+    composable(route = "fact") {
+      FactScreen()
     }
 
     dialog(
-      route = Screen.Fact.Detail.route,
-      arguments = Screen.Fact.Detail.createArgument(),
+      route = "fact?fact={fact}",
+      arguments = listOf(
+        navArgument("fact") {
+          type = createSerializableNavType<FactModel>(false)
+        }
+      ),
       dialogProperties = DialogProperties(
         dismissOnBackPress = true,
         dismissOnClickOutside = true,
