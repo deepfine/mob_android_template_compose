@@ -5,6 +5,12 @@ plugins {
 
 android {
   namespace = "com.deepfine.scheme"
+
+  kotlin {
+    compilerOptions.freeCompilerArgs.addAll(
+      "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
+    )
+  }
 }
 
 dependencies {

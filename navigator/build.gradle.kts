@@ -2,6 +2,7 @@ plugins {
   id(libs.plugins.android.library.get().pluginId)
   id(libs.plugins.kotlin.serialization.get().pluginId)
   kotlin("android")
+  id(libs.plugins.compose.compiler.get().pluginId)
 }
 
 android {
@@ -15,7 +16,6 @@ android {
   }
 
   buildFeatures.compose = true
-  composeOptions.kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
 }
 
 dependencies {

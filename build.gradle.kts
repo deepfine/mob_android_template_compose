@@ -8,6 +8,7 @@ plugins {
   id(libs.plugins.kotlin.serialization.get().pluginId) apply false
   id(libs.plugins.hilt.get().pluginId) apply false
   id(libs.plugins.kotlin.kapt.get().pluginId) apply false
+  id(libs.plugins.compose.compiler.get().pluginId) apply false
 }
 
 subprojects {
@@ -34,20 +35,5 @@ subprojects {
       trimTrailingWhitespace()
       endWithNewline()
     }
-  }
-
-  if (!name.contains("app")) {
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
-      kotlinOptions.jvmTarget = libs.versions.jvmTarget.get()
-      kotlinOptions.freeCompilerArgs += listOf(
-        "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-        "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
-      )
-    }
-  }
-
-  tasks.withType(JavaCompile::class.java).configureEach {
-    this.targetCompatibility = libs.versions.jvmTarget.get()
-    this.sourceCompatibility = libs.versions.jvmTarget.get()
   }
 }
