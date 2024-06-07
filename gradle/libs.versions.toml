@@ -8,7 +8,7 @@ versionCode = "1"
 versionName = "1.0.0"
 
 kotlin = "2.0.0"
-kotlinSerialization = "1.6.3"
+kotlinSerialization = "1.7.0"
 multidex = "2.0.1"
 ktx = "1.13.1"
 composeActivity = "1.9.0"
