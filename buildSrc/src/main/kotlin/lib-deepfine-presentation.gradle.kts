@@ -13,6 +13,7 @@ plugins {
   id("dagger.hilt.android.plugin")
   kotlin("android")
   kotlin("kapt")
+  id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
@@ -24,7 +25,6 @@ android {
   }
 
   buildFeatures.compose = true
-  composeOptions.kotlinCompilerExtensionVersion = libs.findVersion("composeCompiler").get().requiredVersion
 
   hilt {
     enableAggregatingTask = true

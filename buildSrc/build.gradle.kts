@@ -3,6 +3,7 @@ repositories {
   mavenCentral()
   maven(url = "https://kotlin.bintray.com/kotlinx")
   maven(url = "https://www.jitpack.io")
+  gradlePluginPortal()
 }
 
 plugins {
@@ -17,4 +18,6 @@ dependencies {
   implementation(libs.kotlin.serialization.gradlePlugin)
   implementation(libs.hilt.gradlePlugin)
   implementation(libs.junit5.gradlePlugin)
+
+  implementation(libs.compose.compiler.extension)
 }
