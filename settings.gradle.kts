@@ -1,17 +1,32 @@
 @file:Suppress("UnstableApiUsage")
 
-include(":navigator")
+include(":data-impl:network-impl")
+
+
+include(":data-api:network-api")
+
+
+include(":data-impl")
+
+
+include(":data-api")
+
 
 
 pluginManagement {
   repositories {
-    google()
+    google {
+      content {
+        includeGroupByRegex("com\\.android.*")
+        includeGroupByRegex("com\\.google.*")
+        includeGroupByRegex("androidx.*")
+      }
+    }
     mavenCentral()
     gradlePluginPortal()
     maven(url = "https://www.jitpack.io")
   }
 }
-
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {
@@ -21,15 +36,13 @@ dependencyResolutionManagement {
   }
 }
 
-listOf(
+include(
   ":app",
-  ":data-api",
-  ":data-impl",
-  ":data-api:network-api",
-  ":data-impl:network-impl",
+  ":buildconfig",
+  ":buildconfig-stub",
+  ":navigator",
   ":presentation",
   ":presentation:scheme",
-  ":presentation:fact",
-  ":buildconfig",
-  ":buildconfig-stub"
-).forEach(::include)
+  ":presentation:main"
+)
+ 

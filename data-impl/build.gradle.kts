@@ -1,16 +1,30 @@
 plugins {
-  id(libs.plugins.deepfine.android.get().pluginId)
-  id(libs.plugins.kotlin.serialization.get().pluginId)
+  alias(libs.plugins.android.library)
+  alias(libs.plugins.kotlin.android)
+  alias(libs.plugins.hilt)
+  alias(libs.plugins.kotlin.serialization)
+  alias(libs.plugins.ksp)
 }
 
 android {
   namespace = "com.deepfine.data"
+  compileSdk = libs.versions.compileSdk.get().toInt()
+
+  defaultConfig {
+    minSdk = libs.versions.minSdk.get().toInt()
+  }
+
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
 }
 
 dependencies {
   implementation(project(":data-api"))
-  implementation(project(":data-api:network-api"))
-  runtimeOnly(project(":data-impl:network-impl"))
 
+  implementation(libs.kotlin.coroutine.core)
   implementation(libs.kotlin.serialization)
+  implementation(libs.hilt)
+  ksp(libs.hilt.compiler)
 }

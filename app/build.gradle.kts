@@ -1,16 +1,16 @@
 plugins {
-  id(libs.plugins.android.application.get().pluginId)
-  id(libs.plugins.kotlin.android.get().pluginId)
-  id(libs.plugins.hilt.get().pluginId)
-  id(libs.plugins.kotlin.kapt.get().pluginId)
+  alias(libs.plugins.android.application)
+  alias(libs.plugins.kotlin.android)
+  alias(libs.plugins.hilt)
+  alias(libs.plugins.ksp)
 }
 
 android {
   namespace = libs.versions.applicationId.get()
+  compileSdk = libs.versions.compileSdk.get().toInt()
 
   defaultConfig {
     applicationId = libs.versions.applicationId.get()
-    compileSdk = libs.versions.compileSdk.get().toInt()
     minSdk = libs.versions.minSdk.get().toInt()
     targetSdk = libs.versions.targetSdk.get().toInt()
     versionCode = libs.versions.versionCode.get().toInt()
@@ -18,6 +18,7 @@ android {
   }
 
   flavorDimensions.add("api")
+
 
   productFlavors {
     // 개발계
@@ -52,19 +53,14 @@ android {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
   }
-
-  lint {
-    abortOnError = false
-  }
 }
 
 dependencies {
   implementation(project(":buildconfig"))
   implementation(project(":presentation:scheme"))
-
+  implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.multidex)
-  implementation(libs.androidx.ktx)
   implementation(libs.hilt)
-
-  kapt(libs.hilt.compiler.get())
+  implementation(libs.splashScreen)
+  ksp(libs.hilt.compiler)
 }

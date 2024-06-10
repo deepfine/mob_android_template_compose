@@ -20,12 +20,6 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import javax.inject.Singleton
 
-/**
- * @Description
- * @author yc.park (DEEP.FINE)
- * @since 2023-08-08
- * @version 1.0.0
- */
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {

@@ -1,18 +1,18 @@
 [versions]
-applicationName = "Android Template"
-applicationId = "com.deepfine.androidTemplate"
+applicationName = "DeepFine"
+applicationId = "com.deepfine.android"
 minSdk = "24"
 targetSdk = "34"
 compileSdk = "34"
 versionCode = "1"
 versionName = "1.0.0"
 
+
 kotlin = "2.0.0"
 kotlinSerialization = "1.7.0"
 multidex = "2.0.1"
-ktx = "1.13.1"
-composeActivity = "1.9.0"
-fragment = "1.5.5"
+coreKtx = "1.13.1"
+activityCompose = "1.9.0"
 composeBom = "2024.05.00"
 composeNavigation = "2.7.7"
 composeExtensions = "1.6.7"
@@ -21,40 +21,32 @@ ktor = "2.3.11"
 sandwich = "2.0.8"
 hilt = "2.51.1"
 hiltNavigation = "1.2.0"
-androidGradlePlugin = "8.4.1"
-lifecycleRuntimeCompose = "2.7.0"
 bottomSheetNavigator = "1.0.5"
 orbit = "8.0.0"
 spotless = "6.25.0"
-junit5 = "5.10.2"
-junit5-plugin = "1.10.0.0"
-mockito = "5.12.0"
-mockk = "1.13.11"
-turbine = "1.1.0"
 splash = "1.1.0-rc01"
+lifecycleRuntimeCompose = "2.7.0"
+agp = "8.4.1"
+
 
 
 [libraries]
 androidx-multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
-androidx-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx" }
-
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 kotlin-coroutine-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutine" }
-kotlin-coroutine-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutine" }
-kotlin-coroutine-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutine" }
-kotlin-test-junit = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit", version.ref = "kotlin" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
 
-androidx-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
+
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 androidx-compose-animation = { group = "androidx.compose.animation", name = "animation" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
-androidx-compose-material3-windowSize = { group = "androidx.compose.material3", name = "material3-window-size-class" }
 androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
 androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-androidx-compose-ui-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
-androidx-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "composeActivity" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigation" }
 androidx-compose-hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigation" }
 compose-extensions = { group = "tech.thdev", name = "extensions-compose-system-ui-controller", version.ref = "composeExtensions" }
@@ -78,40 +70,18 @@ hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt
 hilt-javax = { group = "javax.inject", name = "javax.inject", version = "1" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 
-
-android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
-kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlin-serialization-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
-hilt-gradlePlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
-junit5-gradlePlugin = { group = "de.mannodermaus.gradle.plugins", name = "android-junit5", version.ref = "junit5-plugin" }
-compose-compiler-extension = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
-
-junit5-jupiter-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit5" }
-junit5-jupiter-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit5" }
-mockito = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
-mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
-turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
-
 [bundles]
-test = ["junit5-jupiter-api", "junit5-jupiter-engine", "mockito", "mockk", "kotlin-test-junit", "kotlin-coroutine-test", "turbine"]
+compose = ["androidx-compose-foundation", "androidx-compose-material3", "androidx-compose-runtime", "androidx-compose-ui", "androidx-compose-ui-graphics", "androidx-compose-ui-tooling", "androidx-compose-ui-tooling-preview", "androidx-compose-activity", "androidx-lifecycle-runtime-ktx", "androidx-compose-navigation", "androidx-compose-hilt-navigation", "compose-extensions"]
 orbit = ["orbit", "orbit-viewmodel", "orbit-compose"]
 ktor = ["ktor-okhttp", "ktor-serialization", "ktor-serialization-kotlinx-json", "ktor-contentNegotiation", "ktor-logging", "sandwich"]
-presentation = ["kotlin-coroutine-core", "androidx-ktx"]
-compose = ["androidx-compose-foundation", "androidx-compose-material3", "androidx-compose-runtime", "androidx-compose-ui", "androidx-compose-ui-graphics", "androidx-compose-ui-tooling", "androidx-compose-ui-preview", "androidx-compose-activity", "androidx-lifecycle", "androidx-compose-navigation", "androidx-compose-hilt-navigation", "compose-extensions"]
 
 [plugins]
-android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
-android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-parcelize = { id = "kotlin-parcelize", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-hilt = { id = "dagger.hilt.android.plugin", version.ref = "hilt" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version = "2.0.0-1.0.22" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
-kotlin-kapt = { id = "kotlin-kapt", version.ref = "kotlin" }
-junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "junit5-plugin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-deepfine-android = { id = "lib-deepfine-android" }
-deepfine-presentation = { id = "lib-deepfine-presentation" }
-deepfine-buildconfig = { id = "lib-deepfine-buildconfig" }
