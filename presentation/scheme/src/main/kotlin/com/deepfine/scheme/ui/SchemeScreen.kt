@@ -26,20 +26,20 @@ internal fun SchemeScreen() {
   val navController = rememberNavController(navigator)
 
   CompositionLocalProvider(
-    LocalNavigator provides Navigator.from(navController)
+    LocalNavigator provides Navigator.from(navController),
   ) {
     ModalBottomSheetLayout(
       modifier = Modifier.windowInsetsPadding(
         BottomSheetDefaults.windowInsets.only(
-          WindowInsetsSides.Bottom
-        )
+          WindowInsetsSides.Bottom,
+        ),
       ),
       sheetShape = RoundedCornerShape(topStart = 12.dp, topEnd = 12.dp),
       bottomSheetNavigator = navigator,
     ) {
       NavHost(
         navController = navController,
-        startDestination = "navMain"
+        startDestination = "navMain",
       ) {
         mainGraph()
       }
@@ -47,9 +47,9 @@ internal fun SchemeScreen() {
   }
 }
 
-private fun NavGraphBuilder.mainGraph(){
-  navigation(startDestination = "main", route = "navMain"){
-    composable(route = "main"){
+private fun NavGraphBuilder.mainGraph() {
+  navigation(startDestination = "main", route = "navMain") {
+    composable(route = "main") {
       MainScreen()
     }
   }

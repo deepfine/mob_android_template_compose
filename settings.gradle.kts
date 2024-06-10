@@ -1,18 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-include(":data-impl:network-impl")
-
-
-include(":data-api:network-api")
-
-
-include(":data-impl")
-
-
-include(":data-api")
-
-
-
 pluginManagement {
   repositories {
     google {
@@ -40,6 +27,10 @@ include(
   ":app",
   ":buildconfig",
   ":buildconfig-stub",
+  ":data-api",
+  ":data-api:network-api",
+  ":data-impl",
+  ":data-impl:network-impl",
   ":navigator",
   ":presentation",
   ":presentation:scheme",

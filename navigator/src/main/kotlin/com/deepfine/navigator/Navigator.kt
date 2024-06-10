@@ -6,18 +6,16 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
-
 val LocalNavigator = compositionLocalOf<Navigator> {
   error("No Navigator found!")
 }
 
 private class NavigatorImpl(
-  private val navController: NavController,
+  private val navController: NavController
 ) : Navigator {
   override val navigateUp: () -> Unit = {
     navController.navigateUp()
   }
-
 }
 
 interface Navigator {

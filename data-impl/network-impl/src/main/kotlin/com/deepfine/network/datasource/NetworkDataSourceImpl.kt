@@ -5,6 +5,4 @@ import javax.inject.Inject
 
 class NetworkDataSourceImpl @Inject constructor(
   private val service: ApiService
-) : NetworkDataSource {
-
-}
+) : NetworkDataSource

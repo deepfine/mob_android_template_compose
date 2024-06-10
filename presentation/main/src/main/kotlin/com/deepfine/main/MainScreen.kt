@@ -9,7 +9,6 @@ import com.deepfine.presentation.theme.ApplicationTheme
 fun MainScreen() {
   ApplicationTheme {
     Box {
-
     }
   }
 }
