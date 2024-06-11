@@ -10,6 +10,7 @@ versionName = "1.0.0"
 
 kotlin = "2.0.0"
 kotlinSerialization = "1.7.0"
+ksp = "2.0.0-1.0.22"
 multidex = "2.0.1"
 coreKtx = "1.13.1"
 activityCompose = "1.9.0"
@@ -28,14 +29,11 @@ splash = "1.1.0-rc01"
 lifecycleRuntimeCompose = "2.7.0"
 agp = "8.4.2"
 
-
-
 [libraries]
 androidx-multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 kotlin-coroutine-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutine" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
-
 
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
@@ -70,6 +68,11 @@ hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt
 hilt-javax = { group = "javax.inject", name = "javax.inject", version = "1" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
+compose-compiler-extension = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+
 [bundles]
 compose = ["androidx-compose-foundation", "androidx-compose-material3", "androidx-compose-runtime", "androidx-compose-ui", "androidx-compose-ui-graphics", "androidx-compose-ui-tooling", "androidx-compose-ui-tooling-preview", "androidx-compose-activity", "androidx-lifecycle-runtime-ktx", "androidx-compose-navigation", "androidx-compose-hilt-navigation", "compose-extensions"]
 orbit = ["orbit", "orbit-viewmodel", "orbit-compose"]
@@ -82,6 +85,10 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-ksp = { id = "com.google.devtools.ksp", version = "2.0.0-1.0.22" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+
+deepfine-presentation = { id = "com.deepfine.presentation.plugin" }
+deepfine-android = { id = "com.deepfine.android.plugin" }
+deepfine-hilt = { id = "com.deepfine.hilt.plugin" }

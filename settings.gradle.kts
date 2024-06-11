@@ -1,6 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
 pluginManagement {
+  includeBuild("build-logic")
+
   repositories {
     google {
       content {
@@ -11,9 +13,9 @@ pluginManagement {
     }
     mavenCentral()
     gradlePluginPortal()
-    maven(url = "https://www.jitpack.io")
   }
 }
+
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {
@@ -36,4 +38,3 @@ include(
   ":presentation:scheme",
   ":presentation:main"
 )
- 
