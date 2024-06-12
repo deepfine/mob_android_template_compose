@@ -3,6 +3,7 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.compose.compiler.gradle.ComposeCompilerGradlePluginExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 
 class PresentationConventionPlugin : AndroidConvention, HiltConvention {
   override fun apply(target: Project) {
@@ -12,6 +13,12 @@ class PresentationConventionPlugin : AndroidConvention, HiltConvention {
     with(target) {
       with(pluginManager) {
         apply("org.jetbrains.kotlin.plugin.compose")
+      }
+
+      extensions.getByType<KotlinAndroidProjectExtension>().apply {
+        compilerOptions.freeCompilerArgs.addAll(
+          "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
+        )
       }
 
       extensions.getByType<ComposeCompilerGradlePluginExtension>().apply {
