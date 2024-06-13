@@ -1,7 +1,7 @@
 plugins {
   alias(libs.plugins.deepfine.android)
+  alias(libs.plugins.deepfine.compose)
   alias(libs.plugins.kotlin.serialization)
-  alias(libs.plugins.compose.compiler)
 }
 
 android {

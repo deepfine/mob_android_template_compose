@@ -29,5 +29,10 @@ gradlePlugin {
       id = "com.deepfine.hilt.plugin"
       implementationClass = "HiltConventionPlugin"
     }
+
+    register("ComposePlugin"){
+      id = "com.deepfine.compose.plugin"
+      implementationClass = "ComposeConventionPlugin"
+    }
   }
 }
