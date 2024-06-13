@@ -32,7 +32,6 @@ class PresentationConventionPlugin : AndroidConvention, HiltConvention {
         add("implementation", project(":data-api"))
         add("runtimeOnly", project(":data-impl"))
 
-        add("implementation", libs.findLibrary("androidx-core-ktx").get())
         add("implementation", platform(libs.findLibrary("androidx-compose-bom").get()))
         add("implementation", libs.findBundle("orbit").get())
         add("implementation", libs.findBundle("compose").get())

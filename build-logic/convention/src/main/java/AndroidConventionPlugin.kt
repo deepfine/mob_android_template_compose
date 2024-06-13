@@ -22,6 +22,7 @@ internal interface AndroidConvention : Plugin<Project> {
       val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
       dependencies {
         add("implementation", libs.findLibrary("kotlin-coroutine-core").get())
+        add("implementation", libs.findLibrary("androidx-core-ktx").get())
       }
     }
   }
