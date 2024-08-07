@@ -10,7 +10,7 @@ versionName = "1.0.0"
 
 kotlin = "2.0.10"
 kotlinSerialization = "1.7.1"
-ksp = "2.0.0-1.0.24"
+ksp = "2.0.10-1.0.24"
 multidex = "2.0.1"
 coreKtx = "1.13.1"
 activityCompose = "1.9.1"
