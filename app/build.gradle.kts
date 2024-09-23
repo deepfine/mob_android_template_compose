@@ -3,6 +3,7 @@ plugins {
   alias(libs.plugins.kotlin.android)
   alias(libs.plugins.hilt)
   alias(libs.plugins.ksp)
+  alias(libs.plugins.baselineprofile)
 }
 
 android {
@@ -65,5 +66,7 @@ dependencies {
   implementation(libs.androidx.multidex)
   implementation(libs.hilt)
   implementation(libs.splashScreen)
+  implementation(libs.androidx.profileinstaller)
+  "baselineProfile"(project(":baselineprofile"))
   ksp(libs.hilt.compiler)
 }

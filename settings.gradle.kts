@@ -26,6 +26,7 @@ dependencyResolutionManagement {
 }
 
 include(
+  ":baselineprofile",
   ":app",
   ":buildconfig",
   ":buildconfig-stub",
@@ -36,7 +37,7 @@ include(
   ":navigator",
   ":presentation",
   ":presentation:scheme",
-  ":presentation:main"
+  ":presentation:main",
 )
 
 gradle.startParameter.excludedTaskNames.addAll(listOf(":build-logic:convention:testClasses"))
