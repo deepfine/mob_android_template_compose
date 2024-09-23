@@ -11,7 +11,7 @@ on:
 jobs:
   lint:
     name: Spotless check
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -31,7 +31,7 @@ jobs:
   build:
     needs: lint
     if: ${{ needs.lint.result == 'success' }}
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v4
