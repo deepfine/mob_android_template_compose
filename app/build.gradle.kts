@@ -27,7 +27,7 @@ android {
       resValue("string", "applicationId", libs.versions.applicationId.get() + applicationIdSuffix)
     }
 
-    create("production") {
+    create("prod") {
       resValue("string", "app_name", libs.versions.applicationName.get())
       resValue("string", "applicationId", libs.versions.applicationId.get())
     }
