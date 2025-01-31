@@ -8,9 +8,9 @@ versionCode = "1"
 versionName = "1.0.0"
 
 
-kotlin = "2.1.0"
+kotlin = "2.1.10"
 kotlinSerialization = "1.8.0"
-ksp = "2.1.0-1.0.29"
+ksp = "2.1.10-1.0.29"
 multidex = "2.0.1"
 coreKtx = "1.15.0"
 activityCompose = "1.10.0"
