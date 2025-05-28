@@ -27,7 +27,7 @@ orbit = "9.0.0"
 spotless = "7.0.3"
 splash = "1.1.0-rc01"
 lifecycleRuntimeCompose = "2.9.0"
-agp = "8.10.0"
+agp = "8.10.1"
 
 [libraries]
 androidx-multidex = { group = "androidx.multidex", name = "multidex", version.ref = "multidex" }
