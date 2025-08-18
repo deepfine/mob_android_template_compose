@@ -1,11 +1,11 @@
 # Android Template <br> <a href="https://github.com/deepfine/mob_android_template_compose/actions"><img alt="Build Status" src="https://github.com/deepfine/mob_android_template_compose/actions/workflows/build.yml/badge.svg"/></a><br>
-Android Template based on [MVI](https://github.com/orbit-mvi/orbit-mvi) & [Jetpack compose](https://developer.android.com/jetpack/compose)
+Android Template based on [MVI] & [Jetpack compose](https://developer.android.com/jetpack/compose)
 
 
 <details>
     <summary><b>Environment Setup</b></summary>
       <ol>
-        <li>Android Studio Ladybug</li>
+        <li>Android Studio Narwhal</li>
         <li>Java version 17</li>
       </ol>
 </details>

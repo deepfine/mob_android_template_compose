@@ -36,6 +36,7 @@ internal interface ComposeConvention : Plugin<Project> {
       dependencies {
         add("implementation", platform(libs.findLibrary("androidx-compose-bom").get()))
         add("implementation", libs.findBundle("compose").get())
+        add("implementation", libs.findLibrary("kotlinx-collections-immutable").get())
       }
     }
   }

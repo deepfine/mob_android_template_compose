@@ -17,8 +17,6 @@ class PresentationConventionPlugin : AndroidConvention, HiltConvention, ComposeC
         add("implementation", project(":navigator"))
         add("implementation", project(":data-api"))
         add("runtimeOnly", project(":data-impl"))
-
-        add("implementation", libs.findBundle("orbit").get())
       }
     }
   }

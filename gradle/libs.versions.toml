@@ -19,6 +19,7 @@ composeNavigation = "2.9.0"
 composeExtensions = "25.1.0"
 coroutine = "1.10.2"
 ktor = "3.2.2"
+immutable = "0.4.0"
 sandwich = "2.1.2"
 hilt = "2.57"
 hiltNavigation = "1.2.0"
@@ -34,6 +35,7 @@ androidx-multidex = { group = "androidx.multidex", name = "multidex", version.re
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 kotlin-coroutine-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutine" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
+kotlinx-collections-immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "immutable" }
 
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
@@ -49,10 +51,6 @@ androidx-compose-navigation = { group = "androidx.navigation", name = "navigatio
 androidx-compose-hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigation" }
 compose-extensions = { group = "tech.thdev", name = "extensions-compose-system-ui-controller", version.ref = "composeExtensions" }
 splashScreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splash" }
-
-orbit = { group = "org.orbit-mvi", name = "orbit-core", version.ref = "orbit" }
-orbit-viewmodel = { group = "org.orbit-mvi", name = "orbit-viewmodel", version.ref = "orbit" }
-orbit-compose = { group = "org.orbit-mvi", name = "orbit-compose", version.ref = "orbit" }
 
 kotlin-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinSerialization" }
 ktor-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor" }
@@ -73,7 +71,6 @@ compose-compiler-extension = { module = "org.jetbrains.kotlin:compose-compiler-g
 
 [bundles]
 compose = ["androidx-compose-foundation", "androidx-compose-material3", "androidx-compose-runtime", "androidx-compose-ui", "androidx-compose-ui-graphics", "androidx-compose-ui-tooling", "androidx-compose-ui-tooling-preview", "androidx-compose-activity", "androidx-lifecycle-runtime-ktx", "androidx-compose-navigation", "androidx-compose-hilt-navigation", "compose-extensions"]
-orbit = ["orbit", "orbit-viewmodel", "orbit-compose"]
 ktor = ["ktor-okhttp", "ktor-serialization", "ktor-serialization-kotlinx-json", "ktor-contentNegotiation", "ktor-logging", "sandwich"]
 
 [plugins]
