@@ -35,3 +35,23 @@ subprojects {
     }
   }
 }
+
+val addPreCommitGitHookOnBuild by tasks.registering {
+  doLast {
+    println("⚈ ⚈ ⚈ Running Add Pre Commit Git Hook Script on Build ⚈ ⚈ ⚈")
+
+    providers.exec {
+      commandLine("cp", "scripts/pre-commit", ".git/hooks")
+    }.result.get()
+
+    providers.exec {
+      commandLine("chmod", "755", ".git/hooks/pre-commit")
+    }.result.get()
+
+    println("✅ Added Pre Commit Git Hook Script.")
+  }
+}
+
+tasks.named("prepareKotlinBuildScriptModel") {
+  dependsOn(addPreCommitGitHookOnBuild)
+}
