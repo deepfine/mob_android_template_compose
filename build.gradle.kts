@@ -40,18 +40,24 @@ val addPreCommitGitHookOnBuild by tasks.registering {
   doLast {
     println("⚈ ⚈ ⚈ Running Add Pre Commit Git Hook Script on Build ⚈ ⚈ ⚈")
 
-    providers.exec {
-      commandLine("cp", "scripts/pre-commit", ".git/hooks")
-    }.result.get()
+    val osName = System.getProperty("os.name").lowercase()
 
-    providers.exec {
-      commandLine("chmod", "755", ".git/hooks/pre-commit")
-    }.result.get()
+    if (osName.contains("win")) {
+      providers.exec {
+        commandLine("cmd", "/c", "copy", "/Y", "scripts\\pre-commit", ".git\\hooks\\pre-commit")
+      }.result.get()
+    } else {
+      providers.exec {
+        commandLine("cp", "scripts/pre-commit", ".git/hooks")
+      }
+      providers.exec {
+        commandLine("chmod", "755", ".git/hooks/pre-commit")
+      }
+    }
 
     println("✅ Added Pre Commit Git Hook Script.")
   }
 }
-
 tasks.named("prepareKotlinBuildScriptModel") {
   dependsOn(addPreCommitGitHookOnBuild)
 }
