@@ -17,6 +17,7 @@ jobs:
           rm -f .github/Project_structure.pptx
           rm -f .github/renovate.json
           rm -f .github/workflows/build.yml
+          : > README.md
 
       - name: Commit changes (remove unwanted files)
         run: |
