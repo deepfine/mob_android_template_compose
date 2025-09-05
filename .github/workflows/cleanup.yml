@@ -27,6 +27,7 @@ jobs:
           git rm -f .github/Project_structure.pptx || true
           git rm -f .github/renovate.json || true
           git rm -f .github/workflows/build.yml || true
+          git add README.md || true
 
           git commit -m "chore: remove template-only files" || echo "No changes to commit"
           git push
