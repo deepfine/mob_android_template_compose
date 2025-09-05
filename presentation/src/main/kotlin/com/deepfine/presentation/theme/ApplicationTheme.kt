@@ -4,7 +4,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.graphics.Color
-import tech.thdev.compose.exteions.system.ui.controller.rememberExSystemUiController
+import tech.thdev.compose.exteions.system.ui.controller.rememberSystemUiController
 
 @Composable
 fun ApplicationTheme(
@@ -16,7 +16,7 @@ fun ApplicationTheme(
   isNavigationBarVisible: Boolean = isSystemBarVisible,
   content: @Composable () -> Unit
 ) {
-  val systemUIController = rememberExSystemUiController()
+  val systemUIController = rememberSystemUiController()
 
   DisposableEffect(systemUIController) {
     systemUIController.setSystemBarsColor(systemBarsColor)
