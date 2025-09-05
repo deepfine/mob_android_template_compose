@@ -1,0 +1,38 @@
+name: Cleanup template files
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  remove-files:
+    if: github.repository != 'deepfine/mob_android_template_compose'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Remove unwanted files
+        run: |
+          rm -f ".github/Project_structure.pptx"
+          rm -f .github/renovate.json
+
+      - name: Commit changes (remove unwanted files)
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git rm -f ".github/Project_structure.pptx" || true
+          git rm -f .github/renovate.json || true
+
+          git commit -m "chore: remove template-only files" || echo "No changes to commit"
+          git push
+
+      - name: Self-destruct cleanup workflow
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git rm -f .github/workflows/cleanup.yml || true
+          git commit -m "chore: remove cleanup workflow" || echo "No changes to commit"
+          git push
