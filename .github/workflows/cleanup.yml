@@ -14,16 +14,18 @@ jobs:
 
       - name: Remove unwanted files
         run: |
-          rm -f ".github/Project_structure.pptx"
+          rm -f .github/Project_structure.pptx
           rm -f .github/renovate.json
+          rm -f .github/workflows/build.yaml
 
       - name: Commit changes (remove unwanted files)
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git rm -f ".github/Project_structure.pptx" || true
+          git rm -f .github/Project_structure.pptx || true
           git rm -f .github/renovate.json || true
+          git rm -f .github/workflows/build.yaml || true
 
           git commit -m "chore: remove template-only files" || echo "No changes to commit"
           git push
