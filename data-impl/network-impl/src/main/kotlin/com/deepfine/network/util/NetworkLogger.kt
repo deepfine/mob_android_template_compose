@@ -14,7 +14,7 @@ interface NetworkLogger : Logger {
 }
 
 class NetworkLoggerImpl @Inject constructor(
-  @ApplicationContext private val context: Context
+  @param:ApplicationContext private val context: Context
 ) : NetworkLogger {
   private val file: File by lazy {
     File(context.getExternalFilesDir("log"), NetworkLogger.LOG_FILE_NAME)
