@@ -3,7 +3,7 @@ name: Check and Build
 on:
   push:
     branches:
-      - renovate/**
+      - master
   pull_request:
     branches:
       - master
