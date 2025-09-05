@@ -28,7 +28,6 @@ internal interface ComposeConvention : Plugin<Project> {
       }
 
       extensions.getByType<ComposeCompilerGradlePluginExtension>().apply {
-        enableStrongSkippingMode.set(true)
         includeSourceInformation.set(true)
       }
 

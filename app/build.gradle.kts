@@ -19,7 +19,6 @@ android {
 
   flavorDimensions.add("api")
 
-
   productFlavors {
     // 개발계
     create("dev") {
@@ -39,7 +38,6 @@ android {
       isMinifyEnabled = false
       isShrinkResources = false
       splits.abi.isEnable = false
-      splits.density.isEnable = false
       aaptOptions.cruncherEnabled = false
     }
 
