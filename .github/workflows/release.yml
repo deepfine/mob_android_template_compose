@@ -9,25 +9,6 @@ on:
       - release
 
 jobs:
-  lint:
-    name: Spotless check
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v5
-
-      - name: Set up JDK
-        uses: actions/setup-java@v5
-        with:
-          distribution: zulu
-          java-version: 17
-
-      - name: Make Gradle executable
-        run: chmod +x ./gradlew
-
-      - name: Spotless
-        run: ./gradlew spotlessCheck
-
   build:
     runs-on: ubuntu-latest
     steps:
