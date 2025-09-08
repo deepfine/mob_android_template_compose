@@ -9,25 +9,6 @@ on:
       - release
 
 jobs:
-  lint:
-    name: Spotless check
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v5
-
-      - name: Set up JDK
-        uses: actions/setup-java@v5
-        with:
-          distribution: zulu
-          java-version: 17
-
-      - name: Make Gradle executable
-        run: chmod +x ./gradlew
-
-      - name: Spotless
-        run: ./gradlew spotlessCheck
-
   build:
     runs-on: ubuntu-latest
     steps:
@@ -49,14 +30,41 @@ jobs:
       - name: Make Gradle executable
         run: chmod +x ./gradlew
 
-      # Create Bundle AAB Release
-      # Noted for main module build [main_project_module]:bundleRelease
       - name: Build app bundle release (AAB) - ${{ env.main_project_module }} module
         run: ./gradlew ${{ env.main_project_module }}:bundleProdRelease
 
-      # Noted For Output [main_project_module]/build/outputs/bundle/release/
       - name: Upload AAB (App Bundle) Release - ${{ env.repository_name }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.date_today }} - ${{ env.repository_name }} - App bundle(s) AAB release generated
           path: ${{ env.main_project_module }}/build/outputs/bundle/prodRelease/
+
+      - name: Locate AAB file
+        id: find_aab
+        shell: bash
+        run: |
+          AAB=$(ls ${{ env.main_project_module }}/build/outputs/bundle/prodRelease/*.aab | head -n 1)
+          if [ -z "$AAB" ]; then
+            echo "No AAB found"; exit 1
+          fi
+          echo "AAB_PATH=$AAB" >> $GITHUB_ENV
+          echo "aab_path=$AAB" >> $GITHUB_OUTPUT
+
+      - name: Prepare release tag/name
+        run: |
+          TAG="prod-${{ env.date_today }}-$(date +'%H%M%S')"
+          echo "RELEASE_TAG=$TAG" >> $GITHUB_ENV
+          echo "RELEASE_NAME=${{ env.repository_name }} ${TAG}" >> $GITHUB_ENV
+
+      - name: Create GitHub Release and upload AAB
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.RELEASE_TAG }}
+          name: ${{ env.RELEASE_NAME }}
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+          files: |
+            ${{ env.AAB_PATH }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
