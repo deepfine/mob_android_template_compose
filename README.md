@@ -1,19 +1,15 @@
-# Android Template <br> <a href="https://github.com/deepfine/mob_android_template_compose/actions"><img alt="Build Status" src="https://github.com/deepfine/mob_android_template_compose/actions/workflows/build.yml/badge.svg"/></a><br>
-Android Template based on [MVI] & [Jetpack compose](https://developer.android.com/jetpack/compose)
-
-
-<details>
-    <summary><b>Environment Setup</b></summary>
-      <ol>
-        <li>Android Studio Narwhal</li>
-        <li>Java version 17</li>
-      </ol>
-</details>
+# Android Template Compose <br> <a href="https://github.com/deepfine/mob_android_template_compose/actions"><img alt="Build Status" src="https://github.com/deepfine/mob_android_template_compose/actions/workflows/build.yml/badge.svg"/></a><br>
+Template based on MVI & [Jetpack compose](https://developer.android.com/jetpack/compose)
 
 <br>
+
+### Environment Setup
+- Android Studio Narwhal
+- Java version 17
+
 <br>
 
-## Project Structure
+### Project Structure
 ![image](https://github.com/deepfine/mob_android_template/assets/58277725/1202e168-2a99-44a7-979c-2b54dd7be9a0)
 
 
