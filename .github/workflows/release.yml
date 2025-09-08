@@ -41,3 +41,35 @@ jobs:
         with:
           name: ${{ env.date_today }} - ${{ env.repository_name }} - App bundle(s) AAB release generated
           path: ${{ env.main_project_module }}/build/outputs/bundle/prodRelease/
+
+      # 산출물 경로 찾기 (여러 개면 첫 번째 파일 선택)
+      - name: Locate AAB file
+        id: find_aab
+        shell: bash
+        run: |
+          AAB=$(ls ${{ env.main_project_module }}/build/outputs/bundle/prodRelease/*.aab | head -n 1)
+          if [ -z "$AAB" ]; then
+            echo "No AAB found"; exit 1
+          fi
+          echo "AAB_PATH=$AAB" >> $GITHUB_ENV
+          echo "aab_path=$AAB" >> $GITHUB_OUTPUT
+
+      - name: Prepare release tag/name
+        run: |
+          TAG="prod-${{ env.date_today }}-$(date +'%H%M%S')"
+          echo "RELEASE_TAG=$TAG" >> $GITHUB_ENV
+          echo "RELEASE_NAME=${{ env.repository_name }} ${TAG}" >> $GITHUB_ENV
+
+      # GitHub Release 생성 & AAB 업로드
+      - name: Create GitHub Release and upload AAB
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.RELEASE_TAG }}        # 태그가 없으면 자동 생성
+          name: ${{ env.RELEASE_NAME }}
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+          files: |
+            ${{ env.AAB_PATH }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
