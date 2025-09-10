@@ -8,8 +8,8 @@ android {
 }
 
 dependencies {
-  implementation(project(":presentation"))
-  implementation(project(":presentation:main"))
+  implementation(projects.presentation)
+  implementation(projects.presentation.main)
 
   implementation(libs.splashScreen)
   implementation(libs.kotlin.serialization)
