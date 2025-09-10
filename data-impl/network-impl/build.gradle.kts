@@ -8,8 +8,8 @@ android {
 }
 
 dependencies {
-  compileOnly(project(":buildconfig-stub"))
-  implementation(project(":data-api:network-api"))
+  compileOnly(projects.buildconfigStub)
+  implementation(projects.dataApi.networkApi)
 
   implementation(libs.kotlin.serialization)
   implementation(libs.bundles.ktor)

@@ -57,11 +57,13 @@ android {
 }
 
 dependencies {
-  implementation(project(":buildconfig"))
-  implementation(project(":presentation:scheme"))
+  implementation(projects.buildconfig)
+  implementation(projects.presentation.scheme)
+
   implementation(libs.androidx.core.ktx)
   implementation(libs.androidx.multidex)
   implementation(libs.hilt)
   implementation(libs.splashScreen)
+
   ksp(libs.hilt.compiler)
 }

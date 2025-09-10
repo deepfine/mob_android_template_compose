@@ -9,7 +9,8 @@ android {
 }
 
 dependencies {
-  implementation(project(":data-api"))
+  implementation(projects.dataApi)
+
   implementation(libs.androidx.compose.navigation)
   implementation(libs.kotlin.serialization)
 }

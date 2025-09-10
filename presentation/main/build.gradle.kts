@@ -8,6 +8,7 @@ android {
 }
 
 dependencies {
-  implementation(project(":presentation"))
+  implementation(projects.presentation)
+
   implementation(libs.kotlin.serialization)
 }
